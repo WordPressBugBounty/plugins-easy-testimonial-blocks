@@ -1,0 +1,154 @@
+body {
+	background: #fff !important;
+}
+
+#wpcontent {
+	padding-left: 0 !important;
+}
+
+.plugin_head {
+	padding: 60px 0 30px;
+	max-width: 650px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.plugin__head_container,
+.tabs__titles {
+	background: #f2f7f9;
+}
+
+.tabs__titles {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tab__title {
+	padding: 10px 15px;
+	margin: 0;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #f2f7f9;
+	border-bottom: 0;
+}
+
+.tab__title.active {
+	background: #fff;
+	border-color: #f3f3f3;
+}
+
+.tabs__panels {
+	padding: 30px 0;
+}
+
+.tab__panel {
+	display: none;
+}
+
+.tab__panel.active {
+	display: block;
+}
+
+.tabs__container {
+	max-width: 900px;
+	margin: 0 auto;
+	min-height: 100vh;
+}
+
+/* Support Tab Content */
+.tab__panel_flex {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	min-height: 50vh;
+}
+
+.tab__panel_left {
+	width: 65%;
+}
+
+.tab__panel_right {
+	width: 30%;
+}
+
+.video__container iframe {
+	width: 100%;
+	border: 1px solid #ccc;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	padding: 5px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.single__support_panel {
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	border-radius: 5px;
+	padding: 15px 15px;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+	background: #f2f7f9;
+}
+
+.support__title {
+	margin: 0 0 10px;
+}
+
+.support__link {
+	text-underline-offset: 3px;
+}
+
+.custom__block_request {
+	background: #f2f7f9;
+	padding: 50px;
+	margin-top: 50px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	text-align: center;
+}
+
+.custom__block_request_description {
+	max-width: 70%;
+	margin: auto;
+}
+
+.custom__block_request_title {
+	margin: 0 0 15px;
+}
+
+.available__link {
+	display: inline-block;
+	padding: 5px 15px;
+	border: 1px solid currentColor;
+	text-decoration: none;
+	border-radius: 2px;
+	margin: 0 2px;
+}
+
+.available__links {
+	margin-top: 15px;
+}
+
+.available__link.fiverr {
+	background: #18bf73;
+	color: #fff;
+	border-color: #18bf73;
+}
+
+.available__link.upwork {
+	background: #17a700;
+	color: #fff;
+	border-color: #17a700;
+}
+
+.available__link.mail {
+	background: #d93025;
+	color: #fff;
+	border-color: #d93025;
+}
+
+/* Free vs Pro */
+.head_info {
+	margin-bottom: 35px;
+}

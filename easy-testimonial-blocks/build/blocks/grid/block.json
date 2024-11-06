@@ -1,0 +1,213 @@
+{
+  "apiVersion": 2,
+  "name": "etb/grid",
+  "version": "0.1.0",
+  "title": "Testimonial Grid",
+  "category": "etb-blocks",
+  "description": "A block that displays a grid of testimonials.",
+  "keywords": [
+    "testimonial",
+    "grid",
+    "testimonial grid",
+    "review grid"
+  ],
+  "supports": {
+    "html": false,
+    "anchor": false,
+    "align": false,
+    "customClassName": false
+  },
+  "example": {
+    "attributes": {
+      "gridCols": {
+        "desktop": 2,
+        "tablet": 2,
+        "mobile": 1
+      },
+      "showBar": false
+    }
+  },
+  "providesContext": {
+    "etb/showIcon": "showIcon",
+    "etb/icon": "icon",
+    "etb/showNumericalRating": "showNumericalRating"
+  },
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "gridCols": {
+      "type": "object",
+      "default": {
+        "desktop": 2,
+        "tablet": 2,
+        "mobile": 1
+      }
+    },
+    "gridGap": {
+      "type": "object",
+      "default": {
+        "desktop": 20,
+        "tablet": 20,
+        "mobile": 15
+      }
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "icon": {
+      "type": "string",
+      "default": "two"
+    },
+    "iconSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 60,
+        "tablet": 48,
+        "mobile": 36
+      }
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#fa0"
+    },
+    "iconOpacity": {
+      "type": "number",
+      "default": 0.4
+    },
+    "showNumericalRating": {
+      "type": "boolean",
+      "default": true
+    },
+    "ratingColor": {
+      "type": "string",
+      "default": "#fa0"
+    },
+    "showBar": {
+      "type": "boolean",
+      "default": true
+    },
+    "barPosition": {
+      "type": "string",
+      "default": "etb_left"
+    },
+    "barThickness": {
+      "type": "number",
+      "default": 4
+    },
+    "barColor": {
+      "type": "string",
+      "default": "#c0c0c0"
+    },
+    "ttmFontSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 20,
+        "tablet": 18,
+        "mobile": 16
+      }
+    },
+    "ttmFontColor": {
+      "type": "string"
+    },
+    "ttmAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "photoSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 60,
+        "tablet": 48,
+        "mobile": 36
+      }
+    },
+    "photoBorder": {
+      "type": "object",
+      "default": {
+        "width": "1px",
+        "style": "solid",
+        "color": "#c0c0c0"
+      }
+    },
+    "photoBorderRadius": {
+      "type": "number",
+      "default": 50
+    },
+    "infoAlign": {
+      "type": "string",
+      "default": "flex-start"
+    },
+    "nameFontSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 24,
+        "tablet": 20,
+        "mobile": 18
+      }
+    },
+    "nameFontColor": {
+      "type": "string"
+    },
+    "titleFontSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 18,
+        "tablet": 16,
+        "mobile": 14
+      }
+    },
+    "titleFontColor": {
+      "type": "string"
+    },
+    "companyFontSizes": {
+      "type": "object",
+      "default": {
+        "desktop": 16,
+        "tablet": 15,
+        "mobile": 14
+      }
+    },
+    "companyFontColor": {
+      "type": "string"
+    },
+    "containerBorder": {
+      "type": "object",
+      "default": {
+        "width": 0,
+        "style": "solid",
+        "color": ""
+      }
+    },
+    "containerBorderRadius": {
+      "type": "number",
+      "default": 5
+    },
+    "containerPadding": {
+      "type": "object",
+      "default": {
+        "desktop": 20,
+        "tablet": 20,
+        "mobile": 15
+      }
+    },
+    "enableBoxShadow": {
+      "type": "boolean",
+      "default": true
+    },
+    "containerBg": {
+      "type": "string"
+    },
+    "zIndex": {
+      "type": "number"
+    },
+    "customClases": {
+      "type": "string"
+    }
+  },
+  "textdomain": "easy-testimonials-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

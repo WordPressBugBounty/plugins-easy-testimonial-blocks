@@ -1,0 +1,62 @@
+{
+  "apiVersion": 2,
+  "name": "etb/grid-item",
+  "version": "0.1.0",
+  "title": "Grid Item",
+  "category": "etb-blocks",
+  "description": "Acts as child block for grid.",
+  "supports": {
+    "html": false,
+    "anchor": false,
+    "customClassName": false
+  },
+  "parent": [
+    "etb/grid"
+  ],
+  "usesContext": [
+    "etb/showIcon",
+    "etb/icon",
+    "etb/showNumericalRating"
+  ],
+  "attributes": {
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "icon": {
+      "type": "string",
+      "default": "two"
+    },
+    "showNumericalRating": {
+      "type": "boolean",
+      "default": true
+    },
+    "testimonial": {
+      "type": "string"
+    },
+    "reviewerName": {
+      "type": "string"
+    },
+    "reviewerTitle": {
+      "type": "string"
+    },
+    "reviewerCompany": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "object"
+    },
+    "showRating": {
+      "type": "boolean",
+      "default": true
+    },
+    "rating": {
+      "type": "number",
+      "default": 5
+    }
+  },
+  "textdomain": "easy-testimonials-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
