@@ -1,14 +1,14 @@
 === Testimonial Gutenberg Blocks ===
 Contributors: binsaifullah
 Tags: testimonial, review, testimonial block, gutenberg block, custom block, review block
-Requires at least: 5.6
-Tested up to: 6.6.1
-Stable tag: 1.0.4
-Requires PHP: 7.0
+Requires at least: 6.0
+Tested up to: 6.8
+Stable tag: 1.0.5
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A collection of custom Gutenberg blocks developed with native components to showcase client testimonials.
+showcase client testimonials.
 
 == Description ==
 
@@ -61,12 +61,14 @@ No, you don't need to have any coding knowledge.
 
 
 == Changelog ==
-**1.0.4**
-* Compatibility with WordPress 6.6.1
-**1.0.1**
+= 1.0.5 =
+* Compatibility with WordPress 6.8
+
+= 1.0.1 = 
 * Change the block title 
 * Add admin support page
-**1.0.0**
+
+= 1.0.0 = 
 * Initial release
 
 == Upgrade Notice ==

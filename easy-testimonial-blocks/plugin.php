@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       Easy Testimonial Blocks
  * Description:       A collection of custom Gutenberg blocks developed with native components to showcase client testimonials.
- * Requires at least: 5.7
- * Requires PHP:      7.0
- * Version:           1.0.4
+ * Requires at least: 6.0
+ * Requires PHP:      7.4
+ * Version:           1.0.5
  * Author:            Zakaria Binsaifullah
  * Author URI:        https://makegutenblock.com
  * License:           GPL-2.0-or-later
@@ -80,7 +80,7 @@ final class ETB_BLOCKS_CLASS {
 	 * Define the plugin constants
 	 */
 	private function etb_define_constants() {
-		define( 'ETB_VERSION', '1.0.1' );
+		define( 'ETB_VERSION', '1.0.5' );
 		define( 'ETB_URL', plugin_dir_url( __FILE__ ) );
 		define( 'ETB_INC_URL', ETB_URL . 'includes/' );
 	}
