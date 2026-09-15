@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "etb/grid",
   "version": "0.1.0",
   "title": "Testimonial Grid",
@@ -12,10 +12,13 @@
     "review grid"
   ],
   "supports": {
-    "html": false,
-    "anchor": false,
-    "align": false,
-    "customClassName": false
+    "html": true,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "customClassName": true
   },
   "example": {
     "attributes": {
@@ -23,8 +26,7 @@
         "desktop": 2,
         "tablet": 2,
         "mobile": 1
-      },
-      "showBar": false
+      }
     }
   },
   "providesContext": {
@@ -101,7 +103,10 @@
       "default": "#c0c0c0"
     },
     "ttmFontSizes": {
-      "type": "object",
+      "type": [
+        "object",
+        "string"
+      ],
       "default": {
         "desktop": 20,
         "tablet": 18,
@@ -132,7 +137,10 @@
       }
     },
     "photoBorderRadius": {
-      "type": "number",
+      "type": [
+        "number",
+        "object"
+      ],
       "default": 50
     },
     "infoAlign": {
@@ -140,7 +148,10 @@
       "default": "flex-start"
     },
     "nameFontSizes": {
-      "type": "object",
+      "type": [
+        "object",
+        "string"
+      ],
       "default": {
         "desktop": 24,
         "tablet": 20,
@@ -151,7 +162,10 @@
       "type": "string"
     },
     "titleFontSizes": {
-      "type": "object",
+      "type": [
+        "object",
+        "string"
+      ],
       "default": {
         "desktop": 18,
         "tablet": 16,
@@ -162,7 +176,10 @@
       "type": "string"
     },
     "companyFontSizes": {
-      "type": "object",
+      "type": [
+        "object",
+        "string"
+      ],
       "default": {
         "desktop": 16,
         "tablet": 15,
@@ -181,7 +198,10 @@
       }
     },
     "containerBorderRadius": {
-      "type": "number",
+      "type": [
+        "number",
+        "object"
+      ],
       "default": 5
     },
     "containerPadding": {
