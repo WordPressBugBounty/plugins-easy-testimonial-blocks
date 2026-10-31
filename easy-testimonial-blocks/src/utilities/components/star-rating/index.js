@@ -1,6 +1,4 @@
-/**
- * Internal dependencies
- */
+import { __, sprintf } from '@wordpress/i18n';
 
 const StarRating = ( { total = 5, rating } ) => {
 	const safeRating = Math.min( Math.max( Number( rating ) || 0, 0 ), total );
@@ -23,7 +21,12 @@ const StarRating = ( { total = 5, rating } ) => {
 		<div
 			className="gutenlayout-star-rating"
 			role="img"
-			aria-label={ `${ rating } out of ${ total } stars` }
+			aria-label={ sprintf(
+				/* translators: 1: rating value, 2: maximum rating */
+				__( '%1$s out of %2$d stars', 'easy-testimonial-blocks' ),
+				normalized,
+				total
+			) }
 		>
 			{ filled > 0 && (
 				<>

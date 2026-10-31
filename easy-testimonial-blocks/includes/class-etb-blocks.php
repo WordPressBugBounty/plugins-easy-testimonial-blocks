@@ -90,11 +90,13 @@ class ETB_Blocks {
 	/**
 	 * Render callback for etb/grid-item.
 	 *
-	 * @param array $attributes Block attributes.
+	 * @param array    $attributes Block attributes.
+	 * @param string   $content    Saved block markup ( unused ).
+	 * @param WP_Block $block      Block instance, carries the grid context.
 	 * @return string
 	 */
-	public function render_grid_item( $attributes ) {
-		return etb_testimonial_grid_item( $attributes );
+	public function render_grid_item( $attributes, $content = '', $block = null ) {
+		return etb_testimonial_grid_item( $attributes, $block );
 	}
 
 	/**
@@ -105,6 +107,10 @@ class ETB_Blocks {
 	 * @return string
 	 */
 	public function render_grid( $attributes, $content ) {
+		if ( empty( $attributes['id'] ) ) {
+			return $content;
+		}
+
 		$this->register_inline_style( $attributes['id'], etb_testimonial_grid( $attributes ) );
 
 		return $content;

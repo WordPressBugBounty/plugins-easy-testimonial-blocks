@@ -2,9 +2,9 @@
   "apiVersion": 3,
   "name": "etb/grid-item",
   "version": "0.1.0",
-  "title": "Grid Item",
+  "title": "Testimonial",
   "category": "etb-blocks",
-  "description": "Acts as child block for grid.",
+  "description": "A single testimonial with quote, star rating, reviewer name, title, company and photo.",
   "supports": {
     "html": false,
     "anchor": false,
@@ -16,7 +16,9 @@
   "usesContext": [
     "etb/showIcon",
     "etb/icon",
-    "etb/showNumericalRating"
+    "etb/showNumericalRating",
+    "etb/nameTag",
+    "etb/photoSizes"
   ],
   "attributes": {
     "showIcon": {
@@ -55,7 +57,7 @@
       "default": 5
     }
   },
-  "textdomain": "easy-testimonials-blocks",
+  "textdomain": "easy-testimonial-blocks",
   "editorScript": "file:./index.js",
   "style": "file:./style-index.css"
 }

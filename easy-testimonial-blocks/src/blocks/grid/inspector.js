@@ -7,12 +7,13 @@ import {
 } from '@wordpress/block-editor';
 import {
 	PanelBody,
+	SelectControl,
 	ToggleControl,
 	RangeControl,
 	__experimentalBorderControl as BorderControl,
 	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
-const { Fragment } = wp.element;
+import { Fragment } from '@wordpress/element';
 
 // import components
 import ColorControl from '../../utilities/components/colorcontrol/colorcontrol';
@@ -63,6 +64,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 	const {
 		gridCols,
 		gridGap,
+		nameTag,
 		showIcon,
 		icon,
 		iconSizes,
@@ -152,6 +154,33 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						setAttributes={ setAttributes }
 						min={ 0 }
 						max={ 200 }
+					/>
+					<SelectControl
+						label={ __(
+							'Reviewer Name Tag',
+							'easy-testimonial-blocks'
+						) }
+						help={ __(
+							'Use a paragraph or div to keep testimonials out of the page heading outline.',
+							'easy-testimonial-blocks'
+						) }
+						value={ nameTag }
+						options={ [
+							'h2',
+							'h3',
+							'h4',
+							'h5',
+							'h6',
+							'p',
+							'div',
+						].map( ( tag ) => ( {
+							label: tag.toUpperCase(),
+							value: tag,
+						} ) ) }
+						onChange={ ( value ) =>
+							setAttributes( { nameTag: value } )
+						}
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 				<PanelBody

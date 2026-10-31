@@ -1,7 +1,11 @@
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InnerBlocks,
+	store as blockEditorStore,
+} from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
-const { Fragment } = wp.element;
+import { Fragment, useEffect } from '@wordpress/element';
 
 // editor styles — single source for all editor styles in the plugin
 import '../../editor.scss';
@@ -22,10 +26,34 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 		[]
 	);
 
-	// set unique id
-	setAttributes( {
-		id: 'etb-grid-' + clientId.slice( 0, 8 ),
-	} );
+	// another grid in the editor already uses this id ( e.g. after duplicating )
+	const isDuplicateId = useSelect(
+		( select ) => {
+			if ( ! id ) {
+				return false;
+			}
+			const {
+				getClientIdsWithDescendants,
+				getBlockName,
+				getBlockAttributes,
+			} = select( blockEditorStore );
+			return getClientIdsWithDescendants().some(
+				( otherId ) =>
+					otherId !== clientId &&
+					getBlockName( otherId ) === 'etb/grid' &&
+					getBlockAttributes( otherId )?.id === id
+			);
+		},
+		[ clientId, id ]
+	);
+
+	// assign a unique id once — only when missing or duplicated, so opening
+	// a saved post never marks it as changed
+	useEffect( () => {
+		if ( ! id || isDuplicateId ) {
+			setAttributes( { id: 'etb-grid-' + clientId.slice( 0, 8 ) } );
+		}
+	}, [ id, isDuplicateId, clientId, setAttributes ] );
 
 	const blockProps = useBlockProps( {
 		className: [

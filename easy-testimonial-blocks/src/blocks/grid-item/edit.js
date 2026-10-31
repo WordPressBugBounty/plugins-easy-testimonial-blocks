@@ -16,7 +16,7 @@ import {
 	CardBody,
 	RangeControl,
 } from '@wordpress/components';
-const { Fragment } = wp.element;
+import { Fragment } from '@wordpress/element';
 
 // editor star rating component
 import StarRating from '../../utilities/components/star-rating';
@@ -24,10 +24,18 @@ import StarRating from '../../utilities/components/star-rating';
 // import icons
 import icons from '../../utilities/options/icons';
 
+// tags allowed for the reviewer name ( mirrors includes/grid-item.php )
+const NAME_TAGS = [ 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div' ];
+
+// keep only what the block renders instead of the whole media object
+const toPhoto = ( media ) => ( {
+	id: media.id,
+	url: media.sizes?.medium?.url || media.url,
+	alt: media.alt || '',
+} );
+
 export default function Edit( { attributes, setAttributes, context } ) {
 	const {
-		showIcon,
-		icon,
 		testimonial,
 		reviewerName,
 		reviewerTitle,
@@ -35,13 +43,16 @@ export default function Edit( { attributes, setAttributes, context } ) {
 		photo,
 		showRating,
 		rating,
-		showNumericalRating,
 	} = attributes;
-	setAttributes( {
-		icon: context[ 'etb/icon' ],
-		showIcon: context[ 'etb/showIcon' ],
-		showNumericalRating: context[ 'etb/showNumericalRating' ],
-	} );
+
+	// display settings are owned by the parent grid
+	const showIcon = context[ 'etb/showIcon' ] ?? attributes.showIcon;
+	const icon = context[ 'etb/icon' ] ?? attributes.icon;
+	const showNumericalRating =
+		context[ 'etb/showNumericalRating' ] ?? attributes.showNumericalRating;
+	const nameTag = NAME_TAGS.includes( context[ 'etb/nameTag' ] )
+		? context[ 'etb/nameTag' ]
+		: 'h4';
 	return (
 		<Fragment>
 			<InspectorControls group="settings">
@@ -76,7 +87,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 										rating: value,
 									} )
 								}
-								min={ 1 }
+								min={ 0 }
 								max={ 5 }
 								step={ 0.1 }
 							/>
@@ -90,7 +101,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						<MediaUpload
 							onSelect={ ( media ) =>
 								setAttributes( {
-									photo: media,
+									photo: toPhoto( media ),
 								} )
 							}
 							allowedTypes={ [ 'image' ] }
@@ -98,10 +109,23 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							render={ ( { open } ) => (
 								<ToolbarButton
 									icon={ 'edit' }
-									label="Edit"
+									label={ __(
+										'Replace Photo',
+										'easy-testimonial-blocks'
+									) }
 									onClick={ open }
 								/>
 							) }
+						/>
+						<ToolbarButton
+							icon={ 'trash' }
+							label={ __(
+								'Remove Photo',
+								'easy-testimonial-blocks'
+							) }
+							onClick={ () =>
+								setAttributes( { photo: undefined } )
+							}
 						/>
 					</ToolbarGroup>
 				</BlockControls>
@@ -114,9 +138,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 					{ showRating && (
 						<div className="rating">
 							{ showNumericalRating && (
-								<div className="rating-value">
-									{ rating && rating }
-								</div>
+								<div className="rating-value">{ rating }</div>
 							) }
 
 							<StarRating total={ 5 } rating={ rating } />
@@ -147,7 +169,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						<MediaUpload
 							onSelect={ ( media ) =>
 								setAttributes( {
-									photo: media,
+									photo: toPhoto( media ),
 								} )
 							}
 							allowedTypes={ [ 'image' ] }
@@ -169,7 +191,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 
 					<div className="reviewer-info-content">
 						<RichText
-							tagName="h4"
+							tagName={ nameTag }
 							className={ 'reviewer-name' }
 							value={ reviewerName }
 							onChange={ ( value ) =>

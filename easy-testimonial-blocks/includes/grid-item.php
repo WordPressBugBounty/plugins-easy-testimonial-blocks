@@ -130,9 +130,69 @@ function etb_sanitize_svg( $svg ) {
 }
 
 /**
- * Renders the testimonial grid item block.
+ * Builds the reviewer photo markup.
+ *
+ * Media library photos go through wp_get_attachment_image() so they get
+ * width/height, srcset and lazy loading; the image size is picked from the
+ * largest photo size set on the parent grid ( 2x for high-density screens ).
+ *
+ * @param array  $photo       Photo attribute ( id, url, alt ).
+ * @param string $alt         Fallback alt text.
+ * @param mixed  $photo_sizes Responsive photo sizes from the parent grid.
+ * @return string
  */
-function etb_testimonial_grid_item( $attributes ) {
+function etb_reviewer_photo_html( $photo, $alt, $photo_sizes ) {
+	$alt = ! empty( $photo['alt'] ) ? $photo['alt'] : wp_strip_all_tags( $alt );
+
+	$display_size = 60;
+	if ( is_array( $photo_sizes ) ) {
+		$numeric = array_filter( array_map( 'floatval', $photo_sizes ) );
+		if ( $numeric ) {
+			$display_size = (int) ceil( max( $numeric ) );
+		}
+	}
+
+	if ( ! empty( $photo['id'] ) && wp_attachment_is_image( (int) $photo['id'] ) ) {
+		$image = wp_get_attachment_image(
+			(int) $photo['id'],
+			$display_size * 2 <= (int) get_option( 'thumbnail_size_w', 150 ) ? 'thumbnail' : 'medium',
+			false,
+			array(
+				'alt'      => $alt,
+				'sizes'    => $display_size . 'px',
+				'loading'  => 'lazy',
+				'decoding' => 'async',
+			)
+		);
+		if ( $image ) {
+			return $image;
+		}
+	}
+
+	if ( empty( $photo['url'] ) ) {
+		return '';
+	}
+
+	return sprintf(
+		'<img src="%1$s" alt="%2$s" width="%3$d" height="%3$d" loading="lazy" decoding="async" />',
+		esc_url( $photo['url'] ),
+		esc_attr( $alt ),
+		$display_size
+	);
+}
+
+/**
+ * Renders the testimonial grid item block.
+ *
+ * Display settings ( icon, numerical rating, name tag, photo size ) come from
+ * the parent grid through block context; the item's own copies of those
+ * attributes are only a fallback for content saved by older versions.
+ *
+ * @param array         $attributes Block attributes.
+ * @param WP_Block|null $block      Block instance.
+ * @return string
+ */
+function etb_testimonial_grid_item( $attributes, $block = null ) {
 	$attributes = wp_parse_args(
 		$attributes,
 		array(
@@ -149,29 +209,44 @@ function etb_testimonial_grid_item( $attributes ) {
 		)
 	);
 
+	$context = ( $block instanceof WP_Block && is_array( $block->context ) ) ? $block->context : array();
+
+	$show_icon      = isset( $context['etb/showIcon'] ) ? (bool) $context['etb/showIcon'] : (bool) $attributes['showIcon'];
+	$icon_key       = isset( $context['etb/icon'] ) ? $context['etb/icon'] : $attributes['icon'];
+	$show_numerical = isset( $context['etb/showNumericalRating'] ) ? (bool) $context['etb/showNumericalRating'] : (bool) $attributes['showNumericalRating'];
+	$photo_sizes    = isset( $context['etb/photoSizes'] ) ? $context['etb/photoSizes'] : null;
+	$name_tag       = isset( $context['etb/nameTag'] ) ? $context['etb/nameTag'] : 'h4';
+	$name_tag       = in_array( $name_tag, array( 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div' ), true ) ? $name_tag : 'h4';
+
+	$rating = min( max( (float) $attributes['rating'], 0 ), 5 );
+	$rating = round( $rating, 1 );
+
 	$icons = etb_quote_icons();
-	$icon  = isset( $icons[ $attributes['icon'] ] ) ? $icons[ $attributes['icon'] ] : $icons['two'];
+	$icon  = isset( $icons[ $icon_key ] ) ? $icons[ $icon_key ] : $icons['two'];
+	$photo = is_array( $attributes['photo'] ) ? $attributes['photo'] : array();
 
 	ob_start();
 	?>
 	<div class="wp-block-etb-grid-item">
 		<div class="testimonial-header">
-			<?php if ( $attributes['showIcon'] ) : ?>
-				<div class="quote-icon">
+			<?php if ( $show_icon ) : ?>
+				<div class="quote-icon" aria-hidden="true">
 					<?php echo etb_sanitize_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized via etb_sanitize_svg() ?>
 				</div>
 			<?php endif; ?>
 			<?php if ( $attributes['showRating'] ) : ?>
 				<div class="rating">
-					<div class="rating-value">
-						<?php if ( $attributes['showNumericalRating'] ) : ?>
-							<?php echo esc_html( $attributes['rating'] ); ?>
-						<?php endif; ?>
-					</div>
-					<div class="gutenlayout-star-rating" role="img" aria-label="<?php echo esc_attr( $attributes['rating'] . ' out of 5 stars' ); ?>">
+					<?php if ( $show_numerical ) : ?>
+						<div class="rating-value" aria-hidden="true"><?php echo esc_html( $rating ); ?></div>
+					<?php endif; ?>
+					<?php
+					/* translators: 1: rating value, 2: maximum rating */
+					$rating_label = sprintf( __( '%1$s out of %2$d stars', 'easy-testimonial-blocks' ), $rating, 5 );
+					?>
+					<div class="gutenlayout-star-rating" role="img" aria-label="<?php echo esc_attr( $rating_label ); ?>">
 						<?php
 						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG markup
-						echo etb_star_rating_svg( $attributes['rating'], 5 );
+						echo etb_star_rating_svg( $rating, 5 );
 						?>
 					</div>
 				</div>
@@ -179,17 +254,17 @@ function etb_testimonial_grid_item( $attributes ) {
 		</div>
 		<p class="testimonial-message"><?php echo wp_kses_post( $attributes['testimonial'] ); ?></p>
 		<div class="reviewer-info">
-			<?php if ( ! empty( $attributes['photo']['url'] ) ) : ?>
+			<?php
+			$photo_html = etb_reviewer_photo_html( $photo, $attributes['reviewerName'], $photo_sizes );
+			if ( $photo_html ) :
+				?>
 				<div class="reviewer-photo">
-					<img
-						src="<?php echo esc_url( $attributes['photo']['url'] ); ?>"
-						alt="<?php echo esc_attr( ! empty( $attributes['photo']['alt'] ) ? $attributes['photo']['alt'] : $attributes['reviewerName'] ); ?>"
-					/>
+					<?php echo $photo_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in etb_reviewer_photo_html() ?>
 				</div>
 			<?php endif; ?>
 			<div class="reviewer-info-content">
 				<?php if ( ! empty( $attributes['reviewerName'] ) ) : ?>
-					<h4 class="reviewer-name"><?php echo wp_kses_post( $attributes['reviewerName'] ); ?></h4>
+					<<?php echo tag_escape( $name_tag ); ?> class="reviewer-name"><?php echo wp_kses_post( $attributes['reviewerName'] ); ?></<?php echo tag_escape( $name_tag ); ?>>
 				<?php endif; ?>
 				<?php if ( ! empty( $attributes['reviewerTitle'] ) ) : ?>
 					<p class="reviewer-title"><?php echo wp_kses_post( $attributes['reviewerTitle'] ); ?></p>

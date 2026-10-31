@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "title": "Testimonial Grid",
   "category": "etb-blocks",
-  "description": "A block that displays a grid of testimonials.",
+  "description": "Display customer testimonials and reviews with star ratings and photos in a responsive grid.",
   "keywords": [
     "testimonial",
     "grid",
@@ -32,7 +32,9 @@
   "providesContext": {
     "etb/showIcon": "showIcon",
     "etb/icon": "icon",
-    "etb/showNumericalRating": "showNumericalRating"
+    "etb/showNumericalRating": "showNumericalRating",
+    "etb/nameTag": "nameTag",
+    "etb/photoSizes": "photoSizes"
   },
   "attributes": {
     "id": {
@@ -53,6 +55,10 @@
         "tablet": 20,
         "mobile": 15
       }
+    },
+    "nameTag": {
+      "type": "string",
+      "default": "h4"
     },
     "showIcon": {
       "type": "boolean",
@@ -226,7 +232,7 @@
       "type": "string"
     }
   },
-  "textdomain": "easy-testimonials-blocks",
+  "textdomain": "easy-testimonial-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"
