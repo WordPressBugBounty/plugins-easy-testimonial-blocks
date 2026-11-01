@@ -3,7 +3,7 @@ Contributors: binsaifullah
 Tags: testimonial, testimonials, testimonial block, customer reviews, star ratings
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,22 +27,27 @@ Social proof turns visitors into customers. A well-designed testimonials section
 = Key features =
 
 * **Native testimonial block** – built with core WordPress block APIs. No shortcodes, no page builder, no lock-in.
+* **13 card designs** – Classic, Elevated, Outline, Minimal, Speech bubble, Spotlight, Midnight, Aurora, Glass, Accent stripe, Editorial, Pastel and Side by side. Pick one from visual thumbnails, set an accent color, add a hover effect or custom shadow, and fine-tune every detail
+* **Design picker** – insert the block and choose a ready-made design from a visual picker, or start blank
+* **Ready-made testimonial sections** – 13 block patterns (three cards, featured quote, two columns, dark section, wall of love, spotlight, speech bubbles, aurora gradient, frosted glass, accent stripe, editorial, side by side and minimal) you can insert and edit in one click
 * **Responsive testimonial grid** – set columns and spacing separately for desktop, tablet and mobile
 * **Star ratings** – show ratings out of 5, including decimals like 4.5 or 4.8, with crisp SVG stars and an optional number
 * **Reviewer details** – name, job title, company and photo for every testimonial
 * **Reviewer photos** – responsive, lazy-loaded images with size, border and border radius controls
 * **Quote icons** – choose from four quote icon styles and set their size, color and opacity
 * **Design controls** – background, text and rating colors, font sizes, alignment, borders, border radius, padding and box shadow
+* **Theme-aware section styling** – native background, gradient, text color, padding and margin controls that use your theme's color palette and spacing presets
 * **Live device preview** – responsive settings follow the editor's desktop, tablet and mobile preview
 * **SEO-friendly markup** – choose the HTML tag for reviewer names (H2–H6, paragraph or div) to keep your heading structure clean
 * **Accessible** – screen reader labels for ratings and alt text for reviewer photos
 * **Fast and lightweight** – no JavaScript on the frontend, no jQuery, and CSS loads only on pages that use the block
 * **Works with any theme** – block themes, classic themes, full site editing and block-based widget areas
+* **Plugin dashboard** – see how many testimonials you have, where they appear and your average rating, and create a page from a ready-made design in one click (Settings → Testimonial Blocks)
 * **Translation ready** – every label can be translated, and RTL languages are supported
 
 = How it works =
 
-1. Insert the **Testimonial Grid** block from the block inserter.
+1. Insert the **Testimonial Grid** block and choose a ready-made design, or start blank. The designs are also under **Patterns → Testimonials**.
 2. Type the testimonial text, then add the reviewer's name, title, company and photo.
 3. Set the star rating for each testimonial.
 4. Adjust columns, colors, icons and spacing from the block sidebar.
@@ -75,13 +80,13 @@ Found a bug or have a feature request? Open a thread in the [support forum](http
 2. Go to **Plugins → Add New Plugin → Upload Plugin** and upload the zip, or unzip it into `/wp-content/plugins/easy-testimonial-blocks/`.
 3. Activate the plugin from the **Plugins** screen.
 
-After activation, a short guide and video tutorial are available under **Tools → Testimonial Blocks**.
+After activation, open **Settings → Testimonial Blocks** for the plugin dashboard: usage stats, ready-made designs, the video tutorial and support links.
 
 == Frequently Asked Questions ==
 
 = How do I add testimonials to my WordPress site? =
 
-Open a page or post in the block editor and insert the **Testimonial Grid** block. Each grid starts with two testimonial items. Fill in the text, reviewer details and rating, and add more items with the block appender.
+Open a page or post in the block editor and insert the **Testimonial Grid** block. Choose a ready-made design or start blank, then fill in the text, reviewer details and rating. Add more testimonials with the block appender. You can also create a complete testimonials page in one click from **Settings → Testimonial Blocks → Designs**.
 
 = Is Easy Testimonial Blocks free? =
 
@@ -102,6 +107,14 @@ Yes. Columns, gaps, font sizes, icon sizes, photo sizes and padding can each be 
 = Does it work with block themes and full site editing? =
 
 Yes. You can use the testimonial block in posts, pages, templates, template parts and block-based widget areas, with both block themes and classic themes.
+
+= Are there ready-made testimonial designs? =
+
+Yes. When you insert the Testimonial Grid block, click **Choose a design** to pick one visually. You can also open **Patterns → Testimonials** in the block inserter. There are 13 sections: three cards, featured quote, two columns, dark section, wall of love, spotlight, speech bubbles, aurora gradient, frosted glass, accent stripe, editorial, side by side and minimal. Every pattern is fully editable, so replace the sample text, photos and ratings with your own.
+
+= Can I change how the testimonial cards look? =
+
+Yes. Select the Testimonial Grid and open the **Design** panel in the block sidebar. Choose one of 13 card designs from the thumbnails, pick an accent color, add a hover effect (Lift, Grow, Glow, Highlight border or Focus) and a custom shadow for the normal and hover states. Every color, size and spacing value a design sets can be fine-tuned in the Styles tab.
 
 = Do I need to know how to code? =
 
@@ -130,8 +143,23 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 3. Layout settings: responsive columns, grid gap, reviewer name tag and quote icon styles.
 4. Style settings: background, borders, border radius, padding and box shadow, plus colors and font sizes for every element.
 5. Responsive preview on tablet and mobile.
+6. The design picker: insert the block and choose a ready-made testimonial section, or start blank.
 
 == Changelog ==
+
+= 1.2.0 =
+* New: 12 new card designs (Elevated, Outline, Minimal, Speech bubble, Spotlight, Midnight, Aurora, Glass, Accent stripe, Editorial, Pastel and Side by side), chosen from visual thumbnails in the new Design panel. Classic stays the default, and existing grids are unchanged.
+* New: accent color setting for the card designs that use one.
+* New: card hover effects: Lift, Grow, Glow, Highlight border and Focus (fades the other cards).
+* New: custom card shadow with separate Normal and Hover settings (offset, blur, spread and color) and a live preview.
+* New: plugin dashboard under Settings → Testimonial Blocks, with live testimonial stats, a list of the pages that use testimonials, a getting-started checklist, one-click pages from ready-made designs, and the video tutorial (it loads from YouTube only when you press play).
+* New: design picker. A newly inserted Testimonial Grid lets you choose a ready-made design with live previews, or start blank. Inside columns or other blocks, only the testimonial cards are used.
+* New: 13 ready-made testimonial patterns (three cards, featured quote, two columns, dark section, wall of love, spotlight, speech bubbles, aurora gradient, frosted glass, accent stripe, editorial, side by side and minimal) in the Testimonials pattern category.
+* New: native background, gradient, text color, padding and margin controls for the whole testimonial grid, using your theme's presets.
+* New: more search keywords in the block inserter, such as "reviews", "rating" and "social proof", and sample testimonials in the inserter preview.
+* New: translation template (languages/easy-testimonial-blocks.pot).
+* Fix: when the quote icon is hidden, the star rating now sits in the same place on the frontend as in the editor.
+* Removed: leftover accent bar settings that stopped working in 1.1.0. Existing grids are cleaned up automatically the next time they are edited.
 
 = 1.1.2 =
 * Fix: posts containing the testimonial grid were marked as changed every time they were opened in the editor.
@@ -161,6 +189,9 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Adds 12 new card designs, a new dashboard, a design picker, 13 ready-made testimonial patterns and theme-aware color and spacing controls for the grid.
 
 = 1.1.2 =
 Fixes posts showing unsaved changes when opened in the editor, fixes translations, and adds faster responsive reviewer photos. Recommended for all users.

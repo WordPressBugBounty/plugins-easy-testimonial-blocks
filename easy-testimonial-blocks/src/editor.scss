@@ -67,37 +67,50 @@
 
 .etb-single-input {
 	margin: 24px 0;
+}
 
-	.etb-flex {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-bottom: 16px;
+// label with the device switcher right after it
+.etb-control-header {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	min-height: 28px;
+	margin-bottom: 8px;
+}
+
+.etb-control-label {
+	color: #1e1e1e;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1.4;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+// current device; opens the device menu
+.etb-device-menu .etb-device-toggle.components-button {
+	min-width: 24px;
+	width: 24px;
+	height: 24px;
+	padding: 2px;
+	color: #757575;
+	border-radius: 2px;
+
+	svg {
+		width: 18px;
+		height: 18px;
+		fill: currentcolor;
 	}
 
-	.etb-devices {
-		display: flex;
-		flex-direction: row;
-		gap: 4px;
-		justify-content: space-between;
+	&:hover:not(:disabled),
+	&[aria-expanded="true"] {
+		color: var(--wp-admin-theme-color, #3858e9);
+	}
 
-		.etb-device {
-			background: none;
-			border: none;
-			padding: 0;
-			margin: 0;
-			cursor: pointer;
-
-			&.active-device svg {
-				fill: #5c4fdb;
-			}
-
-			svg {
-				width: 14px;
-				height: 10px;
-				fill: #e0e0e0;
-			}
-		}
+	// focus ring for keyboard users only ( core outlines buttons on any focus )
+	&:focus:not(:focus-visible) {
+		outline: none;
+		box-shadow: none;
 	}
 }
 
@@ -105,50 +118,79 @@
  * ─── Color control ───────────────────────────────────────────────────────
  */
 
-.etb-color-wrapper {
-	margin: 16px 0;
+.etb-color-control {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
 
-	.color-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+// one bordered row: swatch, label, current value ( like core's color items )
+.etb-color-control__dropdown {
+	display: block;
+}
+
+.etb-color-control .etb-color-control__toggle.components-button {
+	display: flex;
+	gap: 8px;
+	width: 100%;
+	height: auto;
+	min-height: 40px;
+	padding: 8px 12px;
+	color: #1e1e1e;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+
+	&:hover:not(:disabled) {
+		color: #1e1e1e;
+		border-color: #949494;
 	}
 
-	.color-indicator {
-		background: none;
-		border: none;
-		cursor: pointer;
-		position: relative;
-		width: 25px;
-		height: 25px;
+	&[aria-expanded="true"] {
+		color: var(--wp-admin-theme-color, #3858e9);
+		border-color: var(--wp-admin-theme-color, #3858e9);
+		box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
 	}
 
+	// checkerboard shows through transparent colors; empty means "Default"
 	.component-color-indicator {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		background-image: linear-gradient(45deg, #ddd 25%, transparent 0),
-			linear-gradient(-45deg, #ddd 25%, transparent 0),
-			linear-gradient(45deg, transparent 75%, #ddd 0),
-			linear-gradient(-45deg, transparent 75%, #ddd 0);
-		background-size: 10px 10px;
-		background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+		flex: none;
+		width: 24px;
+		height: 24px;
+		background-image:
+			linear-gradient(45deg, #ddd 25%, transparent 25%),
+			linear-gradient(-45deg, #ddd 25%, transparent 25%),
+			linear-gradient(45deg, transparent 75%, #ddd 75%),
+			linear-gradient(-45deg, transparent 75%, #ddd 75%);
+		background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+		background-size: 8px 8px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
 	}
 }
 
-.etb-clear-btn {
-	background: #f00;
-	color: #fff;
-	border: none;
-	padding: 5px 15px;
-	border-radius: 3px;
+.etb-color-control__label {
+	flex: 1;
+	font-size: 13px;
+	text-align: left;
+}
+
+.etb-color-control__value {
+	color: #757575;
+	font-family: Menlo, Consolas, monospace;
+	font-size: 11px;
 	text-transform: uppercase;
+}
+
+.etb-color-control__popover {
+	width: 260px;
+	padding: 16px;
+}
+
+.etb-color-control__help {
+	margin: 0;
+	color: #757575;
 	font-size: 12px;
-	font-weight: 500;
-	margin: 0 0 15px 15px;
-	cursor: pointer;
+	line-height: 1.5;
 }
 
 /*
@@ -157,68 +199,61 @@
 
 .etb-icon-picker {
 
-	.icons-list {
+	.etb-icon-picker__options {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		border: 1px solid #e0e0e0;
-		padding: 10px;
-		box-sizing: border-box;
-		gap: 10px;
-
-		.icon {
-			background: none;
-			border: 1px solid #e0e0e0;
-			cursor: pointer;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 10px;
-
-			&.active-icon {
-				border-color: #5c4fdb !important;
-
-				svg {
-					fill: #5c4fdb;
-				}
-			}
-		}
-
-		.icon svg {
-			width: 45px;
-		}
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 8px;
 	}
 
-	.icon-header {
-		display: flex;
-		width: 100%;
-		align-items: stretch;
-		justify-content: space-between;
-		background: none;
-		border: 1px solid #e0e0e0;
-		margin-bottom: -1px;
-		padding: 0;
-		box-sizing: border-box;
-		cursor: pointer;
-	}
-
-	.selected-icon {
-		width: 40px;
+	.etb-icon-picker__option {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
+		height: 52px;
+		padding: 0;
+		color: #1e1e1e;
+		cursor: pointer;
+		background: #fff;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
 
-	.selected-icon svg {
-		width: 18px;
-	}
+		svg {
+			width: 24px;
+			height: 24px;
+			fill: currentcolor;
+		}
 
-	.icon-header span.dashicon {
-		display: block;
-		width: 36px;
-		border-left: 1px solid #e0e0e0;
-		height: 36px;
-		line-height: 36px;
-		text-align: center;
+		&:hover {
+			color: var(--wp-admin-theme-color, #3858e9);
+			border-color: var(--wp-admin-theme-color, #3858e9);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			color: var(--wp-admin-theme-color, #3858e9);
+			background: color-mix(in srgb, var(--wp-admin-theme-color, #3858e9) 6%, #fff);
+			border-color: var(--wp-admin-theme-color, #3858e9);
+			box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+
+			// check badge in the corner
+			&::after {
+				position: absolute;
+				top: -6px;
+				right: -6px;
+				width: 16px;
+				height: 16px;
+				background: var(--wp-admin-theme-color, #3858e9) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M16.7 7.1l-6.3 8.5-3.3-2.5-.9 1.2 4.5 3.4L17.9 7.9z'/%3E%3C/svg%3E") center / 14px no-repeat;
+				border: 2px solid #fff;
+				border-radius: 50%;
+				content: "";
+			}
+		}
 	}
 }
 
@@ -274,4 +309,557 @@
 	.components-font-size-picker__header {
 		margin-bottom: 8px;
 	}
+}
+
+/*
+ * ─── Empty grid placeholder + design picker ──────────────────────────────
+ */
+
+// the placeholder spans every column of the (CSS grid) wrapper
+.wp-block-etb-grid > .etb-grid-placeholder {
+	grid-column: 1 / -1;
+}
+
+.etb-pattern-picker {
+
+	.etb-pattern-picker__intro {
+		margin: 0 0 24px;
+		color: #757575;
+	}
+
+	.etb-pattern-picker__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+		align-items: start;
+		gap: 32px;
+	}
+
+	.etb-pattern-picker__item {
+		cursor: pointer;
+		border-radius: 4px;
+		outline: none;
+
+		&:hover .etb-pattern-picker__preview,
+		&:focus-visible .etb-pattern-picker__preview {
+			box-shadow: 0 0 0 2px var(--wp-admin-theme-color, #3858e9);
+		}
+	}
+
+	.etb-pattern-picker__preview {
+		overflow: hidden;
+		border-radius: 4px;
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+		transition: box-shadow 0.1s linear;
+	}
+
+	.etb-pattern-picker__title {
+		padding: 12px 0 0;
+		font-size: 13px;
+		font-weight: 500;
+		text-align: center;
+	}
+}
+
+/*
+ * ─── Card design picker ──────────────────────────────────────────────────
+ */
+
+.etb-preset-picker {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.etb-preset-picker__item {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 0;
+	color: #1e1e1e;
+	text-align: left;
+	cursor: pointer;
+	background: none;
+	border: 0;
+
+	&:focus-visible {
+		outline: none;
+
+		.etb-preset-picker__thumb {
+			box-shadow: 0 0 0 2px var(--wp-admin-theme-color, #3858e9);
+		}
+	}
+
+	&:hover .etb-preset-picker__thumb {
+		box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+	}
+
+	&.is-active {
+
+		.etb-preset-picker__thumb {
+			box-shadow: 0 0 0 2px var(--wp-admin-theme-color, #3858e9);
+		}
+
+		.etb-preset-picker__label {
+			color: var(--wp-admin-theme-color, #3858e9);
+			font-weight: 600;
+		}
+	}
+}
+
+.etb-preset-picker__thumb {
+	display: block;
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	background: #f0f0f1;
+	border-radius: 4px;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.1s linear;
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.etb-preset-picker__label {
+	font-size: 12px;
+	line-height: 1.3;
+}
+
+.etb-preset-note {
+	margin: 0 0 16px;
+	color: #757575;
+	font-size: 12px;
+}
+
+/*
+ * ─── Sidebar panels: one consistent rhythm between controls ──────────────
+ */
+
+.etb-panel.is-opened {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	> .components-panel__body-title {
+		margin-bottom: -4px;
+	}
+
+	// each control's own outer margins are replaced by the panel gap
+	> :not(.components-panel__body-title) {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+// titled sub-section inside a panel ( e.g. Name, Job title )
+.etb-control-group {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-top: 16px;
+	border-top: 1px solid #e0e0e0;
+
+	> * {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+.etb-control-group__title.etb-control-group__title {
+	margin: 0;
+	color: #1e1e1e;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: normal;
+	text-transform: none; // core uppercases inspector h3s; group titles sit above the control labels
+}
+
+/*
+ * ─── Testimonial Items panel ─────────────────────────────────────────────
+ */
+
+.etb-panel-count {
+	display: inline-block;
+	min-width: 20px;
+	margin-left: 8px;
+	padding: 0 6px;
+	color: #757575;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 18px;
+	text-align: center;
+	background: #f0f0f0;
+	border-radius: 9px;
+}
+
+.etb-items {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.etb-items__list {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	list-style: none;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+.etb-items__item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 8px 4px 8px 6px;
+	background: #fff;
+	transition: background 0.1s linear;
+
+	+ .etb-items__item {
+		border-top: 1px solid #f0f0f0;
+	}
+
+	&:hover,
+	&:focus-within {
+		background: #f6f7f7;
+	}
+}
+
+// move up / move down
+.etb-items__mover {
+	display: flex;
+	flex: none;
+	flex-direction: column;
+
+	.components-button.has-icon {
+		min-width: 20px;
+		width: 20px;
+		height: 16px;
+		padding: 0;
+		color: #757575;
+
+		svg {
+			width: 18px;
+			height: 18px;
+			fill: currentcolor;
+		}
+
+		&:hover:not(:disabled) {
+			color: var(--wp-admin-theme-color, #3858e9);
+		}
+
+		&:disabled {
+			opacity: 0.3;
+		}
+	}
+}
+
+.etb-items__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.etb-items__select {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 0;
+	color: #1e1e1e;
+	text-align: left;
+	cursor: pointer;
+	background: none;
+	border: 0;
+
+	&:hover .etb-items__name {
+		color: var(--wp-admin-theme-color, #3858e9);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+}
+
+.etb-items__avatar {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	overflow: hidden;
+	color: var(--wp-admin-theme-color, #3858e9);
+	font-size: 11px;
+	font-weight: 600;
+	background: color-mix(in srgb, var(--wp-admin-theme-color, #3858e9) 10%, #fff);
+	border-radius: 50%;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.etb-items__text {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.etb-items__name,
+.etb-items__role {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.etb-items__name {
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+
+	&.is-placeholder {
+		color: #757575;
+		font-style: italic;
+	}
+}
+
+.etb-items__role {
+	color: #757575;
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+// inline stars, lined up under the name
+.etb-items__stars {
+	display: flex;
+	padding-left: 38px;
+}
+
+.etb-items__star {
+	display: inline-flex;
+	padding: 1px;
+	color: #ddd;
+	cursor: pointer;
+	background: none;
+	border: 0;
+	border-radius: 2px;
+
+	svg {
+		width: 15px;
+		height: 15px;
+		fill: currentcolor;
+	}
+
+	&.is-on {
+		color: #f59e0b;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+	}
+}
+
+.etb-items__menu .components-button.has-icon {
+	min-width: 24px;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	color: #757575;
+
+	svg {
+		fill: currentcolor;
+	}
+
+	&:hover:not(:disabled) {
+		color: #1e1e1e;
+	}
+}
+
+.etb-items__empty {
+	margin: 0;
+	color: #757575;
+}
+
+.etb-items .etb-items__add.components-button {
+	justify-content: center;
+	width: 100%;
+}
+
+// canvas: the card a list row points at
+.wp-block-etb-grid-item.etb-is-located {
+	outline: 2px solid var(--wp-admin-theme-color, #3858e9) !important;
+	outline-offset: 3px;
+}
+
+/*
+ * ─── Custom shadow control + shadow picker ───────────────────────────────
+ */
+
+.etb-shadow-control {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.etb-shadow-picker {
+	display: block;
+}
+
+// a white mini card wearing the shadow, on a light tile
+.etb-shadow-swatch {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	background: #f0f1f3;
+	border-radius: 4px;
+
+	span {
+		background: #fff;
+		border-radius: 3px;
+	}
+
+	// a full-size card scaled down, so the shadow keeps its real proportions
+	&.is-small {
+		width: 32px;
+		height: 24px;
+		overflow: hidden;
+
+		span {
+			width: 64px;
+			height: 40px;
+			flex: none;
+			border-radius: 6px;
+			transform: scale(0.28);
+		}
+	}
+
+	&.is-large {
+		width: 100%;
+		height: 104px;
+		border-radius: 6px;
+
+		span {
+			width: 104px;
+			height: 56px;
+			border-radius: 8px;
+			transition: box-shadow 0.2s ease;
+		}
+	}
+}
+
+.etb-shadow-control .etb-shadow-picker__toggle.components-button {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+	height: auto;
+	min-height: 40px;
+	padding: 6px 12px 6px 6px;
+	color: #1e1e1e;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+
+	&:hover:not(:disabled) {
+		color: #1e1e1e;
+		border-color: #949494;
+	}
+
+	&[aria-expanded="true"] {
+		color: var(--wp-admin-theme-color, #3858e9);
+		border-color: var(--wp-admin-theme-color, #3858e9);
+		box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+	}
+}
+
+.etb-shadow-picker__label {
+	flex: 1;
+	font-size: 13px;
+	text-align: left;
+}
+
+.etb-shadow-picker__summary {
+	color: #757575;
+	font-family: Menlo, Consolas, monospace;
+	font-size: 11px;
+}
+
+.etb-shadow-picker__popover {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 280px;
+	padding: 16px;
+}
+
+.etb-shadow-picker__heading {
+	margin: 4px 0 -4px;
+	color: #1e1e1e;
+	font-size: 11px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.etb-shadow-picker__presets {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 6px;
+}
+
+.etb-shadow-picker__preset {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 2px;
+	color: #1e1e1e;
+	font-size: 11px;
+	cursor: pointer;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	transition: border-color 0.1s linear;
+
+	.etb-shadow-swatch.is-small {
+		width: 48px;
+		height: 34px;
+		background: #f6f7f7;
+
+		span {
+			transform: scale(0.4);
+		}
+	}
+
+	&:hover {
+		border-color: var(--wp-admin-theme-color, #3858e9);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+		outline-offset: 1px;
+	}
+
+	&.is-active {
+		color: var(--wp-admin-theme-color, #3858e9);
+		border-color: var(--wp-admin-theme-color, #3858e9);
+		box-shadow: inset 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+	}
+}
+
+.etb-shadow-picker__fields {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px 12px;
 }

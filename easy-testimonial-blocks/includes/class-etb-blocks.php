@@ -67,6 +67,16 @@ class ETB_Blocks {
 
 			register_block_type( $block_dir, $args );
 		}
+
+		// Tells the grid's design picker where the preset thumbnails live.
+		$editor_handle = generate_block_asset_handle( 'etb/grid', 'editorScript' );
+		if ( wp_script_is( $editor_handle, 'registered' ) ) {
+			wp_add_inline_script(
+				$editor_handle,
+				'window.etbEditor = ' . wp_json_encode( array( 'presetsUrl' => ETB_URL . 'assets/images/presets/' ) ) . ';',
+				'before'
+			);
+		}
 	}
 
 	/**

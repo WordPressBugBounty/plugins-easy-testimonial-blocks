@@ -1,0 +1,530 @@
+/**
+ * Card design presets ( see presets.js ).
+ *
+ * Presets set regular style attributes for colors, sizes and spacing; the
+ * rules here only add what attributes can't express. Rules a user should be
+ * able to override through the sidebar use :where() so the per-instance CSS
+ * ( .etb-grid-xxx .wp-block-etb-grid-item ) wins; the others repeat the
+ * block class to outrank the base card rules in style.scss. Pseudo-elements
+ * are kept off the card itself: the editor draws block outlines with them.
+ */
+
+$accent: var(--etb-accent, #4f46e5);
+
+// soft, layered card shadow used by several presets ( behind the "box shadow" toggle )
+$soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 42, 0.18);
+
+.wp-block-etb-grid.wp-block-etb-grid[class*="etb-preset-"] {
+
+	.wp-block-etb-grid-item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.testimonial-message {
+		line-height: 1.65;
+	}
+
+	.reviewer-info {
+		align-items: center;
+	}
+
+	.reviewer-name {
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.reviewer-title,
+	.reviewer-company {
+		line-height: 1.45;
+	}
+
+	.rating .gutenlayout-star-rating svg,
+	.rating .etb-star-fraction {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+// author block sits at the bottom so cards in a row line up
+.wp-block-etb-grid.wp-block-etb-grid:is(
+	.etb-preset-elevated,
+	.etb-preset-outline,
+	.etb-preset-midnight,
+	.etb-preset-aurora,
+	.etb-preset-glass,
+	.etb-preset-stripe,
+	.etb-preset-editorial,
+	.etb-preset-pastel,
+	.etb-preset-minimal
+) .reviewer-info {
+	margin-top: auto;
+}
+
+/*
+ * Elevated
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-elevated {
+
+	&.has-box-shadow .wp-block-etb-grid-item {
+		box-shadow: $soft-shadow;
+	}
+
+	.testimonial-message {
+		margin: 18px 0 24px;
+	}
+
+	.reviewer-info {
+		padding-top: 20px;
+		border-top: 1px solid #eef0f4;
+	}
+}
+
+/*
+ * Outline
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-outline {
+
+	.wp-block-etb-grid-item {
+		transition: border-color 0.2s ease;
+	}
+
+	.wp-block-etb-grid-item:hover {
+		border-color: $accent;
+	}
+
+	.quote-icon {
+		display: inline-flex;
+		padding: 10px;
+		background: color-mix(in srgb, #{$accent} 10%, transparent);
+		border-radius: 10px;
+
+		svg {
+			display: block;
+		}
+	}
+
+	.testimonial-message {
+		margin: 20px 0 24px;
+	}
+}
+
+/*
+ * Minimal
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-minimal {
+
+	.wp-block-etb-grid-item {
+		border-top: 2px solid var(--etb-accent, #0f172a);
+	}
+
+	.testimonial-header {
+		justify-content: flex-start;
+	}
+
+	// hidden icon: drop its empty wrapper ( the frontend keeps whitespace in it, so not :empty )
+	.quote-icon:not(:has(svg)) {
+		display: none;
+	}
+
+	.testimonial-message {
+		margin: 14px 0 22px;
+		font-weight: 400;
+		letter-spacing: -0.01em;
+	}
+
+	.reviewer-name {
+		font-weight: 600;
+	}
+}
+
+/*
+ * Speech bubble
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-bubble {
+
+	.testimonial-header,
+	.testimonial-message {
+		background: var(--etb-bubble, #f1f5f9);
+	}
+
+	.testimonial-header {
+		padding: 24px 26px 0;
+		border-radius: 18px 18px 0 0;
+	}
+
+	.testimonial-message {
+		position: relative;
+		flex: 1;
+		margin: 0;
+		padding: 14px 26px 26px;
+		border-radius: 0 0 18px 18px;
+
+		// tail pointing at the author
+		&::after {
+			position: absolute;
+			bottom: -11px;
+			left: 34px;
+			width: 22px;
+			height: 22px;
+			background: inherit;
+			border-radius: 0 0 6px;
+			content: "";
+			transform: rotate(45deg);
+		}
+	}
+
+	.reviewer-info {
+		margin-top: 24px;
+		padding-left: 20px;
+	}
+}
+
+/*
+ * Spotlight — avatar on top, everything centered
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-spotlight {
+
+	&.has-box-shadow .wp-block-etb-grid-item {
+		box-shadow: $soft-shadow;
+	}
+
+	.wp-block-etb-grid-item {
+		align-items: center;
+		text-align: center;
+	}
+
+	// flatten the wrappers so their children can be reordered
+	.testimonial-header,
+	.reviewer-info,
+	.reviewer-info-content {
+		display: contents;
+	}
+
+	.quote-icon {
+		display: none;
+	}
+
+	.reviewer-photo {
+		order: 1;
+		margin-bottom: 16px;
+		box-shadow: 0 0 0 3px color-mix(in srgb, #{$accent} 25%, transparent), 0 10px 24px -10px rgba(15, 23, 42, 0.35);
+	}
+
+	.reviewer-info > .components-button {
+		order: 1;
+		margin-bottom: 16px;
+	}
+
+	.rating {
+		order: 2;
+	}
+
+	.testimonial-message {
+		order: 3;
+		margin: 16px 0 22px;
+	}
+
+	.reviewer-name {
+		order: 4;
+	}
+
+	.reviewer-title {
+		order: 5;
+	}
+
+	.reviewer-company {
+		order: 6;
+	}
+
+	.reviewer-info-content {
+		margin-left: 0;
+	}
+}
+
+/*
+ * Midnight
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-midnight {
+
+	.wp-block-etb-grid-item {
+		overflow: hidden;
+		background-image: radial-gradient(circle at 100% 0, color-mix(in srgb, var(--etb-accent, #6366f1) 35%, transparent), transparent 55%);
+	}
+
+	.testimonial-message {
+		margin: 20px 0 24px;
+	}
+
+	.reviewer-info {
+		padding-top: 20px;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+	}
+}
+
+/*
+ * Aurora
+ */
+:where(.wp-block-etb-grid.etb-preset-aurora) .wp-block-etb-grid-item {
+	background: linear-gradient(140deg, var(--etb-accent, #4f46e5) 0%, #7c3aed 55%, #c026d3 100%);
+	box-shadow: 0 18px 40px -20px rgba(79, 70, 229, 0.7);
+}
+
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-aurora {
+
+	.testimonial-message {
+		margin: 20px 0 24px;
+	}
+
+	.rating .empty-star {
+		opacity: 0.6;
+	}
+}
+
+/*
+ * Glass — frosted cards on a colorful backdrop ( the grid's own
+ * background setting replaces the backdrop )
+ */
+:where(.wp-block-etb-grid.etb-preset-glass) {
+	padding: 32px;
+	background: radial-gradient(circle at 15% 20%, #a78bfa 0, transparent 45%), radial-gradient(circle at 85% 80%, #f472b6 0, transparent 45%), linear-gradient(135deg, var(--etb-accent, #4f46e5), #0ea5e9);
+	border-radius: 24px;
+}
+
+:where(.wp-block-etb-grid.etb-preset-glass) .wp-block-etb-grid-item {
+	background: rgba(255, 255, 255, 0.14);
+}
+
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-glass {
+
+	.wp-block-etb-grid-item {
+		-webkit-backdrop-filter: blur(14px) saturate(140%);
+		backdrop-filter: blur(14px) saturate(140%);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	}
+
+	.testimonial-message {
+		margin: 20px 0 24px;
+	}
+
+	.rating .empty-star {
+		opacity: 0.6;
+	}
+}
+
+/*
+ * Accent stripe
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-stripe {
+
+	.wp-block-etb-grid-item {
+		overflow: hidden;
+		background-image: linear-gradient(90deg, $accent, color-mix(in srgb, #{$accent} 55%, #ec4899));
+		background-repeat: no-repeat;
+		background-size: 100% 4px;
+	}
+
+	&.has-box-shadow .wp-block-etb-grid-item {
+		box-shadow: $soft-shadow;
+	}
+
+	.testimonial-header {
+		justify-content: flex-start;
+	}
+
+	// oversized faint quote mark in the corner
+	.quote-icon {
+		position: absolute;
+		top: 18px;
+		right: 22px;
+		line-height: 0;
+		pointer-events: none;
+	}
+
+	.testimonial-message {
+		margin: 16px 0 26px;
+	}
+}
+
+/*
+ * Editorial
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-editorial {
+
+	.testimonial-message {
+		margin: 18px 0 24px;
+		font-family: Georgia, "Times New Roman", serif;
+		font-style: italic;
+		line-height: 1.6;
+	}
+
+	.reviewer-name {
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+
+		&::before {
+			content: "— ";
+		}
+	}
+}
+
+/*
+ * Pastel
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-pastel {
+
+	.reviewer-photo {
+		box-shadow: 0 8px 20px -8px rgba(79, 70, 229, 0.45);
+	}
+
+	.testimonial-message {
+		margin: 18px 0 24px;
+	}
+}
+
+/*
+ * Side by side — author column beside the quote; stacks in narrow cards
+ */
+.wp-block-etb-grid.wp-block-etb-grid.etb-preset-split {
+
+	.wp-block-etb-grid-item {
+		display: grid;
+		grid-template-areas:
+			"info header"
+			"info message";
+		grid-template-columns: minmax(130px, 32%) 1fr;
+		grid-template-rows: auto 1fr;
+		column-gap: 28px;
+		container-type: inline-size;
+	}
+
+	.testimonial-header {
+		grid-area: header;
+	}
+
+	.testimonial-message {
+		grid-area: message;
+		margin: 14px 0 0;
+	}
+
+	.reviewer-info {
+		flex-direction: column;
+		grid-area: info;
+		align-self: stretch;
+		padding-right: 28px;
+		text-align: center;
+		border-right: 1px solid #e2e8f0;
+	}
+
+	.reviewer-photo {
+		margin-bottom: 12px;
+	}
+
+	.reviewer-info-content {
+		margin-left: 0;
+	}
+
+	// narrow cards ( e.g. three columns ): the children re-flow into one
+	// column; a container query can't restyle the card itself, only them
+	@container (max-width: 440px) {
+
+		.testimonial-header,
+		.testimonial-message,
+		.reviewer-info {
+			grid-column: 1 / -1;
+		}
+
+		.testimonial-header {
+			grid-row: 1;
+		}
+
+		.testimonial-message {
+			grid-row: 2;
+			margin-bottom: 22px;
+		}
+
+		.reviewer-info {
+			flex-direction: row;
+			grid-row: 3;
+			justify-content: flex-start;
+			padding: 18px 0 0;
+			text-align: left;
+			border-top: 1px solid #e2e8f0;
+			border-right: 0;
+		}
+
+		.reviewer-photo {
+			margin-bottom: 0;
+		}
+
+		.reviewer-info-content {
+			margin-left: 14px;
+		}
+	}
+}
+
+/*
+ * Custom shadow ( normal + hover ), set through --etb-shadow / --etb-shadow-hover;
+ * outranks the design shadows and the hover effects' own shadows
+ */
+.wp-block-etb-grid.wp-block-etb-grid.wp-block-etb-grid.has-custom-shadow.has-box-shadow .wp-block-etb-grid-item {
+	box-shadow: var(--etb-shadow);
+	transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+	&:hover {
+		box-shadow: var(--etb-shadow-hover, var(--etb-shadow));
+	}
+}
+
+/*
+ * Hover effects ( frontend only: moving or fading blocks while editing gets in the way )
+ */
+$hover-card: ".wp-block-etb-grid-item:not(.block-editor-block-list__block)";
+
+.wp-block-etb-grid.wp-block-etb-grid[class*="has-hover-"] #{$hover-card} {
+	transition: transform 0.25s ease, box-shadow 0.25s ease, outline-color 0.2s ease, opacity 0.25s ease;
+}
+
+// Lift: rises with a deeper shadow
+.wp-block-etb-grid.wp-block-etb-grid.has-hover-lift #{$hover-card}:hover {
+	box-shadow: 0 22px 44px -22px rgba(15, 23, 42, 0.35);
+	transform: translateY(-4px);
+}
+
+// Grow: scales up slightly
+.wp-block-etb-grid.wp-block-etb-grid.has-hover-grow #{$hover-card}:hover {
+	transform: scale(1.03);
+}
+
+// Glow: soft halo in the accent color
+.wp-block-etb-grid.wp-block-etb-grid.has-hover-glow #{$hover-card}:hover {
+	box-shadow: 0 0 0 1px color-mix(in srgb, #{$accent} 35%, transparent), 0 14px 40px -12px color-mix(in srgb, #{$accent} 55%, transparent);
+}
+
+// Highlight border: accent outline drawn inside the card edge
+.wp-block-etb-grid.wp-block-etb-grid.has-hover-border #{$hover-card} {
+	outline: 2px solid transparent;
+	outline-offset: -2px;
+
+	&:hover {
+		outline-color: $accent;
+	}
+}
+
+// Focus: the hovered card stays sharp, the others fade back
+.wp-block-etb-grid.wp-block-etb-grid.has-hover-focus:has(#{$hover-card}:hover) #{$hover-card}:not(:hover) {
+	opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.wp-block-etb-grid.wp-block-etb-grid[class*="has-hover-"] #{$hover-card} {
+		transition: none;
+
+		&:hover {
+			transform: none;
+		}
+	}
+}

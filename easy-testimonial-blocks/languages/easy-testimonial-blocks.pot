@@ -1,0 +1,1308 @@
+# Copyright (C) 2026 Zakaria Binsaifullah
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-testimonial-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-01T09:34:50+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: easy-testimonial-blocks\n"
+
+#. Plugin Name of the plugin
+#: plugin.php
+msgid "Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings"
+msgstr ""
+
+#. Description of the plugin
+#: plugin.php
+msgid "Testimonial block for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive testimonial grid."
+msgstr ""
+
+#. Author of the plugin
+#: plugin.php
+msgid "Zakaria Binsaifullah"
+msgstr ""
+
+#: admin/class-etb-admin.php:53
+#: admin/class-etb-admin.php:54
+#: admin/class-etb-admin.php:166
+#: includes/class-etb-blocks.php:93
+#: build/admin/index.js:11
+msgid "Testimonial Blocks"
+msgstr ""
+
+#: admin/class-etb-admin.php:73
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-etb-admin.php:170
+msgid "The Testimonial Blocks dashboard needs JavaScript. Please enable it in your browser."
+msgstr ""
+
+#: includes/class-etb-rest.php:106
+msgid "(no title)"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "2 hours"
+#: includes/class-etb-rest.php:117
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#. translators: 1: rating value, 2: maximum rating
+#: includes/grid-item.php:245
+#: build/blocks/grid-item/index.js:2
+#, php-format,js-format
+msgid "%1$s out of %2$d stars"
+msgstr ""
+
+#: patterns/accent-stripe.php:14
+msgid "Testimonials: accent stripe"
+msgstr ""
+
+#: patterns/accent-stripe.php:15
+msgid "Clean white cards with a gradient accent bar and a large quote mark."
+msgstr ""
+
+#: patterns/accent-stripe.php:17
+#: patterns/aurora.php:17
+#: patterns/dark.php:17
+#: patterns/editorial.php:17
+#: patterns/glass.php:17
+#: patterns/minimal.php:17
+#: patterns/side-by-side.php:17
+#: patterns/speech-bubbles.php:17
+#: patterns/spotlight.php:17
+#: patterns/three-cards.php:17
+#: patterns/two-column.php:17
+#: patterns/wall-of-love.php:17
+msgid "testimonials"
+msgstr ""
+
+#: patterns/accent-stripe.php:17
+#: patterns/aurora.php:17
+#: patterns/dark.php:17
+#: patterns/editorial.php:17
+#: patterns/glass.php:17
+#: patterns/minimal.php:17
+#: patterns/side-by-side.php:17
+#: patterns/speech-bubbles.php:17
+#: patterns/spotlight.php:17
+#: patterns/three-cards.php:17
+#: patterns/two-column.php:17
+#: patterns/wall-of-love.php:17
+msgid "reviews"
+msgstr ""
+
+#: patterns/accent-stripe.php:17
+#: patterns/three-cards.php:17
+msgid "cards"
+msgstr ""
+
+#: patterns/accent-stripe.php:17
+msgid "accent"
+msgstr ""
+
+#: patterns/aurora.php:14
+msgid "Testimonials: aurora gradient"
+msgstr ""
+
+#: patterns/aurora.php:15
+msgid "Bold gradient cards with white text and a lift on hover."
+msgstr ""
+
+#: patterns/aurora.php:17
+#: patterns/glass.php:17
+msgid "gradient"
+msgstr ""
+
+#: patterns/aurora.php:17
+msgid "colorful"
+msgstr ""
+
+#: patterns/dark.php:14
+msgid "Testimonials: dark section"
+msgstr ""
+
+#: patterns/dark.php:15
+msgid "Three testimonial cards on a dark background."
+msgstr ""
+
+#: patterns/dark.php:17
+msgid "dark"
+msgstr ""
+
+#: patterns/editorial.php:14
+msgid "Testimonials: editorial"
+msgstr ""
+
+#: patterns/editorial.php:15
+msgid "Serif italic quotes on warm paper-toned cards."
+msgstr ""
+
+#: patterns/editorial.php:17
+msgid "serif"
+msgstr ""
+
+#: patterns/editorial.php:17
+msgid "elegant"
+msgstr ""
+
+#: patterns/featured.php:14
+msgid "Testimonials: featured quote"
+msgstr ""
+
+#: patterns/featured.php:15
+msgid "One large testimonial to highlight your best review."
+msgstr ""
+
+#: patterns/featured.php:17
+msgid "testimonial"
+msgstr ""
+
+#: patterns/featured.php:17
+msgid "quote"
+msgstr ""
+
+#: patterns/featured.php:17
+msgid "featured"
+msgstr ""
+
+#: patterns/featured.php:17
+msgid "review"
+msgstr ""
+
+#: patterns/glass.php:14
+msgid "Testimonials: frosted glass"
+msgstr ""
+
+#: patterns/glass.php:15
+msgid "Frosted glass cards on a colorful gradient backdrop."
+msgstr ""
+
+#: patterns/glass.php:17
+msgid "glass"
+msgstr ""
+
+#: patterns/minimal.php:14
+msgid "Testimonials: minimal"
+msgstr ""
+
+#: patterns/minimal.php:15
+msgid "Simple ruled quotes without card backgrounds."
+msgstr ""
+
+#: patterns/minimal.php:17
+msgid "minimal"
+msgstr ""
+
+#: patterns/minimal.php:17
+msgid "clean"
+msgstr ""
+
+#: patterns/side-by-side.php:14
+msgid "Testimonials: side by side"
+msgstr ""
+
+#: patterns/side-by-side.php:15
+msgid "Two wide cards with the reviewer beside each quote."
+msgstr ""
+
+#: patterns/side-by-side.php:17
+#: patterns/two-column.php:17
+msgid "two columns"
+msgstr ""
+
+#: patterns/side-by-side.php:17
+msgid "case study"
+msgstr ""
+
+#: patterns/speech-bubbles.php:14
+msgid "Testimonials: speech bubbles"
+msgstr ""
+
+#: patterns/speech-bubbles.php:15
+msgid "Quotes in speech bubbles that point to each reviewer."
+msgstr ""
+
+#: patterns/speech-bubbles.php:17
+msgid "speech bubble"
+msgstr ""
+
+#: patterns/speech-bubbles.php:17
+msgid "chat"
+msgstr ""
+
+#: patterns/spotlight.php:14
+msgid "Testimonials: spotlight"
+msgstr ""
+
+#: patterns/spotlight.php:15
+msgid "Centered cards with large reviewer photos on top, star ratings and a lift on hover."
+msgstr ""
+
+#: patterns/spotlight.php:17
+msgid "centered"
+msgstr ""
+
+#: patterns/spotlight.php:17
+msgid "avatar"
+msgstr ""
+
+#: patterns/three-cards.php:14
+msgid "Testimonials: three cards"
+msgstr ""
+
+#: patterns/three-cards.php:15
+msgid "A section heading with three testimonial cards, star ratings and reviewer photos."
+msgstr ""
+
+#: patterns/three-cards.php:17
+#: patterns/wall-of-love.php:17
+msgid "social proof"
+msgstr ""
+
+#: patterns/two-column.php:14
+msgid "Testimonials: two columns"
+msgstr ""
+
+#: patterns/two-column.php:15
+msgid "A heading with two bordered testimonial cards."
+msgstr ""
+
+#: patterns/wall-of-love.php:14
+msgid "Testimonials: wall of love"
+msgstr ""
+
+#: patterns/wall-of-love.php:15
+msgid "Six compact testimonial cards with star ratings in a responsive grid."
+msgstr ""
+
+#: patterns/wall-of-love.php:17
+msgid "wall of love"
+msgstr ""
+
+#. translators: %s: average rating
+#: build/admin/index.js:2
+#, js-format
+msgid "%s out of 5 stars"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Content"
+msgstr ""
+
+#: build/admin/index.js:2
+#: build/admin/index.js:3
+msgid "Status"
+msgstr ""
+
+#: build/admin/index.js:2
+#: build/admin/index.js:3
+#: build/blocks/grid-item/index.js:2
+#: build/blocks/grid/index.js:4
+#: build/blocks/grid/index.js:7
+msgid "Rating"
+msgstr ""
+
+#: build/admin/index.js:2
+#: build/admin/index.js:3
+#: build/admin/index.js:7
+msgid "Testimonials"
+msgstr ""
+
+#: build/admin/index.js:2
+#: build/admin/index.js:3
+msgid "Updated"
+msgstr ""
+
+#. translators: %d: number of testimonial grids
+#: build/admin/index.js:3
+#, js-format
+msgid "%d grid"
+msgid_plural "%d grids"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin/index.js:3
+msgid "Edit"
+msgstr ""
+
+#. translators: %s: post title
+#: build/admin/index.js:4
+#, js-format
+msgid "View “%s”"
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "Filter by status"
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "All"
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "Search by title"
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "Actions"
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "Nothing matches these filters."
+msgstr ""
+
+#: build/admin/index.js:4
+msgid "Clear filters"
+msgstr ""
+
+#. translators: 1: first row number, 2: last row number, 3: total rows
+#: build/admin/index.js:5
+#, js-format
+msgid "%1$d–%2$d of %3$d"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Previous page"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Next page"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "No testimonials yet"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Pick a ready-made design to create your first testimonials page."
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Browse designs"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Working with this team was the best decision we made this year."
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Marketing Director"
+msgstr ""
+
+#. translators: %s: average rating, e.g. 4.9
+#: build/admin/index.js:6
+#, js-format
+msgid "%s average rating"
+msgstr ""
+
+#: build/admin/index.js:6
+msgid "Star ratings built in"
+msgstr ""
+
+#. translators: %s: plugin version
+#: build/admin/index.js:7
+#: build/admin/index.js:10
+#, js-format
+msgid "Version %s"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Turn happy customers into your best marketing"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Build a polished testimonials section in minutes. Start from a ready-made design, add your reviews and ratings, and publish. No code needed."
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Create a testimonial page"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Watch the tutorial"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "across all your content"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Pages & posts"
+msgstr ""
+
+#. translators: %d: number of testimonial grids
+#: build/admin/index.js:8
+#, js-format
+msgid "%d testimonial grid"
+msgid_plural "%d testimonial grids"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin/index.js:8
+msgid "Published"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "live on your site"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "Average rating"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "from rated testimonials"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "no ratings yet"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "Add a Testimonial Grid"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "Add at least 3 testimonials"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "Publish a page with testimonials"
+msgstr ""
+
+#: build/admin/index.js:8
+msgid "All set! Your testimonials are live."
+msgstr ""
+
+#. translators: 1: completed steps, 2: total steps
+#: build/admin/index.js:9
+#, js-format
+msgid "%1$d of %2$d steps complete"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Getting started"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Getting started progress"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Coming next"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Testimonial slider"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "A fast, accessible carousel layout."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Testimonials library"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Manage testimonials in one place and show them anywhere."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Collection form"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Let customers submit testimonials for your approval."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Suggest a feature"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Creating page…"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Create page"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Insert the block"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "In any page or post, click + and search for “Testimonial Grid”."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Pick a design"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Choose one of the ready-made sections, or start with blank cards."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Make it yours"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Click any text to edit it, add photos and set the star ratings."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Publish"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Fine-tune colors and columns in the sidebar, then publish."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "12 new card designs, hover effects and custom shadows"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "A brand-new dashboard"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Design picker when you insert the Testimonial Grid"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "13 ready-made testimonial patterns"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Section background, text color, padding and margin controls"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Use the device icons next to a setting to give tablet and mobile their own columns, gaps and font sizes."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Set “Reviewer Name Tag” to a paragraph or H3 to keep your page’s heading structure clean for SEO."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Change the whole section’s background, padding and margin from the block’s Styles tab."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Quick start"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Your first testimonials section, live in four steps."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Start with a design"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Easy Testimonial Blocks video tutorial"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Play the video tutorial"
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "Loads from YouTube when you press play."
+msgstr ""
+
+#: build/admin/index.js:9
+msgid "What’s new"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Full changelog"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Did you know?"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "(opens in a new tab)"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Overview"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Try again"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Your testimonial stats could not be loaded."
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Where your testimonials appear"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Refresh"
+msgstr ""
+
+#: build/admin/index.js:10
+msgid "Designs"
+msgstr ""
+
+#. translators: %s: design name, e.g. "Three cards"
+#: build/admin/index.js:11
+#, js-format
+msgid "Testimonials – %s"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "The page could not be created."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Ready-made testimonial designs"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Start from a polished section and make it your own. Each design opens as a new draft page, with every text, photo, rating and color editable."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "You can also add these designs to any existing page: insert the Testimonial Grid block and click “Choose a design”, or open Patterns → Testimonials in the block inserter."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "The designs could not be loaded."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Help"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Help & resources"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Everything you need to get the most out of Testimonial Blocks, from your first section to getting support."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Video tutorial"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Need a hand?"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Get support"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Found a bug or stuck on something? Ask in the support forum and get a reply."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Open the support forum"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Request a feature"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Tell us what would make collecting and showing testimonials easier for you."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Share an idea"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Enjoying the plugin?"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "A quick review takes a minute and helps other people find the plugin."
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Leave a review"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Dashboard sections"
+msgstr ""
+
+#: build/admin/index.js:11
+msgid "Rate the plugin"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+#: build/blocks/grid/index.js:6
+msgid "Show rating"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Stars"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "From 0 to 5, in steps of 0.1."
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+#: build/blocks/grid/index.js:2
+msgid "Card design"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Colors, spacing and the card design are shared by every testimonial in the grid."
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Edit card design"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Replace photo"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Remove photo"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Write what the customer said…"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Add photo"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+msgid "Reviewer name"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+#: build/blocks/grid/index.js:7
+msgid "Job title"
+msgstr ""
+
+#: build/blocks/grid-item/index.js:2
+#: build/blocks/grid/index.js:7
+msgid "Company"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Default"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Filled"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Outlined"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Filled, closing"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Outlined, closing"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Desktop"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Tablet"
+msgstr ""
+
+#: build/blocks/grid/index.js:1
+msgid "Mobile"
+msgstr ""
+
+#. translators: %s: device name, e.g. "Desktop"
+#: build/blocks/grid/index.js:2
+#, js-format
+msgid "Editing %s values. Change device"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Device"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Classic"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Elevated"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Outline"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Tints the quote icon tile and the card border on hover."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Minimal"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Colors the line across the top of each card."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Speech bubble"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Spotlight"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Colors the ring around the reviewer photo."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Midnight"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Colors the glow in the card corner."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Aurora"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Sets the start color of the card gradient."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Glass"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Sets the color of the backdrop behind the cards."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Accent stripe"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Colors the bar across the top of each card."
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Editorial"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Pastel"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Side by side"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+#: build/blocks/grid/index.js:7
+msgid "None"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Lift"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Grow"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+#: build/blocks/grid/index.js:7
+msgid "Glow"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Highlight border"
+msgstr ""
+
+#: build/blocks/grid/index.js:2
+msgid "Focus (fade the others)"
+msgstr ""
+
+#. translators: %d: position of the testimonial in the grid
+#: build/blocks/grid/index.js:3
+#, js-format
+msgid "Testimonial %d"
+msgstr ""
+
+#: build/blocks/grid/index.js:3
+msgid "Move up"
+msgstr ""
+
+#: build/blocks/grid/index.js:3
+msgid "Move down"
+msgstr ""
+
+#. translators: %s: reviewer name or "Testimonial 2"
+#: build/blocks/grid/index.js:4
+#, js-format
+msgid "Edit %s"
+msgstr ""
+
+#. translators: %d: number of stars
+#: build/blocks/grid/index.js:5
+#, js-format
+msgid "%d stars"
+msgstr ""
+
+#. translators: %s: reviewer name
+#: build/blocks/grid/index.js:6
+#, js-format
+msgid "Options for %s"
+msgstr ""
+
+#: build/blocks/grid/index.js:6
+msgid "Duplicate"
+msgstr ""
+
+#: build/blocks/grid/index.js:6
+msgid "Hide rating"
+msgstr ""
+
+#: build/blocks/grid/index.js:6
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: reviewer name
+#: build/blocks/grid/index.js:7
+#, js-format
+msgid "“%s” deleted."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Undo"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "No testimonials yet."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Add new"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Subtle"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Soft"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Medium"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Large"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Floating"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Crisp"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Ring"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "X"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Y"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Blur"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Spread"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Presets"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Customize"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Color"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Normal"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Hover"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Design"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "A design sets the card styles. Fine-tune any of them in the Styles tab."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Accent color"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Testimonial Items"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Layout"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Columns"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Gap"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Display"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Quote icon"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Icon style"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Rating number"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Shows the score, such as 4.8, next to the stars."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Reviewer name tag"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Use a paragraph or div to keep testimonials out of the page heading outline."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Card"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Background"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Border"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Padding"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Effects"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Shadow"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Design default"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Custom"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Hover effect"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Plays on your site; hover effects stay off while you edit."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Size"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Opacity"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Star color"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Quote text"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Alignment"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Reviewer photo"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Reviewer details"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Name"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Testimonial Grid"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Start with a ready-made testimonial design, or build your own from blank cards."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Choose a design"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Start blank"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Choose a testimonial design"
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "The testimonial cards from the design you pick replace this grid. Everything stays editable."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "The design you pick replaces this grid with a full section. Everything stays editable."
+msgstr ""
+
+#: build/blocks/grid/index.js:7
+msgid "Testimonial designs"
+msgstr ""
+
+#: build/blocks/grid-item/block.json
+msgctxt "block title"
+msgid "Testimonial"
+msgstr ""
+
+#: build/blocks/grid-item/block.json
+msgctxt "block keyword"
+msgid "review"
+msgstr ""
+
+#: build/blocks/grid-item/block.json
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "quote"
+msgstr ""
+
+#: build/blocks/grid-item/block.json
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "rating"
+msgstr ""
+
+#: build/blocks/grid-item/block.json
+msgctxt "block description"
+msgid "A single testimonial with quote, star rating, reviewer name, title, company and photo."
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block title"
+msgid "Testimonial Grid"
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block description"
+msgid "Display customer testimonials and reviews with star ratings and photos in a responsive grid."
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "testimonial"
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "testimonials"
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "reviews"
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "social proof"
+msgstr ""
+
+#: build/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "customer feedback"
+msgstr ""

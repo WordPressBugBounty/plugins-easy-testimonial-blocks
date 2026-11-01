@@ -1,15 +1,18 @@
 {
   "apiVersion": 3,
   "name": "etb/grid",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "title": "Testimonial Grid",
   "category": "etb-blocks",
   "description": "Display customer testimonials and reviews with star ratings and photos in a responsive grid.",
   "keywords": [
     "testimonial",
-    "grid",
-    "testimonial grid",
-    "review grid"
+    "testimonials",
+    "reviews",
+    "rating",
+    "social proof",
+    "customer feedback",
+    "quote"
   ],
   "supports": {
     "html": true,
@@ -18,7 +21,21 @@
       "wide",
       "full"
     ],
-    "customClassName": true
+    "customClassName": true,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "text": true,
+      "link": false
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "__experimentalDefaultControls": {
+        "margin": false,
+        "padding": false
+      }
+    }
   },
   "example": {
     "attributes": {
@@ -27,7 +44,29 @@
         "tablet": 2,
         "mobile": 1
       }
-    }
+    },
+    "innerBlocks": [
+      {
+        "name": "etb/grid-item",
+        "attributes": {
+          "testimonial": "Working with this team was the best decision we made this year. The results speak for themselves.",
+          "reviewerName": "Sarah Mitchell",
+          "reviewerTitle": "Marketing Director",
+          "reviewerCompany": "Brightline Studio",
+          "rating": 5
+        }
+      },
+      {
+        "name": "etb/grid-item",
+        "attributes": {
+          "testimonial": "Professional, responsive and genuinely invested in our success.",
+          "reviewerName": "David Okafor",
+          "reviewerTitle": "Founder",
+          "reviewerCompany": "Northpeak Consulting",
+          "rating": 4.8
+        }
+      }
+    ]
   },
   "providesContext": {
     "etb/showIcon": "showIcon",
@@ -55,6 +94,20 @@
         "tablet": 20,
         "mobile": 15
       }
+    },
+    "preset": {
+      "type": "string",
+      "default": "classic"
+    },
+    "accentColor": {
+      "type": "string"
+    },
+    "hoverStyle": {
+      "type": "string",
+      "default": "none"
+    },
+    "customShadow": {
+      "type": "object"
     },
     "nameTag": {
       "type": "string",
@@ -91,22 +144,6 @@
     "ratingColor": {
       "type": "string",
       "default": "#fa0"
-    },
-    "showBar": {
-      "type": "boolean",
-      "default": true
-    },
-    "barPosition": {
-      "type": "string",
-      "default": "etb_left"
-    },
-    "barThickness": {
-      "type": "number",
-      "default": 4
-    },
-    "barColor": {
-      "type": "string",
-      "default": "#c0c0c0"
     },
     "ttmFontSizes": {
       "type": [

@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Boots the plugin: wires up block registration, the admin page, and the
- * post-activation redirect.
+ * Boots the plugin: wires up block and pattern registration, the dashboard
+ * REST endpoints, the admin page, and the post-activation redirect.
  */
 final class ETB_Plugin {
 
@@ -41,6 +41,8 @@ final class ETB_Plugin {
 	 */
 	private function __construct() {
 		new ETB_Blocks();
+		new ETB_Patterns();
+		new ETB_REST();
 
 		if ( is_admin() ) {
 			new ETB_Admin();
@@ -65,7 +67,7 @@ final class ETB_Plugin {
 			return;
 		}
 
-		wp_safe_redirect( admin_url( 'tools.php?page=etb-blocks' ) );
+		wp_safe_redirect( ETB_Admin::page_url() );
 		exit;
 	}
 }

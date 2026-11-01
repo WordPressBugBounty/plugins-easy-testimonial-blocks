@@ -95,10 +95,14 @@ const getFontSizeDeclaration = ( value ) => {
 	return `font-size: ${ toCssValue( value, 'px' ) };`;
 };
 
+import { shadowToCss } from '../../utilities/shadow';
+
 const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 	const {
 		id,
 		zIndex,
+		accentColor,
+		customShadow,
 		containerBg,
 		containerBorder,
 		containerBorderRadius,
@@ -142,6 +146,16 @@ const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 	const css = `
 		.${ id }.wp-block-etb-grid {
 			${ zIndex ? `z-index: ${ zIndex };` : '' }
+			${ accentColor ? `--etb-accent: ${ accentColor };` : '' }
+			${
+				customShadow?.enabled
+					? `--etb-shadow: ${ shadowToCss(
+							customShadow.normal
+					  ) }; --etb-shadow-hover: ${ shadowToCss(
+							customShadow.hover
+					  ) };`
+					: ''
+			}
 		}
 		.${ id } .wp-block-etb-grid-item {
 			${ containerBg ? `background: ${ containerBg };` : '' }

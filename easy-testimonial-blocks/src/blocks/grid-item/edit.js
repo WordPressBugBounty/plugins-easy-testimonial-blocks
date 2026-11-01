@@ -5,15 +5,15 @@ import {
 	BlockControls,
 	RichText,
 	MediaUpload,
+	store as blockEditorStore,
 } from '@wordpress/block-editor';
+import { useSelect, useDispatch } from '@wordpress/data';
 import {
 	Button,
 	ToolbarGroup,
 	ToolbarButton,
 	ToggleControl,
-	Card,
-	CardHeader,
-	CardBody,
+	PanelBody,
 	RangeControl,
 } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
@@ -23,6 +23,9 @@ import StarRating from '../../utilities/components/star-rating';
 
 // import icons
 import icons from '../../utilities/options/icons';
+
+// sidebar panels behave as an accordion
+import usePanelAccordion from '../../utilities/hooks/use-panel-accordion';
 
 // tags allowed for the reviewer name ( mirrors includes/grid-item.php )
 const NAME_TAGS = [ 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div' ];
@@ -34,7 +37,22 @@ const toPhoto = ( media ) => ( {
 	alt: media.alt || '',
 } );
 
-export default function Edit( { attributes, setAttributes, context } ) {
+export default function Edit( {
+	attributes,
+	setAttributes,
+	context,
+	clientId,
+} ) {
+	// the parent grid owns the card design; the sidebar links back to it
+	const gridClientId = useSelect(
+		( select ) =>
+			select( blockEditorStore ).getBlockRootClientId( clientId ),
+		[ clientId ]
+	);
+	const { selectBlock } = useDispatch( blockEditorStore );
+	// accordion: opening a panel closes the other
+	const panel = usePanelAccordion( 'etb/grid-item:settings', 'rating' );
+
 	const {
 		testimonial,
 		reviewerName,
@@ -56,44 +74,60 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	return (
 		<Fragment>
 			<InspectorControls group="settings">
-				<Card>
-					<CardHeader>
-						<strong>
-							{ __( 'User Rating', 'easy-testimonial-blocks' ) }
-						</strong>
-					</CardHeader>
-					<CardBody>
-						<ToggleControl
-							label={ __(
-								'Show Rating',
+				<PanelBody
+					className="etb-panel"
+					{ ...panel( 'rating' ) }
+					title={ __( 'Rating', 'easy-testimonial-blocks' ) }
+				>
+					<ToggleControl
+						label={ __( 'Show rating', 'easy-testimonial-blocks' ) }
+						checked={ showRating }
+						onChange={ () =>
+							setAttributes( { showRating: ! showRating } )
+						}
+						__nextHasNoMarginBottom
+					/>
+					{ showRating && (
+						<RangeControl
+							label={ __( 'Stars', 'easy-testimonial-blocks' ) }
+							help={ __(
+								'From 0 to 5, in steps of 0.1.',
 								'easy-testimonial-blocks'
 							) }
-							checked={ showRating }
-							onChange={ () =>
-								setAttributes( {
-									showRating: ! showRating,
-								} )
+							value={ rating }
+							onChange={ ( value ) =>
+								setAttributes( { rating: value } )
 							}
+							min={ 0 }
+							max={ 5 }
+							step={ 0.1 }
+							__nextHasNoMarginBottom
 						/>
-						{ showRating && (
-							<RangeControl
-								label={ __(
-									'Rating',
-									'easy-testimonial-blocks'
-								) }
-								value={ rating }
-								onChange={ ( value ) =>
-									setAttributes( {
-										rating: value,
-									} )
-								}
-								min={ 0 }
-								max={ 5 }
-								step={ 0.1 }
-							/>
-						) }
-					</CardBody>
-				</Card>
+					) }
+				</PanelBody>
+				{ gridClientId && (
+					<PanelBody
+						className="etb-panel"
+						{ ...panel( 'design' ) }
+						title={ __( 'Card design', 'easy-testimonial-blocks' ) }
+					>
+						<p className="etb-preset-note">
+							{ __(
+								'Colors, spacing and the card design are shared by every testimonial in the grid.',
+								'easy-testimonial-blocks'
+							) }
+						</p>
+						<Button
+							variant="secondary"
+							onClick={ () => selectBlock( gridClientId ) }
+						>
+							{ __(
+								'Edit card design',
+								'easy-testimonial-blocks'
+							) }
+						</Button>
+					</PanelBody>
+				) }
 			</InspectorControls>
 			{ photo && (
 				<BlockControls>
@@ -110,7 +144,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								<ToolbarButton
 									icon={ 'edit' }
 									label={ __(
-										'Replace Photo',
+										'Replace photo',
 										'easy-testimonial-blocks'
 									) }
 									onClick={ open }
@@ -120,7 +154,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						<ToolbarButton
 							icon={ 'trash' }
 							label={ __(
-								'Remove Photo',
+								'Remove photo',
 								'easy-testimonial-blocks'
 							) }
 							onClick={ () =>
@@ -153,7 +187,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						setAttributes( { testimonial: value } )
 					}
 					placeholder={ __(
-						'testimonial text..',
+						'Write what the customer said…',
 						'easy-testimonial-blocks'
 					) }
 				/>
@@ -181,7 +215,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 									icon={ 'cloud-upload' }
 								>
 									{ __(
-										'Upload Photo',
+										'Add photo',
 										'easy-testimonial-blocks'
 									) }
 								</Button>
@@ -198,7 +232,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								setAttributes( { reviewerName: value } )
 							}
 							placeholder={ __(
-								'reviewer name..',
+								'Reviewer name',
 								'easy-testimonial-blocks'
 							) }
 						/>
@@ -210,7 +244,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								setAttributes( { reviewerTitle: value } )
 							}
 							placeholder={ __(
-								'reviewer title..',
+								'Job title',
 								'easy-testimonial-blocks'
 							) }
 						/>
@@ -222,7 +256,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								setAttributes( { reviewerCompany: value } )
 							}
 							placeholder={ __(
-								'company name..',
+								'Company',
 								'easy-testimonial-blocks'
 							) }
 						/>

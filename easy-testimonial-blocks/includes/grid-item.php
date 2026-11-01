@@ -229,11 +229,12 @@ function etb_testimonial_grid_item( $attributes, $block = null ) {
 	?>
 	<div class="wp-block-etb-grid-item">
 		<div class="testimonial-header">
-			<?php if ( $show_icon ) : ?>
-				<div class="quote-icon" aria-hidden="true">
+			<?php // The wrapper stays even when the icon is hidden so the rating keeps its position, matching the editor. ?>
+			<div class="quote-icon" aria-hidden="true">
+				<?php if ( $show_icon ) : ?>
 					<?php echo etb_sanitize_svg( $icon ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized via etb_sanitize_svg() ?>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
+			</div>
 			<?php if ( $attributes['showRating'] ) : ?>
 				<div class="rating">
 					<?php if ( $show_numerical ) : ?>

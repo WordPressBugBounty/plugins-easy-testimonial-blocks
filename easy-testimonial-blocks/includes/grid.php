@@ -207,6 +207,26 @@ if ( ! defined( 'ABSPATH' ) ) {
    return ".$handle $selector{font-size: {$size}px;}";
  }
 
+ /**
+  * One custom shadow layer ( x, y, blur, spread, color ) as a box-shadow value.
+  * Offsets are clamped integers and the color goes through the color
+  * whitelist, so nothing else can reach the stylesheet.
+  */
+ function etb_shadow_css( $layer ) {
+   if ( ! is_array( $layer ) ) {
+     return '';
+   }
+   $num = function ( $key, $min, $max ) use ( $layer ) {
+     $value = isset( $layer[ $key ] ) && is_numeric( $layer[ $key ] ) ? (int) round( $layer[ $key ] ) : 0;
+     return max( $min, min( $max, $value ) );
+   };
+   $color = isset( $layer['color'] ) ? etb_sanitize_css_color( $layer['color'] ) : '';
+   if ( '' === $color ) {
+     return '';
+   }
+   return sprintf( '%dpx %dpx %dpx %dpx %s', $num( 'x', -100, 100 ), $num( 'y', -100, 100 ), $num( 'blur', 0, 200 ), $num( 'spread', -100, 100 ), $color );
+ }
+
  function etb_testimonial_grid( $attributes ) {
   // The handle is interpolated unescaped into every CSS selector below, so
   // it's restricted to characters that are safe in both a CSS class name
@@ -240,6 +260,23 @@ if ( ! defined( 'ABSPATH' ) ) {
     $css .= ".$handle.wp-block-etb-grid{";
       $css .= 'z-index: ' . intval( $attributes['zIndex'] ) . ';';
     $css .= "}";
+  }
+
+  // custom card shadow ( normal + hover ), read by .has-custom-shadow in style.scss
+  if ( ! empty( $attributes['customShadow']['enabled'] ) ) {
+    $normal = etb_shadow_css( isset( $attributes['customShadow']['normal'] ) ? $attributes['customShadow']['normal'] : array() );
+    $hover  = etb_shadow_css( isset( $attributes['customShadow']['hover'] ) ? $attributes['customShadow']['hover'] : array() );
+    if ( $normal ) {
+      $css .= ".$handle.wp-block-etb-grid{--etb-shadow: {$normal};" . ( $hover ? "--etb-shadow-hover: {$hover};" : '' ) . "}";
+    }
+  }
+
+  // accent color used by the card design presets
+  if ( ! empty( $attributes['accentColor'] ) ) {
+    $accent = etb_sanitize_css_color( $attributes['accentColor'] );
+    if ( $accent ) {
+      $css .= ".$handle.wp-block-etb-grid{--etb-accent: {$accent};}";
+    }
   }
 
   $css .= ".$handle .wp-block-etb-grid-item{";

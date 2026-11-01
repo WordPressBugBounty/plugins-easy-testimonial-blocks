@@ -16,14 +16,31 @@ import getGridStyles from './get-grid-styles';
 // sidebar settings
 import Inspector from './inspector';
 
+// design picker shown while the grid is empty
+import GridPlaceholder from './placeholder';
+
+import { presetClassName, hoverClassName } from './presets';
+
 export default function Edit( { attributes, setAttributes, clientId } ) {
-	const { id, showBar, barPosition, enableBoxShadow, customClases } =
-		attributes;
+	const {
+		id,
+		enableBoxShadow,
+		customClases,
+		preset,
+		hoverStyle,
+		customShadow,
+	} = attributes;
 
 	// active editor device preview ( Desktop | Tablet | Mobile )
 	const deviceType = useSelect(
 		( select ) => select( editorStore )?.getDeviceType?.() ?? 'Desktop',
 		[]
+	);
+
+	// a freshly inserted grid has no testimonials yet
+	const hasItems = useSelect(
+		( select ) => select( blockEditorStore ).getBlockCount( clientId ) > 0,
+		[ clientId ]
 	);
 
 	// another grid in the editor already uses this id ( e.g. after duplicating )
@@ -58,13 +75,23 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 	const blockProps = useBlockProps( {
 		className: [
 			id,
-			showBar ? 'etb-has-bar' + ' ' + barPosition : '',
+			presetClassName( preset ),
 			enableBoxShadow ? 'has-box-shadow' : '',
+			hoverClassName( hoverStyle ),
+			enableBoxShadow && customShadow?.enabled ? 'has-custom-shadow' : '',
 			customClases || '',
 		]
 			.filter( Boolean )
 			.join( ' ' ),
 	} );
+
+	if ( ! hasItems ) {
+		return (
+			<div { ...blockProps }>
+				<GridPlaceholder clientId={ clientId } />
+			</div>
+		);
+	}
 
 	return (
 		<Fragment>
@@ -76,12 +103,10 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 			<Inspector
 				attributes={ attributes }
 				setAttributes={ setAttributes }
+				clientId={ clientId }
 			/>
 			<div { ...blockProps }>
-				<InnerBlocks
-					allowedBlocks={ [ 'etb/grid-item' ] }
-					template={ [ [ 'etb/grid-item' ], [ 'etb/grid-item' ] ] }
-				/>
+				<InnerBlocks allowedBlocks={ [ 'etb/grid-item' ] } />
 			</div>
 		</Fragment>
 	);

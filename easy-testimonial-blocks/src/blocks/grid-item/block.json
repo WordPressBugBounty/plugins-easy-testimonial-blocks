@@ -1,9 +1,10 @@
 {
 	"apiVersion": 3,
 	"name": "etb/grid-item",
-	"version": "0.1.0",
+	"version": "1.2.0",
 	"title": "Testimonial",
 	"category": "etb-blocks",
+	"keywords": [ "review", "quote", "rating" ],
 	"description": "A single testimonial with quote, star rating, reviewer name, title, company and photo.",
 	"supports": {
 		"html": false,

@@ -2,6 +2,7 @@
 import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
+	store as blockEditorStore,
 	__experimentalBorderRadiusControl as BorderRadiusControl,
 	FontSizePicker,
 } from '@wordpress/block-editor';
@@ -14,6 +15,7 @@ import {
 	__experimentalBoxControl as BoxControl,
 } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 
 // import components
 import ColorControl from '../../utilities/components/colorcontrol/colorcontrol';
@@ -21,7 +23,15 @@ import IconPicker from '../../utilities/components/iconpicker/iconpicker';
 import SingleInput from '../../utilities/components/singleinput/singleinput';
 import ButtonsControl from '../../utilities/components/buttonscontrol/buttonscontrol';
 
+// card design presets
+import PresetPicker from './preset-picker';
+import ItemsPanelContent from './items-panel';
+import { getPresetAttributes, getAccentHint, HOVER_STYLES } from './presets';
+import ShadowControl from '../../utilities/components/shadowcontrol/shadowcontrol';
+import { DEFAULT_SHADOW } from '../../utilities/shadow';
+
 // import options
+import usePanelAccordion from '../../utilities/hooks/use-panel-accordion';
 import aligns from '../../utilities/options/aligns';
 import flexaligns from '../../utilities/options/flexaligns';
 
@@ -60,10 +70,32 @@ const FontSizeSetting = ( { label, value, attributeName, setAttributes } ) => (
 	</div>
 );
 
-const Inspector = ( { attributes, setAttributes } ) => {
+// titled sub-section inside a panel ( e.g. Name, Job title )
+const ControlGroup = ( { title, children } ) => (
+	<div className="etb-control-group">
+		<h3 className="etb-control-group__title">{ title }</h3>
+		{ children }
+	</div>
+);
+
+const Inspector = ( { attributes, setAttributes, clientId } ) => {
+	// shown next to the Testimonial Items panel title
+	const itemCount = useSelect(
+		( select ) => select( blockEditorStore ).getBlockCount( clientId ),
+		[ clientId ]
+	);
+
+	// accordion: opening a panel closes the others in the same tab
+	const settingsPanel = usePanelAccordion( 'etb/grid:settings', 'design' );
+	const stylesPanel = usePanelAccordion( 'etb/grid:styles' );
+
 	const {
 		gridCols,
 		gridGap,
+		preset,
+		accentColor,
+		hoverStyle,
+		customShadow,
 		nameTag,
 		showIcon,
 		icon,
@@ -91,6 +123,26 @@ const Inspector = ( { attributes, setAttributes } ) => {
 		enableBoxShadow,
 		containerBg,
 	} = attributes;
+
+	// Shadow select: none / the design's own shadow / custom normal + hover
+	let shadowMode = 'default';
+	if ( ! enableBoxShadow ) {
+		shadowMode = 'none';
+	} else if ( customShadow?.enabled ) {
+		shadowMode = 'custom';
+	}
+	const setShadowMode = ( mode ) =>
+		setAttributes( {
+			enableBoxShadow: mode !== 'none',
+			customShadow: {
+				...DEFAULT_SHADOW,
+				...customShadow,
+				enabled: mode === 'custom',
+			},
+		} );
+
+	// only designs that use the accent color show its setting
+	const accentHint = getAccentHint( preset );
 
 	// normalize legacy numeric radius values for the core radius control
 	const getRadiusControlValues = ( value, defaultUnit ) =>
@@ -131,16 +183,63 @@ const Inspector = ( { attributes, setAttributes } ) => {
 
 	return (
 		<Fragment>
+			{ /* ─── Settings: what the grid shows and how it's arranged ─── */ }
 			<InspectorControls group="settings">
 				<PanelBody
-					title={ __( 'Layout', 'easy-testimonial-blocks' ) }
-					initialOpen={ true }
+					className="etb-panel"
+					{ ...settingsPanel( 'design' ) }
+					title={ __( 'Design', 'easy-testimonial-blocks' ) }
 				>
-					<SingleInput
-						label={ __(
-							'Grid Columns',
+					<PresetPicker
+						value={ preset }
+						onChange={ ( slug ) =>
+							setAttributes( getPresetAttributes( slug ) )
+						}
+					/>
+					<p className="etb-preset-note">
+						{ __(
+							'A design sets the card styles. Fine-tune any of them in the Styles tab.',
 							'easy-testimonial-blocks'
 						) }
+					</p>
+					{ accentHint && (
+						<ColorControl
+							label={ __(
+								'Accent color',
+								'easy-testimonial-blocks'
+							) }
+							colorValue={ accentColor }
+							colorName="accentColor"
+							setAttributes={ setAttributes }
+							disableAlpha={ true }
+							help={ accentHint }
+						/>
+					) }
+				</PanelBody>
+				<PanelBody
+					className="etb-panel"
+					{ ...settingsPanel( 'items' ) }
+					title={
+						<>
+							{ __(
+								'Testimonial Items',
+								'easy-testimonial-blocks'
+							) }
+							<span className="etb-panel-count">
+								{ itemCount }
+							</span>
+						</>
+					}
+				>
+					<ItemsPanelContent clientId={ clientId } />
+				</PanelBody>
+				<PanelBody
+					className="etb-panel"
+					{ ...settingsPanel( 'layout' ) }
+					title={ __( 'Layout', 'easy-testimonial-blocks' ) }
+				>
+					<SingleInput
+						label={ __( 'Columns', 'easy-testimonial-blocks' ) }
 						attribute={ gridCols }
 						attributeName="gridCols"
 						setAttributes={ setAttributes }
@@ -148,16 +247,59 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						max={ 5 }
 					/>
 					<SingleInput
-						label={ __( 'Grid Gap', 'easy-testimonial-blocks' ) }
+						label={ __( 'Gap', 'easy-testimonial-blocks' ) }
 						attribute={ gridGap }
 						attributeName="gridGap"
 						setAttributes={ setAttributes }
 						min={ 0 }
 						max={ 200 }
 					/>
+				</PanelBody>
+				<PanelBody
+					className="etb-panel"
+					{ ...settingsPanel( 'display' ) }
+					title={ __( 'Display', 'easy-testimonial-blocks' ) }
+				>
+					<ToggleControl
+						label={ __( 'Quote icon', 'easy-testimonial-blocks' ) }
+						checked={ showIcon }
+						onChange={ () =>
+							setAttributes( { showIcon: ! showIcon } )
+						}
+						__nextHasNoMarginBottom
+					/>
+					{ showIcon && (
+						<IconPicker
+							label={ __(
+								'Icon style',
+								'easy-testimonial-blocks'
+							) }
+							selectedIcon={ icon }
+							func={ ( value ) =>
+								setAttributes( { icon: value } )
+							}
+						/>
+					) }
+					<ToggleControl
+						label={ __(
+							'Rating number',
+							'easy-testimonial-blocks'
+						) }
+						help={ __(
+							'Shows the score, such as 4.8, next to the stars.',
+							'easy-testimonial-blocks'
+						) }
+						checked={ showNumericalRating }
+						onChange={ () =>
+							setAttributes( {
+								showNumericalRating: ! showNumericalRating,
+							} )
+						}
+						__nextHasNoMarginBottom
+					/>
 					<SelectControl
 						label={ __(
-							'Reviewer Name Tag',
+							'Reviewer name tag',
 							'easy-testimonial-blocks'
 						) }
 						help={ __(
@@ -174,7 +316,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							'p',
 							'div',
 						].map( ( tag ) => ( {
-							label: tag.toUpperCase(),
+							label: `<${ tag }>`,
 							value: tag,
 						} ) ) }
 						onChange={ ( value ) =>
@@ -183,72 +325,15 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
-				<PanelBody
-					title={ __( 'Quote Icon', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
-				>
-					<ToggleControl
-						label={ __(
-							'Show Quote Icon',
-							'easy-testimonial-blocks'
-						) }
-						checked={ showIcon }
-						onChange={ () =>
-							setAttributes( {
-								showIcon: ! showIcon,
-							} )
-						}
-					/>
-					{ showIcon && (
-						<IconPicker
-							label={ __(
-								'Select Quote Icon',
-								'easy-testimonial-blocks'
-							) }
-							selectedIcon={ icon }
-							func={ ( value ) =>
-								setAttributes( {
-									icon: value,
-								} )
-							}
-						/>
-					) }
-				</PanelBody>
-				<PanelBody
-					title={ __( 'Rating', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
-				>
-					<ToggleControl
-						label={ __(
-							'Show Number Rating',
-							'easy-testimonial-blocks'
-						) }
-						checked={ showNumericalRating }
-						onChange={ () =>
-							setAttributes( {
-								showNumericalRating: ! showNumericalRating,
-							} )
-						}
-					/>
-				</PanelBody>
 			</InspectorControls>
+
+			{ /* ─── Styles: in the order the card reads, top to bottom ─── */ }
 			<InspectorControls group="styles">
 				<PanelBody
-					title={ __( 'Container', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
+					className="etb-panel"
+					{ ...stylesPanel( 'card' ) }
+					title={ __( 'Card', 'easy-testimonial-blocks' ) }
 				>
-					<ToggleControl
-						label={ __(
-							'Enable Box Shadow',
-							'easy-testimonial-blocks'
-						) }
-						checked={ enableBoxShadow }
-						onChange={ () =>
-							setAttributes( {
-								enableBoxShadow: ! enableBoxShadow,
-							} )
-						}
-					/>
 					<ColorControl
 						label={ __( 'Background', 'easy-testimonial-blocks' ) }
 						colorValue={ containerBg }
@@ -261,9 +346,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							label={ __( 'Border', 'easy-testimonial-blocks' ) }
 							value={ getBorderControlValue( containerBorder ) }
 							onChange={ ( border ) =>
-								setAttributes( {
-									containerBorder: border,
-								} )
+								setAttributes( { containerBorder: border } )
 							}
 							withSlider={ true }
 							disableUnits
@@ -275,9 +358,7 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							'px'
 						) }
 						onChange={ ( value ) =>
-							setAttributes( {
-								containerBorderRadius: value,
-							} )
+							setAttributes( { containerBorderRadius: value } )
 						}
 					/>
 					<div className="etb-box-control">
@@ -287,66 +368,115 @@ const Inspector = ( { attributes, setAttributes } ) => {
 								containerPadding
 							) }
 							onChange={ ( value ) =>
-								setAttributes( {
-									containerPadding: value,
-								} )
+								setAttributes( { containerPadding: value } )
 							}
 							allowReset={ false }
 						/>
 					</div>
+					<ControlGroup
+						title={ __( 'Effects', 'easy-testimonial-blocks' ) }
+					>
+						<SelectControl
+							label={ __( 'Shadow', 'easy-testimonial-blocks' ) }
+							value={ shadowMode }
+							options={ [
+								{
+									value: 'none',
+									label: __(
+										'None',
+										'easy-testimonial-blocks'
+									),
+								},
+								{
+									value: 'default',
+									label: __(
+										'Design default',
+										'easy-testimonial-blocks'
+									),
+								},
+								{
+									value: 'custom',
+									label: __(
+										'Custom',
+										'easy-testimonial-blocks'
+									),
+								},
+							] }
+							onChange={ setShadowMode }
+							__nextHasNoMarginBottom
+						/>
+						{ shadowMode === 'custom' && (
+							<ShadowControl
+								value={ customShadow }
+								onChange={ ( value ) =>
+									setAttributes( {
+										customShadow: {
+											...value,
+											enabled: true,
+										},
+									} )
+								}
+							/>
+						) }
+						<SelectControl
+							label={ __(
+								'Hover effect',
+								'easy-testimonial-blocks'
+							) }
+							help={ __(
+								'Plays on your site; hover effects stay off while you edit.',
+								'easy-testimonial-blocks'
+							) }
+							value={ hoverStyle }
+							options={ HOVER_STYLES }
+							onChange={ ( value ) =>
+								setAttributes( { hoverStyle: value } )
+							}
+							__nextHasNoMarginBottom
+						/>
+					</ControlGroup>
 				</PanelBody>
 				{ showIcon && (
 					<PanelBody
-						title={ __( 'Quote Icon', 'easy-testimonial-blocks' ) }
-						initialOpen={ false }
+						className="etb-panel"
+						{ ...stylesPanel( 'icon' ) }
+						title={ __( 'Quote icon', 'easy-testimonial-blocks' ) }
 					>
+						<ColorControl
+							label={ __( 'Color', 'easy-testimonial-blocks' ) }
+							colorValue={ iconColor }
+							colorName="iconColor"
+							setAttributes={ setAttributes }
+							disableAlpha={ true }
+						/>
 						<SingleInput
-							label={ __(
-								'Icon Size',
-								'easy-testimonial-blocks'
-							) }
+							label={ __( 'Size', 'easy-testimonial-blocks' ) }
 							attribute={ iconSizes }
 							attributeName="iconSizes"
 							setAttributes={ setAttributes }
 							min={ 1 }
 							max={ 200 }
 						/>
-						<ColorControl
-							label={ __(
-								'Quote Icon Color',
-								'easy-testimonial-blocks'
-							) }
-							colorValue={ iconColor }
-							colorName="iconColor"
-							setAttributes={ setAttributes }
-							disableAlpha={ true }
-						/>
 						<RangeControl
-							label={ __(
-								'Icon Opacity',
-								'easy-testimonial-blocks'
-							) }
+							label={ __( 'Opacity', 'easy-testimonial-blocks' ) }
 							value={ iconOpacity }
 							onChange={ ( value ) =>
-								setAttributes( {
-									iconOpacity: value,
-								} )
+								setAttributes( { iconOpacity: value } )
 							}
 							min={ 0.1 }
 							max={ 1 }
 							step={ 0.01 }
+							__nextHasNoMarginBottom
 						/>
 					</PanelBody>
 				) }
 				<PanelBody
+					className="etb-panel"
+					{ ...stylesPanel( 'rating' ) }
 					title={ __( 'Rating', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
 				>
 					<ColorControl
-						label={ __(
-							'Rating Color',
-							'easy-testimonial-blocks'
-						) }
+						label={ __( 'Star color', 'easy-testimonial-blocks' ) }
 						colorValue={ ratingColor }
 						colorName="ratingColor"
 						setAttributes={ setAttributes }
@@ -354,12 +484,15 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __(
-						'Testimonial Content',
-						'easy-testimonial-blocks'
-					) }
-					initialOpen={ false }
+					className="etb-panel"
+					{ ...stylesPanel( 'text' ) }
+					title={ __( 'Quote text', 'easy-testimonial-blocks' ) }
 				>
+					<FontSizeSetting
+						value={ ttmFontSizes }
+						attributeName="ttmFontSizes"
+						setAttributes={ setAttributes }
+					/>
 					<ColorControl
 						label={ __( 'Color', 'easy-testimonial-blocks' ) }
 						colorValue={ ttmFontColor }
@@ -367,13 +500,8 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						setAttributes={ setAttributes }
 						disableAlpha={ true }
 					/>
-					<FontSizeSetting
-						value={ ttmFontSizes }
-						attributeName="ttmFontSizes"
-						setAttributes={ setAttributes }
-					/>
 					<ButtonsControl
-						label={ __( 'Text Align', 'easy-testimonial-blocks' ) }
+						label={ __( 'Alignment', 'easy-testimonial-blocks' ) }
 						attribute={ ttmAlign }
 						attributeName="ttmAlign"
 						setAttributes={ setAttributes }
@@ -381,11 +509,12 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'User Photo', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
+					className="etb-panel"
+					{ ...stylesPanel( 'photo' ) }
+					title={ __( 'Reviewer photo', 'easy-testimonial-blocks' ) }
 				>
 					<SingleInput
-						label={ __( 'Photo Size', 'easy-testimonial-blocks' ) }
+						label={ __( 'Size', 'easy-testimonial-blocks' ) }
 						attribute={ photoSizes }
 						attributeName="photoSizes"
 						setAttributes={ setAttributes }
@@ -394,14 +523,9 @@ const Inspector = ( { attributes, setAttributes } ) => {
 					/>
 					<div className="etb-border-control">
 						<BorderControl
-							label={ __(
-								'Photo Border',
-								'easy-testimonial-blocks'
-							) }
+							label={ __( 'Border', 'easy-testimonial-blocks' ) }
 							onChange={ ( border ) =>
-								setAttributes( {
-									photoBorder: border,
-								} )
+								setAttributes( { photoBorder: border } )
 							}
 							value={ photoBorder }
 							withSlider={ true }
@@ -414,15 +538,17 @@ const Inspector = ( { attributes, setAttributes } ) => {
 							'%'
 						) }
 						onChange={ ( value ) =>
-							setAttributes( {
-								photoBorderRadius: value,
-							} )
+							setAttributes( { photoBorderRadius: value } )
 						}
 					/>
 				</PanelBody>
 				<PanelBody
-					title={ __( 'User Info', 'easy-testimonial-blocks' ) }
-					initialOpen={ false }
+					className="etb-panel"
+					{ ...stylesPanel( 'details' ) }
+					title={ __(
+						'Reviewer details',
+						'easy-testimonial-blocks'
+					) }
 				>
 					<ButtonsControl
 						label={ __( 'Alignment', 'easy-testimonial-blocks' ) }
@@ -431,55 +557,57 @@ const Inspector = ( { attributes, setAttributes } ) => {
 						setAttributes={ setAttributes }
 						options={ flexaligns }
 					/>
-					<FontSizeSetting
-						label={ __( 'Name', 'easy-testimonial-blocks' ) }
-						value={ nameFontSizes }
-						attributeName="nameFontSizes"
-						setAttributes={ setAttributes }
-					/>
-					<ColorControl
-						label={ __( 'Name Color', 'easy-testimonial-blocks' ) }
-						colorValue={ nameFontColor }
-						colorName="nameFontColor"
-						setAttributes={ setAttributes }
-						disableAlpha={ true }
-					/>
-					<FontSizeSetting
-						label={ __( 'Designation', 'easy-testimonial-blocks' ) }
-						value={ titleFontSizes }
-						attributeName="titleFontSizes"
-						setAttributes={ setAttributes }
-					/>
-					<ColorControl
-						label={ __(
-							'Designation Color',
-							'easy-testimonial-blocks'
-						) }
-						colorValue={ titleFontColor }
-						colorName="titleFontColor"
-						setAttributes={ setAttributes }
-						disableAlpha={ true }
-					/>
-					<FontSizeSetting
-						label={ __( 'Company', 'easy-testimonial-blocks' ) }
-						value={ companyFontSizes }
-						attributeName="companyFontSizes"
-						setAttributes={ setAttributes }
-					/>
-					<ColorControl
-						label={ __(
-							'Company Color',
-							'easy-testimonial-blocks'
-						) }
-						colorValue={ companyFontColor }
-						colorName="companyFontColor"
-						setAttributes={ setAttributes }
-						disableAlpha={ true }
-					/>
+					<ControlGroup
+						title={ __( 'Name', 'easy-testimonial-blocks' ) }
+					>
+						<FontSizeSetting
+							value={ nameFontSizes }
+							attributeName="nameFontSizes"
+							setAttributes={ setAttributes }
+						/>
+						<ColorControl
+							label={ __( 'Color', 'easy-testimonial-blocks' ) }
+							colorValue={ nameFontColor }
+							colorName="nameFontColor"
+							setAttributes={ setAttributes }
+							disableAlpha={ true }
+						/>
+					</ControlGroup>
+					<ControlGroup
+						title={ __( 'Job title', 'easy-testimonial-blocks' ) }
+					>
+						<FontSizeSetting
+							value={ titleFontSizes }
+							attributeName="titleFontSizes"
+							setAttributes={ setAttributes }
+						/>
+						<ColorControl
+							label={ __( 'Color', 'easy-testimonial-blocks' ) }
+							colorValue={ titleFontColor }
+							colorName="titleFontColor"
+							setAttributes={ setAttributes }
+							disableAlpha={ true }
+						/>
+					</ControlGroup>
+					<ControlGroup
+						title={ __( 'Company', 'easy-testimonial-blocks' ) }
+					>
+						<FontSizeSetting
+							value={ companyFontSizes }
+							attributeName="companyFontSizes"
+							setAttributes={ setAttributes }
+						/>
+						<ColorControl
+							label={ __( 'Color', 'easy-testimonial-blocks' ) }
+							colorValue={ companyFontColor }
+							colorName="companyFontColor"
+							setAttributes={ setAttributes }
+							disableAlpha={ true }
+						/>
+					</ControlGroup>
 				</PanelBody>
 			</InspectorControls>
 		</Fragment>
 	);
 };
-
 export default Inspector;

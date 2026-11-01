@@ -2,6 +2,8 @@
 * Style Works for both Editor and Frontend
 */
 
+@use "presets";
+
 .wp-block-etb-grid {
 	display: grid;
 	min-height: 0;
