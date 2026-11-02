@@ -17,7 +17,6 @@ import { useSettings } from '@wordpress/block-editor';
  * @param {string}   props.colorName     Attribute the color is stored in.
  * @param {string}   props.colorValue    Current color.
  * @param {Function} props.setAttributes Block attribute setter.
- * @param {boolean}  props.disableAlpha  Hide the opacity slider.
  * @param {string}   props.help          Optional hint shown under the row.
  * @param {Function} props.onChange      Optional handler, used instead of colorName / setAttributes.
  */
@@ -26,7 +25,6 @@ const ColorControl = ( {
 	colorName,
 	colorValue,
 	setAttributes,
-	disableAlpha,
 	help,
 	onChange,
 } ) => {
@@ -58,7 +56,9 @@ const ColorControl = ( {
 						<ColorPalette
 							colors={ palette ?? [] }
 							value={ colorValue }
-							enableAlpha={ ! disableAlpha }
+							// the opaque-only picker in core bounces between the old
+							// and new color while dragging; the alpha one stays smooth
+							enableAlpha
 							onChange={ ( value ) =>
 								onChange
 									? onChange( value )

@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "etb/grid",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "title": "Testimonial Grid",
   "category": "etb-blocks",
   "description": "Display customer testimonials and reviews with star ratings and photos in a responsive grid.",

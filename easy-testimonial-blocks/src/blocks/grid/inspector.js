@@ -211,7 +211,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 							colorValue={ accentColor }
 							colorName="accentColor"
 							setAttributes={ setAttributes }
-							disableAlpha={ true }
 							help={ accentHint }
 						/>
 					) }
@@ -339,7 +338,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 						colorValue={ containerBg }
 						colorName="containerBg"
 						setAttributes={ setAttributes }
-						disableAlpha={ false }
 					/>
 					<div className="etb-border-control">
 						<BorderControl
@@ -447,7 +445,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 							colorValue={ iconColor }
 							colorName="iconColor"
 							setAttributes={ setAttributes }
-							disableAlpha={ true }
 						/>
 						<SingleInput
 							label={ __( 'Size', 'easy-testimonial-blocks' ) }
@@ -480,7 +477,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 						colorValue={ ratingColor }
 						colorName="ratingColor"
 						setAttributes={ setAttributes }
-						disableAlpha={ true }
 					/>
 				</PanelBody>
 				<PanelBody
@@ -498,7 +494,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 						colorValue={ ttmFontColor }
 						colorName="ttmFontColor"
 						setAttributes={ setAttributes }
-						disableAlpha={ true }
 					/>
 					<ButtonsControl
 						label={ __( 'Alignment', 'easy-testimonial-blocks' ) }
@@ -570,7 +565,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 							colorValue={ nameFontColor }
 							colorName="nameFontColor"
 							setAttributes={ setAttributes }
-							disableAlpha={ true }
 						/>
 					</ControlGroup>
 					<ControlGroup
@@ -586,7 +580,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 							colorValue={ titleFontColor }
 							colorName="titleFontColor"
 							setAttributes={ setAttributes }
-							disableAlpha={ true }
 						/>
 					</ControlGroup>
 					<ControlGroup
@@ -602,7 +595,6 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 							colorValue={ companyFontColor }
 							colorName="companyFontColor"
 							setAttributes={ setAttributes }
-							disableAlpha={ true }
 						/>
 					</ControlGroup>
 				</PanelBody>

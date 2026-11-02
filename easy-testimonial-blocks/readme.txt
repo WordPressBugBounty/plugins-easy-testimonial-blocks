@@ -3,7 +3,7 @@ Contributors: binsaifullah
 Tags: testimonial, testimonials, testimonial block, customer reviews, star ratings
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -147,6 +147,9 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 
 == Changelog ==
 
+= 1.2.1 =
+* Fix: the custom color picker no longer flickers while you drag. Color settings now include an opacity slider.
+
 = 1.2.0 =
 * New: 12 new card designs (Elevated, Outline, Minimal, Speech bubble, Spotlight, Midnight, Aurora, Glass, Accent stripe, Editorial, Pastel and Side by side), chosen from visual thumbnails in the new Design panel. Classic stays the default, and existing grids are unchanged.
 * New: accent color setting for the card designs that use one.
@@ -189,6 +192,9 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Fixes the custom color picker flickering while dragging.
 
 = 1.2.0 =
 Adds 12 new card designs, a new dashboard, a design picker, 13 ready-made testimonial patterns and theme-aware color and spacing controls for the grid.

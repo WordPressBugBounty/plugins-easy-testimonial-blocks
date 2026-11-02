@@ -4,7 +4,7 @@
  * Description:       Testimonial block for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive testimonial grid.
  * Requires at least: 6.5
  * Requires PHP:      7.0
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Zakaria Binsaifullah
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'ETB_VERSION', '1.2.0' );
+define( 'ETB_VERSION', '1.2.1' );
 define( 'ETB_FILE', __FILE__ );
 define( 'ETB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ETB_URL', plugin_dir_url( __FILE__ ) );
