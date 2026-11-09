@@ -1,18 +1,18 @@
-=== Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings ===
+=== Easy Testimonial Blocks – Testimonial Grid & Slider, Customer Reviews & Star Ratings ===
 Contributors: binsaifullah
 Tags: testimonial, testimonials, testimonial block, customer reviews, star ratings
 Requires at least: 6.5
 Tested up to: 7.1
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Testimonial block for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive testimonial grid. No coding.
+Testimonial blocks for the block editor. Show customer reviews, star ratings and photos in a responsive grid or carousel slider. No coding.
 
 == Description ==
 
-**Easy Testimonial Blocks** is a lightweight testimonial plugin built for the WordPress block editor (Gutenberg). Add a testimonial grid to any page, post or template in seconds. You can show client testimonials, customer reviews, star ratings and reviewer photos without shortcodes, page builders or code.
+**Easy Testimonial Blocks** is a lightweight testimonial plugin built for the WordPress block editor (Gutenberg). Add a testimonial grid or carousel to any page, post or template in seconds. You can show client testimonials, customer reviews, star ratings and reviewer photos without shortcodes, page builders or code.
 
 Social proof turns visitors into customers. A well-designed testimonials section on your homepage, landing page, pricing page or service page builds trust where buyers make up their minds. Easy Testimonial Blocks makes that section quick to build and easy to match to your brand. It keeps your site fast too.
 
@@ -31,6 +31,7 @@ Social proof turns visitors into customers. A well-designed testimonials section
 * **Design picker** – insert the block and choose a ready-made design from a visual picker, or start blank
 * **Ready-made testimonial sections** – 13 block patterns (three cards, featured quote, two columns, dark section, wall of love, spotlight, speech bubbles, aurora gradient, frosted glass, accent stripe, editorial, side by side and minimal) you can insert and edit in one click
 * **Responsive testimonial grid** – set columns and spacing separately for desktop, tablet and mobile
+* **Testimonial carousel (slider)** – a swipeable carousel with slides per view for each device, arrows (below, at the sides or on top), dots, loop and autoplay that pauses on hover. It uses the same card designs and style settings as the grid
 * **Star ratings** – show ratings out of 5, including decimals like 4.5 or 4.8, with crisp SVG stars and an optional number
 * **Reviewer details** – name, job title, company and photo for every testimonial
 * **Reviewer photos** – responsive, lazy-loaded images with size, border and border radius controls
@@ -39,18 +40,18 @@ Social proof turns visitors into customers. A well-designed testimonials section
 * **Theme-aware section styling** – native background, gradient, text color, padding and margin controls that use your theme's color palette and spacing presets
 * **Live device preview** – responsive settings follow the editor's desktop, tablet and mobile preview
 * **SEO-friendly markup** – choose the HTML tag for reviewer names (H2–H6, paragraph or div) to keep your heading structure clean
-* **Accessible** – screen reader labels for ratings and alt text for reviewer photos
-* **Fast and lightweight** – no JavaScript on the frontend, no jQuery, and CSS loads only on pages that use the block
+* **Accessible** – screen reader labels for ratings, alt text for reviewer photos, and a keyboard-friendly carousel that respects reduced motion
+* **Fast and lightweight** – no jQuery, no JavaScript for grids, a tiny script (about 1 KB gzipped) only on pages with a carousel, and CSS only where a block is used
 * **Works with any theme** – block themes, classic themes, full site editing and block-based widget areas
 * **Plugin dashboard** – see how many testimonials you have, where they appear and your average rating, and create a page from a ready-made design in one click (Settings → Testimonial Blocks)
 * **Translation ready** – every label can be translated, and RTL languages are supported
 
 = How it works =
 
-1. Insert the **Testimonial Grid** block and choose a ready-made design, or start blank. The designs are also under **Patterns → Testimonials**.
+1. Insert the **Testimonial Grid** block and choose a ready-made design, or start blank. The designs are also under **Patterns → Testimonials**. For a slider, insert the **Testimonial Carousel** block instead.
 2. Type the testimonial text, then add the reviewer's name, title, company and photo.
 3. Set the star rating for each testimonial.
-4. Adjust columns, colors, icons and spacing from the block sidebar.
+4. Adjust columns or slides, colors, icons and spacing from the block sidebar.
 5. Publish. Your testimonials section is live and responsive.
 
 = Video tutorial =
@@ -59,7 +60,7 @@ Social proof turns visitors into customers. A well-designed testimonials section
 
 = Built for performance =
 
-Many testimonial plugins load sliders, jQuery and large stylesheets on every page. Easy Testimonial Blocks renders plain HTML and inline SVG on the server. It adds no frontend JavaScript and loads its styles only where the block is used. That keeps your Core Web Vitals and PageSpeed scores healthy.
+Many testimonial plugins load heavy slider libraries, jQuery and large stylesheets on every page. Easy Testimonial Blocks renders plain HTML and inline SVG on the server and loads its styles only where a block is used. Grids add no JavaScript at all. The carousel uses the browser's native scroll snapping plus a tiny script (about 1 KB gzipped) that loads only on pages with a carousel. That keeps your Core Web Vitals and PageSpeed scores healthy.
 
 = Support and feedback =
 
@@ -86,7 +87,7 @@ After activation, open **Settings → Testimonial Blocks** for the plugin dashbo
 
 = How do I add testimonials to my WordPress site? =
 
-Open a page or post in the block editor and insert the **Testimonial Grid** block. Choose a ready-made design or start blank, then fill in the text, reviewer details and rating. Add more testimonials with the block appender. You can also create a complete testimonials page in one click from **Settings → Testimonial Blocks → Designs**.
+Open a page or post in the block editor and insert the **Testimonial Grid** or **Testimonial Carousel** block. For the grid, choose a ready-made design or start blank; the carousel starts with sample testimonials. Then fill in the text, reviewer details and rating. Add more testimonials with the block appender. You can also create a complete testimonials page in one click from **Settings → Testimonial Blocks → Designs**.
 
 = Is Easy Testimonial Blocks free? =
 
@@ -94,7 +95,7 @@ Yes. The plugin is 100% free and open source under the GPL.
 
 = Will it slow down my website? =
 
-No. The plugin outputs no JavaScript on the frontend, and its CSS loads only on pages that contain a testimonial block. Reviewer photos use responsive image sizes with lazy loading.
+No. Grids output no JavaScript, and the carousel adds only a tiny script (about 1 KB gzipped) on pages that use it. CSS loads only on pages that contain a testimonial block, and reviewer photos use responsive image sizes with lazy loading.
 
 = Can I show star ratings with each testimonial? =
 
@@ -124,9 +125,13 @@ No. Every option is in the block sidebar, under the Settings and Styles tabs.
 
 Yes. Upload or choose a photo from the Media Library for each testimonial. You can set the photo size, border and border radius, for example to make round avatars.
 
-= Can I import Google reviews or show a testimonial slider? =
+= Can I show testimonials in a slider or carousel? =
 
-Not yet. You add testimonials by hand inside the block, and they display in a responsive grid. A slider layout and more testimonial features are planned. Suggestions are welcome in the support forum.
+Yes. Insert the **Testimonial Carousel** block. Set how many testimonials show at once on desktop, tablet and mobile, and choose arrows (below, at the sides or on top), dots, loop and autoplay. Autoplay pauses on hover and keyboard focus and stays off for visitors who prefer reduced motion, and you can add a pause button. All 13 card designs work in the carousel.
+
+= Can I import Google reviews? =
+
+Not yet. You add testimonials by hand inside the block. Importing reviews and more testimonial features are planned. Suggestions are welcome in the support forum.
 
 = Is the plugin translation ready? =
 
@@ -146,6 +151,12 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 6. The design picker: insert the block and choose a ready-made testimonial section, or start blank.
 
 == Changelog ==
+
+= 1.3.0 =
+* New: Testimonial Carousel block. Shows testimonials in a swipeable carousel with slides per view and gap for desktop, tablet and mobile, arrows (below, at the sides or on top), dots, loop and autoplay with an optional pause button. It uses all 13 card designs and the same style settings as the grid.
+* New: navigation color and hover color settings for the carousel arrows and dots.
+* Tweak: the dashboard now counts carousels and grids together as testimonial sections.
+* Performance: the carousel uses native CSS scroll snapping and a small script (about 1 KB gzipped), loaded only on pages that have a carousel. Grids still load no JavaScript.
 
 = 1.2.1 =
 * Fix: the custom color picker no longer flickers while you drag. Color settings now include an opacity slider.
@@ -192,6 +203,9 @@ WordPress 6.5 or higher and PHP 7.0 or higher.
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+Adds a Testimonial Carousel block with arrows, dots, loop and autoplay, using all card designs.
 
 = 1.2.1 =
 Fixes the custom color picker flickering while dragging.

@@ -9,12 +9,15 @@
  * are kept off the card itself: the editor draws block outlines with them.
  */
 
+// card containers: the grid and the carousel share every card design
+$root: ":is(.wp-block-etb-grid, .wp-block-etb-carousel)";
+
 $accent: var(--etb-accent, #4f46e5);
 
 // soft, layered card shadow used by several presets ( behind the "box shadow" toggle )
 $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 42, 0.18);
 
-.wp-block-etb-grid.wp-block-etb-grid[class*="etb-preset-"] {
+#{$root}#{$root}[class*="etb-preset-"] {
 
 	.wp-block-etb-grid-item {
 		position: relative;
@@ -48,7 +51,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 }
 
 // author block sits at the bottom so cards in a row line up
-.wp-block-etb-grid.wp-block-etb-grid:is(
+#{$root}#{$root}:is(
 	.etb-preset-elevated,
 	.etb-preset-outline,
 	.etb-preset-midnight,
@@ -65,7 +68,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Elevated
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-elevated {
+#{$root}#{$root}.etb-preset-elevated {
 
 	&.has-box-shadow .wp-block-etb-grid-item {
 		box-shadow: $soft-shadow;
@@ -84,7 +87,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Outline
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-outline {
+#{$root}#{$root}.etb-preset-outline {
 
 	.wp-block-etb-grid-item {
 		transition: border-color 0.2s ease;
@@ -113,7 +116,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Minimal
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-minimal {
+#{$root}#{$root}.etb-preset-minimal {
 
 	.wp-block-etb-grid-item {
 		border-top: 2px solid var(--etb-accent, #0f172a);
@@ -142,7 +145,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Speech bubble
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-bubble {
+#{$root}#{$root}.etb-preset-bubble {
 
 	.testimonial-header,
 	.testimonial-message {
@@ -184,7 +187,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Spotlight — avatar on top, everything centered
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-spotlight {
+#{$root}#{$root}.etb-preset-spotlight {
 
 	&.has-box-shadow .wp-block-etb-grid-item {
 		box-shadow: $soft-shadow;
@@ -246,7 +249,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Midnight
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-midnight {
+#{$root}#{$root}.etb-preset-midnight {
 
 	.wp-block-etb-grid-item {
 		overflow: hidden;
@@ -266,12 +269,12 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Aurora
  */
-:where(.wp-block-etb-grid.etb-preset-aurora) .wp-block-etb-grid-item {
+:where(#{$root}.etb-preset-aurora) .wp-block-etb-grid-item {
 	background: linear-gradient(140deg, var(--etb-accent, #4f46e5) 0%, #7c3aed 55%, #c026d3 100%);
 	box-shadow: 0 18px 40px -20px rgba(79, 70, 229, 0.7);
 }
 
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-aurora {
+#{$root}#{$root}.etb-preset-aurora {
 
 	.testimonial-message {
 		margin: 20px 0 24px;
@@ -286,17 +289,17 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
  * Glass — frosted cards on a colorful backdrop ( the grid's own
  * background setting replaces the backdrop )
  */
-:where(.wp-block-etb-grid.etb-preset-glass) {
+:where(#{$root}.etb-preset-glass) {
 	padding: 32px;
 	background: radial-gradient(circle at 15% 20%, #a78bfa 0, transparent 45%), radial-gradient(circle at 85% 80%, #f472b6 0, transparent 45%), linear-gradient(135deg, var(--etb-accent, #4f46e5), #0ea5e9);
 	border-radius: 24px;
 }
 
-:where(.wp-block-etb-grid.etb-preset-glass) .wp-block-etb-grid-item {
+:where(#{$root}.etb-preset-glass) .wp-block-etb-grid-item {
 	background: rgba(255, 255, 255, 0.14);
 }
 
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-glass {
+#{$root}#{$root}.etb-preset-glass {
 
 	.wp-block-etb-grid-item {
 		-webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -316,7 +319,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Accent stripe
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-stripe {
+#{$root}#{$root}.etb-preset-stripe {
 
 	.wp-block-etb-grid-item {
 		overflow: hidden;
@@ -350,7 +353,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Editorial
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-editorial {
+#{$root}#{$root}.etb-preset-editorial {
 
 	.testimonial-message {
 		margin: 18px 0 24px;
@@ -373,7 +376,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Pastel
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-pastel {
+#{$root}#{$root}.etb-preset-pastel {
 
 	.reviewer-photo {
 		box-shadow: 0 8px 20px -8px rgba(79, 70, 229, 0.45);
@@ -387,7 +390,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
 /*
  * Side by side — author column beside the quote; stacks in narrow cards
  */
-.wp-block-etb-grid.wp-block-etb-grid.etb-preset-split {
+#{$root}#{$root}.etb-preset-split {
 
 	.wp-block-etb-grid-item {
 		display: grid;
@@ -469,7 +472,7 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
  * Custom shadow ( normal + hover ), set through --etb-shadow / --etb-shadow-hover;
  * outranks the design shadows and the hover effects' own shadows
  */
-.wp-block-etb-grid.wp-block-etb-grid.wp-block-etb-grid.has-custom-shadow.has-box-shadow .wp-block-etb-grid-item {
+#{$root}#{$root}#{$root}.has-custom-shadow.has-box-shadow .wp-block-etb-grid-item {
 	box-shadow: var(--etb-shadow);
 	transition: box-shadow 0.25s ease, transform 0.25s ease;
 
@@ -483,28 +486,28 @@ $soft-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 4
  */
 $hover-card: ".wp-block-etb-grid-item:not(.block-editor-block-list__block)";
 
-.wp-block-etb-grid.wp-block-etb-grid[class*="has-hover-"] #{$hover-card} {
+#{$root}#{$root}[class*="has-hover-"] #{$hover-card} {
 	transition: transform 0.25s ease, box-shadow 0.25s ease, outline-color 0.2s ease, opacity 0.25s ease;
 }
 
 // Lift: rises with a deeper shadow
-.wp-block-etb-grid.wp-block-etb-grid.has-hover-lift #{$hover-card}:hover {
+#{$root}#{$root}.has-hover-lift #{$hover-card}:hover {
 	box-shadow: 0 22px 44px -22px rgba(15, 23, 42, 0.35);
 	transform: translateY(-4px);
 }
 
 // Grow: scales up slightly
-.wp-block-etb-grid.wp-block-etb-grid.has-hover-grow #{$hover-card}:hover {
+#{$root}#{$root}.has-hover-grow #{$hover-card}:hover {
 	transform: scale(1.03);
 }
 
 // Glow: soft halo in the accent color
-.wp-block-etb-grid.wp-block-etb-grid.has-hover-glow #{$hover-card}:hover {
+#{$root}#{$root}.has-hover-glow #{$hover-card}:hover {
 	box-shadow: 0 0 0 1px color-mix(in srgb, #{$accent} 35%, transparent), 0 14px 40px -12px color-mix(in srgb, #{$accent} 55%, transparent);
 }
 
 // Highlight border: accent outline drawn inside the card edge
-.wp-block-etb-grid.wp-block-etb-grid.has-hover-border #{$hover-card} {
+#{$root}#{$root}.has-hover-border #{$hover-card} {
 	outline: 2px solid transparent;
 	outline-offset: -2px;
 
@@ -514,13 +517,13 @@ $hover-card: ".wp-block-etb-grid-item:not(.block-editor-block-list__block)";
 }
 
 // Focus: the hovered card stays sharp, the others fade back
-.wp-block-etb-grid.wp-block-etb-grid.has-hover-focus:has(#{$hover-card}:hover) #{$hover-card}:not(:hover) {
+#{$root}#{$root}.has-hover-focus:has(#{$hover-card}:hover) #{$hover-card}:not(:hover) {
 	opacity: 0.45;
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-	.wp-block-etb-grid.wp-block-etb-grid[class*="has-hover-"] #{$hover-card} {
+	#{$root}#{$root}[class*="has-hover-"] #{$hover-card} {
 		transition: none;
 
 		&:hover {

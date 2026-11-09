@@ -143,7 +143,7 @@ class ETB_REST {
 	}
 
 	/**
-	 * Counts grids, testimonials and ratings in a parsed block tree.
+	 * Counts sections ( grids and carousels ), testimonials and ratings in a parsed block tree.
 	 *
 	 * @param array $blocks Parsed blocks.
 	 * @return array
@@ -157,7 +157,8 @@ class ETB_REST {
 		);
 
 		foreach ( $blocks as $block ) {
-			if ( 'etb/grid' === $block['blockName'] ) {
+			// grids and carousels both count as testimonial sections
+			if ( in_array( $block['blockName'], array( 'etb/grid', 'etb/carousel' ), true ) ) {
 				++$counts['grids'];
 			}
 

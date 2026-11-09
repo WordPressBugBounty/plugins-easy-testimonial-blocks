@@ -2,8 +2,6 @@ import { __ } from '@wordpress/i18n';
 
 import { PRESETS } from './presets';
 
-const thumbnailsUrl = window.etbEditor?.presetsUrl;
-
 /**
  * Grid of card design thumbnails; the active preset is highlighted.
  *
@@ -12,6 +10,10 @@ const thumbnailsUrl = window.etbEditor?.presetsUrl;
  * @param {Function} props.onChange Called with the chosen preset slug.
  */
 export default function PresetPicker( { value, onChange } ) {
+	// set by PHP before the grid's editor script; read at render time so the
+	// carousel's bundle ( which may load first ) sees it too
+	const thumbnailsUrl = window.etbEditor?.presetsUrl;
+
 	return (
 		<div
 			className="etb-preset-picker"

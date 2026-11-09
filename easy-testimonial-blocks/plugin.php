@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings
- * Description:       Testimonial block for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive testimonial grid.
+ * Plugin Name:       Easy Testimonial Blocks – Testimonial Grid & Slider, Customer Reviews & Star Ratings
+ * Description:       Testimonial blocks for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive grid or carousel slider.
  * Requires at least: 6.5
  * Requires PHP:      7.0
- * Version:           1.2.1
+ * Version:           1.3.0
  * Author:            Zakaria Binsaifullah
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'ETB_VERSION', '1.2.1' );
+define( 'ETB_VERSION', '1.3.0' );
 define( 'ETB_FILE', __FILE__ );
 define( 'ETB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ETB_URL', plugin_dir_url( __FILE__ ) );
@@ -28,6 +28,7 @@ define( 'ETB_BASENAME', plugin_basename( __FILE__ ) );
 // Block render helpers, loaded once at boot.
 require_once ETB_PATH . 'includes/grid.php';
 require_once ETB_PATH . 'includes/grid-item.php';
+require_once ETB_PATH . 'includes/carousel.php';
 
 // Core classes.
 require_once ETB_PATH . 'includes/class-etb-blocks.php';

@@ -97,7 +97,22 @@ const getFontSizeDeclaration = ( value ) => {
 
 import { shadowToCss } from '../../utilities/shadow';
 
-const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
+/**
+ * Card styles shared by the grid and the carousel.
+ *
+ * @param {Object}   attributes   Block attributes.
+ * @param {string}   deviceType   Editor device preview.
+ * @param {string}   root         Block wrapper class, e.g. 'wp-block-etb-grid'.
+ * @param {Function} getLayoutCss Returns the container layout CSS for a
+ *                                device ( desktop | tablet | mobile ).
+ * @return {string} CSS.
+ */
+export const getCardStyles = (
+	attributes,
+	deviceType,
+	root,
+	getLayoutCss = () => ''
+) => {
 	const {
 		id,
 		zIndex,
@@ -118,8 +133,6 @@ const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 		nameFontColor,
 		titleFontColor,
 		companyFontColor,
-		gridCols,
-		gridGap,
 		iconSizes,
 		ttmFontSizes,
 		photoSizes,
@@ -144,7 +157,7 @@ const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 			: '';
 
 	const css = `
-		.${ id }.wp-block-etb-grid {
+		.${ id }.${ root } {
 			${ zIndex ? `z-index: ${ zIndex };` : '' }
 			${ accentColor ? `--etb-accent: ${ accentColor };` : '' }
 			${
@@ -214,11 +227,7 @@ const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 
 	// rules for the active device preview (mirrors the frontend media queries)
 	const deviceCss = `
-		.${ id } .block-editor-block-list__layout {
-			display: grid;
-			grid-template-columns: repeat( ${ gridCols?.[ device ] ?? 2 }, 1fr );
-			gap: ${ gridGap?.[ device ] ?? 20 }px;
-		}
+		${ getLayoutCss( device ) }
 		${
 			isBoxPadding( containerPadding )
 				? ''
@@ -258,5 +267,18 @@ const getGridStyles = ( attributes, deviceType = 'Desktop' ) => {
 
 	return css + deviceCss;
 };
+
+const getGridStyles = ( attributes, deviceType = 'Desktop' ) =>
+	getCardStyles(
+		attributes,
+		deviceType,
+		'wp-block-etb-grid',
+		( device ) => `
+		.${ attributes.id } .block-editor-block-list__layout {
+			display: grid;
+			grid-template-columns: repeat( ${ attributes.gridCols?.[ device ] ?? 2 }, 1fr );
+			gap: ${ attributes.gridGap?.[ device ] ?? 20 }px;
+		}`
+	);
 
 export default getGridStyles;

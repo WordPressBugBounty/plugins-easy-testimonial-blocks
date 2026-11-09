@@ -1,0 +1,319 @@
+{
+	"apiVersion": 3,
+	"name": "etb/carousel",
+	"version": "1.3.0",
+	"title": "Testimonial Carousel",
+	"category": "etb-blocks",
+	"description": "Show customer testimonials and reviews in a swipeable carousel (slider) with arrows, dots and optional autoplay.",
+	"keywords": [
+		"testimonial",
+		"testimonials",
+		"carousel",
+		"slider",
+		"reviews",
+		"rating",
+		"social proof"
+	],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"wide",
+			"full"
+		],
+		"customClassName": true,
+		"color": {
+			"background": true,
+			"gradients": true,
+			"text": true,
+			"link": false
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"margin": false,
+				"padding": false
+			}
+		}
+	},
+	"example": {
+		"attributes": {
+			"slidesPerView": {
+				"desktop": 2,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"innerBlocks": [
+			{
+				"name": "etb/grid-item",
+				"attributes": {
+					"testimonial": "Working with this team was the best decision we made this year. The results speak for themselves.",
+					"reviewerName": "Sarah Mitchell",
+					"reviewerTitle": "Marketing Director",
+					"reviewerCompany": "Brightline Studio",
+					"rating": 5
+				}
+			},
+			{
+				"name": "etb/grid-item",
+				"attributes": {
+					"testimonial": "Professional, responsive and genuinely invested in our success.",
+					"reviewerName": "David Okafor",
+					"reviewerTitle": "Founder",
+					"reviewerCompany": "Northpeak Consulting",
+					"rating": 4.8
+				}
+			}
+		]
+	},
+	"providesContext": {
+		"etb/showIcon": "showIcon",
+		"etb/icon": "icon",
+		"etb/showNumericalRating": "showNumericalRating",
+		"etb/nameTag": "nameTag",
+		"etb/photoSizes": "photoSizes"
+	},
+	"attributes": {
+		"id": {
+			"type": "string"
+		},
+		"slidesPerView": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"slideGap": {
+			"type": "object",
+			"default": {
+				"desktop": 24,
+				"tablet": 20,
+				"mobile": 16
+			}
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"arrowPosition": {
+			"type": "string",
+			"enum": [
+				"bottom",
+				"sides",
+				"top"
+			],
+			"default": "bottom"
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplayDelay": {
+			"type": "number",
+			"default": 5
+		},
+		"showPauseButton": {
+			"type": "boolean",
+			"default": false
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"navColor": {
+			"type": "string"
+		},
+		"navHoverColor": {
+			"type": "string"
+		},
+		"preset": {
+			"type": "string",
+			"default": "classic"
+		},
+		"accentColor": {
+			"type": "string"
+		},
+		"hoverStyle": {
+			"type": "string",
+			"default": "none"
+		},
+		"customShadow": {
+			"type": "object"
+		},
+		"nameTag": {
+			"type": "string",
+			"default": "h4"
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": true
+		},
+		"icon": {
+			"type": "string",
+			"default": "two"
+		},
+		"iconSizes": {
+			"type": "object",
+			"default": {
+				"desktop": 60,
+				"tablet": 48,
+				"mobile": 36
+			}
+		},
+		"iconColor": {
+			"type": "string",
+			"default": "#fa0"
+		},
+		"iconOpacity": {
+			"type": "number",
+			"default": 0.4
+		},
+		"showNumericalRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"ratingColor": {
+			"type": "string",
+			"default": "#fa0"
+		},
+		"ttmFontSizes": {
+			"type": [
+				"object",
+				"string"
+			],
+			"default": {
+				"desktop": 20,
+				"tablet": 18,
+				"mobile": 16
+			}
+		},
+		"ttmFontColor": {
+			"type": "string"
+		},
+		"ttmAlign": {
+			"type": "string",
+			"default": "left"
+		},
+		"photoSizes": {
+			"type": "object",
+			"default": {
+				"desktop": 60,
+				"tablet": 48,
+				"mobile": 36
+			}
+		},
+		"photoBorder": {
+			"type": "object",
+			"default": {
+				"width": "1px",
+				"style": "solid",
+				"color": "#c0c0c0"
+			}
+		},
+		"photoBorderRadius": {
+			"type": [
+				"number",
+				"object"
+			],
+			"default": 50
+		},
+		"infoAlign": {
+			"type": "string",
+			"default": "flex-start"
+		},
+		"nameFontSizes": {
+			"type": [
+				"object",
+				"string"
+			],
+			"default": {
+				"desktop": 24,
+				"tablet": 20,
+				"mobile": 18
+			}
+		},
+		"nameFontColor": {
+			"type": "string"
+		},
+		"titleFontSizes": {
+			"type": [
+				"object",
+				"string"
+			],
+			"default": {
+				"desktop": 18,
+				"tablet": 16,
+				"mobile": 14
+			}
+		},
+		"titleFontColor": {
+			"type": "string"
+		},
+		"companyFontSizes": {
+			"type": [
+				"object",
+				"string"
+			],
+			"default": {
+				"desktop": 16,
+				"tablet": 15,
+				"mobile": 14
+			}
+		},
+		"companyFontColor": {
+			"type": "string"
+		},
+		"containerBorder": {
+			"type": "object",
+			"default": {
+				"width": 0,
+				"style": "solid",
+				"color": ""
+			}
+		},
+		"containerBorderRadius": {
+			"type": [
+				"number",
+				"object"
+			],
+			"default": 5
+		},
+		"containerPadding": {
+			"type": "object",
+			"default": {
+				"desktop": 20,
+				"tablet": 20,
+				"mobile": 15
+			}
+		},
+		"enableBoxShadow": {
+			"type": "boolean",
+			"default": true
+		},
+		"containerBg": {
+			"type": "string"
+		},
+		"zIndex": {
+			"type": "number"
+		},
+		"customClases": {
+			"type": "string"
+		}
+	},
+	"textdomain": "easy-testimonial-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "etb-grid-editor-style",
+	"style": [
+		"file:./style-index.css",
+		"etb-grid-style"
+	],
+	"viewScript": "file:./view.js"
+}

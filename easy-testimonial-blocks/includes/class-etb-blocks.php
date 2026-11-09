@@ -33,6 +33,7 @@ class ETB_Blocks {
 		$this->render_callbacks = array(
 			'grid'      => array( $this, 'render_grid' ),
 			'grid-item' => array( $this, 'render_grid_item' ),
+			'carousel'  => array( $this, 'render_carousel' ),
 		);
 
 		add_action( 'init', array( $this, 'register' ) );
@@ -124,6 +125,21 @@ class ETB_Blocks {
 		$this->register_inline_style( $attributes['id'], etb_testimonial_grid( $attributes ) );
 
 		return $content;
+	}
+
+	/**
+	 * Render callback for etb/carousel.
+	 *
+	 * @param array  $attributes Block attributes.
+	 * @param string $content    Rendered testimonials ( inner blocks ).
+	 * @return string
+	 */
+	public function render_carousel( $attributes, $content ) {
+		if ( ! empty( $attributes['id'] ) ) {
+			$this->register_inline_style( $attributes['id'], etb_testimonial_carousel_css( $attributes ) );
+		}
+
+		return etb_testimonial_carousel( $attributes, $content );
 	}
 
 	/**

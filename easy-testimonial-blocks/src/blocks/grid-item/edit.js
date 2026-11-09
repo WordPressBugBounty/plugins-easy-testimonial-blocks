@@ -113,7 +113,7 @@ export default function Edit( {
 					>
 						<p className="etb-preset-note">
 							{ __(
-								'Colors, spacing and the card design are shared by every testimonial in the grid.',
+								'Colors, spacing and the card design are shared by every testimonial in the grid or carousel.',
 								'easy-testimonial-blocks'
 							) }
 						</p>

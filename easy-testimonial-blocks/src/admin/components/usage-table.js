@@ -106,10 +106,10 @@ const Row = ( { item } ) => (
 						{ item.type }
 						{ ' · ' }
 						{ sprintf(
-							/* translators: %d: number of testimonial grids */
+							/* translators: %d: number of testimonial sections ( grids and carousels ) */
 							_n(
-								'%d grid',
-								'%d grids',
+								'%d section',
+								'%d sections',
 								item.grids,
 								'easy-testimonial-blocks'
 							),

@@ -1,7 +1,7 @@
 {
 	"apiVersion": 3,
 	"name": "etb/grid-item",
-	"version": "1.2.1",
+	"version": "1.3.0",
 	"title": "Testimonial",
 	"category": "etb-blocks",
 	"keywords": [ "review", "quote", "rating" ],
@@ -11,7 +11,7 @@
 		"anchor": false,
 		"customClassName": false
 	},
-	"parent": [ "etb/grid" ],
+	"parent": [ "etb/grid", "etb/carousel" ],
 	"usesContext": [
 		"etb/showIcon",
 		"etb/icon",

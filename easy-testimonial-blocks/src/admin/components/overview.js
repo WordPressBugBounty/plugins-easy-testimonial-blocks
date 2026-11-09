@@ -133,10 +133,10 @@ const Stats = ( { stats, isLoading } ) => (
 			label={ __( 'Pages & posts', 'easy-testimonial-blocks' ) }
 			value={ stats?.pages ?? 0 }
 			hint={ sprintf(
-				/* translators: %d: number of testimonial grids */
+				/* translators: %d: number of testimonial sections ( grids and carousels ) */
 				_n(
-					'%d testimonial grid',
-					'%d testimonial grids',
+					'%d testimonial section',
+					'%d testimonial sections',
 					stats?.grids ?? 0,
 					'easy-testimonial-blocks'
 				),

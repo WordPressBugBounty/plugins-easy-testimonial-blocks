@@ -276,6 +276,27 @@
 }
 
 /*
+ * ─── Carousel block canvas ───────────────────────────────────────────────
+ * The track ( the inner blocks list ) scrolls like on the frontend; the
+ * block appender sits at the end as a narrow column.
+ */
+
+.wp-block-etb-carousel {
+
+	.testimonial-message {
+		white-space: normal !important;
+	}
+
+	.etb-carousel__track > .block-list-appender {
+		display: flex;
+		flex: 0 0 auto;
+		align-items: center;
+		position: relative;
+		margin: 0;
+	}
+}
+
+/*
  * ─── Core box control (container padding) ────────────────────────────────
  * Neutralize the inspector margins so the label, inputs and the linked
  * button stay vertically centered.

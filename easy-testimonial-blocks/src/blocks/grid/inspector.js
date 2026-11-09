@@ -78,7 +78,24 @@ const ControlGroup = ( { title, children } ) => (
 	</div>
 );
 
-const Inspector = ( { attributes, setAttributes, clientId } ) => {
+/**
+ * Sidebar settings for a testimonial container. The grid and the carousel
+ * share every panel except Layout.
+ *
+ * @param {Object}   props               Component props.
+ * @param {Object}   props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Block attribute setter.
+ * @param {string}   props.clientId      Block client id.
+ * @param {string}   props.name          Block name, keys the panel accordion.
+ * @param {Element}  props.layoutPanel   Layout panel contents; defaults to the grid's.
+ */
+const Inspector = ( {
+	attributes,
+	setAttributes,
+	clientId,
+	name = 'etb/grid',
+	layoutPanel,
+} ) => {
 	// shown next to the Testimonial Items panel title
 	const itemCount = useSelect(
 		( select ) => select( blockEditorStore ).getBlockCount( clientId ),
@@ -86,8 +103,8 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 	);
 
 	// accordion: opening a panel closes the others in the same tab
-	const settingsPanel = usePanelAccordion( 'etb/grid:settings', 'design' );
-	const stylesPanel = usePanelAccordion( 'etb/grid:styles' );
+	const settingsPanel = usePanelAccordion( `${ name }:settings`, 'design' );
+	const stylesPanel = usePanelAccordion( `${ name }:styles` );
 
 	const {
 		gridCols,
@@ -237,22 +254,29 @@ const Inspector = ( { attributes, setAttributes, clientId } ) => {
 					{ ...settingsPanel( 'layout' ) }
 					title={ __( 'Layout', 'easy-testimonial-blocks' ) }
 				>
-					<SingleInput
-						label={ __( 'Columns', 'easy-testimonial-blocks' ) }
-						attribute={ gridCols }
-						attributeName="gridCols"
-						setAttributes={ setAttributes }
-						min={ 1 }
-						max={ 5 }
-					/>
-					<SingleInput
-						label={ __( 'Gap', 'easy-testimonial-blocks' ) }
-						attribute={ gridGap }
-						attributeName="gridGap"
-						setAttributes={ setAttributes }
-						min={ 0 }
-						max={ 200 }
-					/>
+					{ layoutPanel ?? (
+						<>
+							<SingleInput
+								label={ __(
+									'Columns',
+									'easy-testimonial-blocks'
+								) }
+								attribute={ gridCols }
+								attributeName="gridCols"
+								setAttributes={ setAttributes }
+								min={ 1 }
+								max={ 5 }
+							/>
+							<SingleInput
+								label={ __( 'Gap', 'easy-testimonial-blocks' ) }
+								attribute={ gridGap }
+								attributeName="gridGap"
+								setAttributes={ setAttributes }
+								min={ 0 }
+								max={ 200 }
+							/>
+						</>
+					) }
 				</PanelBody>
 				<PanelBody
 					className="etb-panel"

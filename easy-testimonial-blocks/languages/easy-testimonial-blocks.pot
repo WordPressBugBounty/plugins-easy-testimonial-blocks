@@ -2,26 +2,26 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings 1.2.0\n"
+"Project-Id-Version: Easy Testimonial Blocks – Testimonial Grid & Slider, Customer Reviews & Star Ratings 1.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-testimonial-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-01T09:34:50+00:00\n"
+"POT-Creation-Date: 2026-11-09T07:56:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: easy-testimonial-blocks\n"
 
 #. Plugin Name of the plugin
 #: plugin.php
-msgid "Easy Testimonial Blocks – Testimonial Grid, Customer Reviews & Star Ratings"
+msgid "Easy Testimonial Blocks – Testimonial Grid & Slider, Customer Reviews & Star Ratings"
 msgstr ""
 
 #. Description of the plugin
 #: plugin.php
-msgid "Testimonial block for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive testimonial grid."
+msgid "Testimonial blocks for the WordPress block editor. Show customer reviews, star ratings and photos in a responsive grid or carousel slider."
 msgstr ""
 
 #. Author of the plugin
@@ -32,8 +32,8 @@ msgstr ""
 #: admin/class-etb-admin.php:53
 #: admin/class-etb-admin.php:54
 #: admin/class-etb-admin.php:166
-#: includes/class-etb-blocks.php:93
-#: build/admin/index.js:11
+#: includes/class-etb-blocks.php:94
+#: src/admin/app.js:69
 msgid "Testimonial Blocks"
 msgstr ""
 
@@ -43,6 +43,58 @@ msgstr ""
 
 #: admin/class-etb-admin.php:170
 msgid "The Testimonial Blocks dashboard needs JavaScript. Please enable it in your browser."
+msgstr ""
+
+#. translators: accessible role name of one carousel item
+#: includes/carousel.php:98
+msgid "slide"
+msgstr ""
+
+#. translators: 1: slide number, 2: number of slides
+#: includes/carousel.php:100
+#, php-format
+msgid "%1$d of %2$d"
+msgstr ""
+
+#. translators: %d: slide number
+#: includes/carousel.php:102
+#: src/blocks/carousel/edit.js:394
+#, php-format,js-format
+msgid "Go to slide %d"
+msgstr ""
+
+#: includes/carousel.php:103
+#: includes/carousel.php:130
+msgid "Pause autoplay"
+msgstr ""
+
+#: includes/carousel.php:104
+msgid "Play autoplay"
+msgstr ""
+
+#: includes/carousel.php:111
+msgid "carousel"
+msgstr ""
+
+#: includes/carousel.php:112
+#: src/admin/components/overview.js:126
+#: src/admin/components/usage-table.js:47
+#: src/admin/components/usage-table.js:139
+msgid "Testimonials"
+msgstr ""
+
+#: includes/carousel.php:131
+#: src/blocks/carousel/edit.js:360
+msgid "Previous testimonial"
+msgstr ""
+
+#: includes/carousel.php:132
+#: src/blocks/carousel/edit.js:376
+msgid "Next testimonial"
+msgstr ""
+
+#: includes/carousel.php:147
+msgid "Testimonials, scroll for more"
 msgstr ""
 
 #: includes/class-etb-rest.php:106
@@ -57,7 +109,7 @@ msgstr ""
 
 #. translators: 1: rating value, 2: maximum rating
 #: includes/grid-item.php:245
-#: build/blocks/grid-item/index.js:2
+#: src/utilities/components/star-rating/index.js:26
 #, php-format,js-format
 msgid "%1$s out of %2$d stars"
 msgstr ""
@@ -288,1021 +340,1164 @@ msgstr ""
 msgid "wall of love"
 msgstr ""
 
-#. translators: %s: average rating
-#: build/admin/index.js:2
-#, js-format
-msgid "%s out of 5 stars"
-msgstr ""
-
-#: build/admin/index.js:2
-msgid "Content"
-msgstr ""
-
-#: build/admin/index.js:2
-#: build/admin/index.js:3
-msgid "Status"
-msgstr ""
-
-#: build/admin/index.js:2
-#: build/admin/index.js:3
-#: build/blocks/grid-item/index.js:2
-#: build/blocks/grid/index.js:4
-#: build/blocks/grid/index.js:7
-msgid "Rating"
-msgstr ""
-
-#: build/admin/index.js:2
-#: build/admin/index.js:3
-#: build/admin/index.js:7
-msgid "Testimonials"
-msgstr ""
-
-#: build/admin/index.js:2
-#: build/admin/index.js:3
-msgid "Updated"
-msgstr ""
-
-#. translators: %d: number of testimonial grids
-#: build/admin/index.js:3
-#, js-format
-msgid "%d grid"
-msgid_plural "%d grids"
-msgstr[0] ""
-msgstr[1] ""
-
-#: build/admin/index.js:3
-msgid "Edit"
-msgstr ""
-
-#. translators: %s: post title
-#: build/admin/index.js:4
-#, js-format
-msgid "View “%s”"
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "Filter by status"
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "All"
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "Search by title"
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "Actions"
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "Nothing matches these filters."
-msgstr ""
-
-#: build/admin/index.js:4
-msgid "Clear filters"
-msgstr ""
-
-#. translators: 1: first row number, 2: last row number, 3: total rows
-#: build/admin/index.js:5
-#, js-format
-msgid "%1$d–%2$d of %3$d"
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Previous page"
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Next page"
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "No testimonials yet"
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Pick a ready-made design to create your first testimonials page."
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Browse designs"
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Working with this team was the best decision we made this year."
-msgstr ""
-
-#: build/admin/index.js:5
-msgid "Marketing Director"
-msgstr ""
-
-#. translators: %s: average rating, e.g. 4.9
-#: build/admin/index.js:6
-#, js-format
-msgid "%s average rating"
-msgstr ""
-
-#: build/admin/index.js:6
-msgid "Star ratings built in"
-msgstr ""
-
-#. translators: %s: plugin version
-#: build/admin/index.js:7
-#: build/admin/index.js:10
-#, js-format
-msgid "Version %s"
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "Turn happy customers into your best marketing"
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "Build a polished testimonials section in minutes. Start from a ready-made design, add your reviews and ratings, and publish. No code needed."
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "Create a testimonial page"
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "Watch the tutorial"
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "across all your content"
-msgstr ""
-
-#: build/admin/index.js:7
-msgid "Pages & posts"
-msgstr ""
-
-#. translators: %d: number of testimonial grids
-#: build/admin/index.js:8
-#, js-format
-msgid "%d testimonial grid"
-msgid_plural "%d testimonial grids"
-msgstr[0] ""
-msgstr[1] ""
-
-#: build/admin/index.js:8
-msgid "Published"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "live on your site"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "Average rating"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "from rated testimonials"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "no ratings yet"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "Add a Testimonial Grid"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "Add at least 3 testimonials"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "Publish a page with testimonials"
-msgstr ""
-
-#: build/admin/index.js:8
-msgid "All set! Your testimonials are live."
-msgstr ""
-
-#. translators: 1: completed steps, 2: total steps
-#: build/admin/index.js:9
-#, js-format
-msgid "%1$d of %2$d steps complete"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Getting started"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Getting started progress"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Coming next"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Testimonial slider"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "A fast, accessible carousel layout."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Testimonials library"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Manage testimonials in one place and show them anywhere."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Collection form"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Let customers submit testimonials for your approval."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Suggest a feature"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Creating page…"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Create page"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Insert the block"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "In any page or post, click + and search for “Testimonial Grid”."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Pick a design"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Choose one of the ready-made sections, or start with blank cards."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Make it yours"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Click any text to edit it, add photos and set the star ratings."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Publish"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Fine-tune colors and columns in the sidebar, then publish."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "12 new card designs, hover effects and custom shadows"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "A brand-new dashboard"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Design picker when you insert the Testimonial Grid"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "13 ready-made testimonial patterns"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Section background, text color, padding and margin controls"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Use the device icons next to a setting to give tablet and mobile their own columns, gaps and font sizes."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Set “Reviewer Name Tag” to a paragraph or H3 to keep your page’s heading structure clean for SEO."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Change the whole section’s background, padding and margin from the block’s Styles tab."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Quick start"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Your first testimonials section, live in four steps."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Start with a design"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Easy Testimonial Blocks video tutorial"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Play the video tutorial"
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "Loads from YouTube when you press play."
-msgstr ""
-
-#: build/admin/index.js:9
-msgid "What’s new"
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "Full changelog"
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "Did you know?"
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "(opens in a new tab)"
-msgstr ""
-
-#: build/admin/index.js:10
+#: src/admin/app.js:14
 msgid "Overview"
 msgstr ""
 
-#: build/admin/index.js:10
-msgid "Try again"
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "Your testimonial stats could not be loaded."
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "Where your testimonials appear"
-msgstr ""
-
-#: build/admin/index.js:10
-msgid "Refresh"
-msgstr ""
-
-#: build/admin/index.js:10
+#: src/admin/app.js:19
 msgid "Designs"
 msgstr ""
 
+#: src/admin/app.js:24
+msgid "Help"
+msgstr ""
+
+#: src/admin/app.js:80
+msgid "Dashboard sections"
+msgstr ""
+
+#: src/admin/app.js:113
+msgid "Rate the plugin"
+msgstr ""
+
+#: src/admin/components/designs.js:38
+msgid "Creating page…"
+msgstr ""
+
+#: src/admin/components/designs.js:39
+msgid "Create page"
+msgstr ""
+
 #. translators: %s: design name, e.g. "Three cards"
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:58
 #, js-format
 msgid "Testimonials – %s"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:65
 msgid "The page could not be created."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:77
 msgid "Ready-made testimonial designs"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:83
 msgid "Start from a polished section and make it your own. Each design opens as a new draft page, with every text, photo, rating and color editable."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:93
 msgid "You can also add these designs to any existing page: insert the Testimonial Grid block and click “Choose a design”, or open Patterns → Testimonials in the block inserter."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/designs.js:103
 msgid "The designs could not be loaded."
 msgstr ""
 
-#: build/admin/index.js:11
-msgid "Help"
+#: src/admin/components/help.js:24
+msgid "Insert the block"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:25
+msgid "In any page or post, click + and search for “Testimonial Grid”."
+msgstr ""
+
+#: src/admin/components/help.js:32
+msgid "Pick a design"
+msgstr ""
+
+#: src/admin/components/help.js:33
+msgid "Choose one of the ready-made sections, or start with blank cards."
+msgstr ""
+
+#: src/admin/components/help.js:40
+msgid "Make it yours"
+msgstr ""
+
+#: src/admin/components/help.js:41
+msgid "Click any text to edit it, add photos and set the star ratings."
+msgstr ""
+
+#: src/admin/components/help.js:48
+msgid "Publish"
+msgstr ""
+
+#: src/admin/components/help.js:49
+msgid "Fine-tune colors and columns in the sidebar, then publish."
+msgstr ""
+
+#: src/admin/components/help.js:57
+msgid "12 new card designs, hover effects and custom shadows"
+msgstr ""
+
+#: src/admin/components/help.js:61
+msgid "A brand-new dashboard"
+msgstr ""
+
+#: src/admin/components/help.js:62
+msgid "Design picker when you insert the Testimonial Grid"
+msgstr ""
+
+#: src/admin/components/help.js:66
+msgid "13 ready-made testimonial patterns"
+msgstr ""
+
+#: src/admin/components/help.js:67
+msgid "Section background, text color, padding and margin controls"
+msgstr ""
+
+#: src/admin/components/help.js:74
+msgid "Use the device icons next to a setting to give tablet and mobile their own columns, gaps and font sizes."
+msgstr ""
+
+#: src/admin/components/help.js:78
+msgid "Set “Reviewer Name Tag” to a paragraph or H3 to keep your page’s heading structure clean for SEO."
+msgstr ""
+
+#: src/admin/components/help.js:82
+msgid "Change the whole section’s background, padding and margin from the block’s Styles tab."
+msgstr ""
+
+#: src/admin/components/help.js:92
+msgid "Quick start"
+msgstr ""
+
+#: src/admin/components/help.js:94
+msgid "Your first testimonials section, live in four steps."
+msgstr ""
+
+#: src/admin/components/help.js:107
+msgid "Start with a design"
+msgstr ""
+
+#: src/admin/components/help.js:135
+msgid "Easy Testimonial Blocks video tutorial"
+msgstr ""
+
+#: src/admin/components/help.js:161
+msgid "Play the video tutorial"
+msgstr ""
+
+#: src/admin/components/help.js:164
+msgid "Loads from YouTube when you press play."
+msgstr ""
+
+#: src/admin/components/help.js:175
+msgid "What’s new"
+msgstr ""
+
+#. translators: %s: plugin version
+#: src/admin/components/help.js:180
+#: src/admin/components/overview.js:80
+#, js-format
+msgid "Version %s"
+msgstr ""
+
+#: src/admin/components/help.js:201
+msgid "Full changelog"
+msgstr ""
+
+#: src/admin/components/help.js:208
+msgid "Did you know?"
+msgstr ""
+
+#: src/admin/components/help.js:238
+msgid "(opens in a new tab)"
+msgstr ""
+
+#: src/admin/components/help.js:248
 msgid "Help & resources"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:250
 msgid "Everything you need to get the most out of Testimonial Blocks, from your first section to getting support."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:261
 msgid "Video tutorial"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:274
 msgid "Need a hand?"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:280
 msgid "Get support"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:281
 msgid "Found a bug or stuck on something? Ask in the support forum and get a reply."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:285
 msgid "Open the support forum"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:294
 msgid "Request a feature"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:298
 msgid "Tell us what would make collecting and showing testimonials easier for you."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:302
 msgid "Share an idea"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:311
 msgid "Enjoying the plugin?"
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:315
 msgid "A quick review takes a minute and helps other people find the plugin."
 msgstr ""
 
-#: build/admin/index.js:11
+#: src/admin/components/help.js:319
 msgid "Leave a review"
 msgstr ""
 
-#: build/admin/index.js:11
-msgid "Dashboard sections"
+#: src/admin/components/overview.js:35
+msgid "Working with this team was the best decision we made this year."
 msgstr ""
 
-#: build/admin/index.js:11
-msgid "Rate the plugin"
+#: src/admin/components/overview.js:48
+#: src/blocks/carousel/edit.js:48
+msgid "Marketing Director"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
-#: build/blocks/grid/index.js:6
+#. translators: %s: average rating, e.g. 4.9
+#: src/admin/components/overview.js:62
+#, js-format
+msgid "%s average rating"
+msgstr ""
+
+#: src/admin/components/overview.js:68
+msgid "Star ratings built in"
+msgstr ""
+
+#: src/admin/components/overview.js:85
+msgid "Turn happy customers into your best marketing"
+msgstr ""
+
+#: src/admin/components/overview.js:91
+msgid "Build a polished testimonials section in minutes. Start from a ready-made design, add your reviews and ratings, and publish. No code needed."
+msgstr ""
+
+#: src/admin/components/overview.js:103
+msgid "Create a testimonial page"
+msgstr ""
+
+#: src/admin/components/overview.js:114
+msgid "Watch the tutorial"
+msgstr ""
+
+#: src/admin/components/overview.js:128
+msgid "across all your content"
+msgstr ""
+
+#: src/admin/components/overview.js:133
+msgid "Pages & posts"
+msgstr ""
+
+#. translators: %d: number of testimonial sections ( grids and carousels )
+#: src/admin/components/overview.js:137
+#, js-format
+msgid "%d testimonial section"
+msgid_plural "%d testimonial sections"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/components/overview.js:149
+msgid "Published"
+msgstr ""
+
+#: src/admin/components/overview.js:151
+msgid "live on your site"
+msgstr ""
+
+#: src/admin/components/overview.js:156
+msgid "Average rating"
+msgstr ""
+
+#: src/admin/components/overview.js:169
+msgid "from rated testimonials"
+msgstr ""
+
+#: src/admin/components/overview.js:170
+msgid "no ratings yet"
+msgstr ""
+
+#: src/admin/components/overview.js:180
+msgid "Add a Testimonial Grid"
+msgstr ""
+
+#: src/admin/components/overview.js:184
+msgid "Add at least 3 testimonials"
+msgstr ""
+
+#: src/admin/components/overview.js:191
+msgid "Publish a page with testimonials"
+msgstr ""
+
+#: src/admin/components/overview.js:203
+msgid "All set! Your testimonials are live."
+msgstr ""
+
+#. translators: 1: completed steps, 2: total steps
+#: src/admin/components/overview.js:210
+#, js-format
+msgid "%1$d of %2$d steps complete"
+msgstr ""
+
+#: src/admin/components/overview.js:217
+msgid "Getting started"
+msgstr ""
+
+#: src/admin/components/overview.js:224
+msgid "Getting started progress"
+msgstr ""
+
+#: src/admin/components/overview.js:261
+msgid "Coming next"
+msgstr ""
+
+#: src/admin/components/overview.js:267
+msgid "Testimonial slider"
+msgstr ""
+
+#: src/admin/components/overview.js:270
+msgid "A fast, accessible carousel layout."
+msgstr ""
+
+#: src/admin/components/overview.js:278
+msgid "Testimonials library"
+msgstr ""
+
+#: src/admin/components/overview.js:281
+msgid "Manage testimonials in one place and show them anywhere."
+msgstr ""
+
+#: src/admin/components/overview.js:289
+msgid "Collection form"
+msgstr ""
+
+#: src/admin/components/overview.js:292
+msgid "Let customers submit testimonials for your approval."
+msgstr ""
+
+#: src/admin/components/overview.js:305
+msgid "Suggest a feature"
+msgstr ""
+
+#: src/admin/components/overview.js:328
+msgid "Try again"
+msgstr ""
+
+#: src/admin/components/overview.js:333
+msgid "Your testimonial stats could not be loaded."
+msgstr ""
+
+#: src/admin/components/overview.js:343
+msgid "Where your testimonials appear"
+msgstr ""
+
+#: src/admin/components/overview.js:358
+msgid "Refresh"
+msgstr ""
+
+#. translators: %s: average rating
+#: src/admin/components/ui.js:64
+#, js-format
+msgid "%s out of 5 stars"
+msgstr ""
+
+#: src/admin/components/usage-table.js:39
+#: src/admin/components/usage-table.js:95
+msgid "Content"
+msgstr ""
+
+#: src/admin/components/usage-table.js:40
+#: src/admin/components/usage-table.js:122
+msgid "Status"
+msgstr ""
+
+#: src/admin/components/usage-table.js:43
+#: src/admin/components/usage-table.js:127
+#: src/blocks/grid-item/edit.js:80
+#: src/blocks/grid/inspector.js:497
+#: src/blocks/grid/items-panel.js:167
+msgid "Rating"
+msgstr ""
+
+#: src/admin/components/usage-table.js:50
+#: src/admin/components/usage-table.js:145
+msgid "Updated"
+msgstr ""
+
+#. translators: %d: number of testimonial sections ( grids and carousels )
+#: src/admin/components/usage-table.js:110
+#, js-format
+msgid "%d section"
+msgid_plural "%d sections"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/components/usage-table.js:156
+msgid "Edit"
+msgstr ""
+
+#. translators: %s: post title
+#: src/admin/components/usage-table.js:167
+#, js-format
+msgid "View “%s”"
+msgstr ""
+
+#: src/admin/components/usage-table.js:251
+msgid "No testimonials yet"
+msgstr ""
+
+#: src/admin/components/usage-table.js:254
+msgid "Pick a ready-made design to create your first testimonials page."
+msgstr ""
+
+#: src/admin/components/usage-table.js:263
+msgid "Browse designs"
+msgstr ""
+
+#: src/admin/components/usage-table.js:275
+msgid "Filter by status"
+msgstr ""
+
+#: src/admin/components/usage-table.js:284
+msgid "All"
+msgstr ""
+
+#: src/admin/components/usage-table.js:308
+msgid "Search by title"
+msgstr ""
+
+#: src/admin/components/usage-table.js:330
+msgid "Actions"
+msgstr ""
+
+#: src/admin/components/usage-table.js:346
+msgid "Nothing matches these filters."
+msgstr ""
+
+#: src/admin/components/usage-table.js:358
+msgid "Clear filters"
+msgstr ""
+
+#. translators: 1: first row number, 2: last row number, 3: total rows
+#: src/admin/components/usage-table.js:375
+#, js-format
+msgid "%1$d–%2$d of %3$d"
+msgstr ""
+
+#: src/admin/components/usage-table.js:391
+msgid "Previous page"
+msgstr ""
+
+#: src/admin/components/usage-table.js:402
+msgid "Next page"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:43
+msgid "Working with this team was the best decision we made this year. The results speak for themselves."
+msgstr ""
+
+#: src/blocks/carousel/edit.js:59
+msgid "Professional, responsive and genuinely invested in our success. Our conversion rate has doubled since launch."
+msgstr ""
+
+#: src/blocks/carousel/edit.js:64
+msgid "Founder"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:72
+msgid "From the first call to the final handoff, everything felt effortless. I recommend them to everyone who asks."
+msgstr ""
+
+#: src/blocks/carousel/edit.js:77
+msgid "Creative Director"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:85
+msgid "Clear communication, on-time delivery and a result our customers love. We will be back for the next project."
+msgstr ""
+
+#: src/blocks/carousel/edit.js:90
+msgid "Head of Product"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:231
+msgid "Slides per view"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:239
+#: src/blocks/grid/inspector.js:271
+msgid "Gap"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:247
+msgid "Arrows"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:254
+msgid "Arrow position"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:259
+msgid "Below"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:263
+msgid "Sides"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:267
+msgid "Top"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:277
+msgid "Dots"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:283
+msgid "Loop"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:289
+msgid "Autoplay"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:297
+msgid "Delay (seconds)"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:311
+msgid "Pause button"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:327
+msgid "Navigation color"
+msgstr ""
+
+#: src/blocks/carousel/edit.js:338
+msgid "Navigation hover color"
+msgstr ""
+
+#: src/blocks/grid-item/edit.js:83
+#: src/blocks/grid/items-panel.js:227
 msgid "Show rating"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:92
 msgid "Stars"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:93
 msgid "From 0 to 5, in steps of 0.1."
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
-#: build/blocks/grid/index.js:2
+#: src/blocks/grid-item/edit.js:112
+#: src/blocks/grid/preset-picker.js:21
 msgid "Card design"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
-msgid "Colors, spacing and the card design are shared by every testimonial in the grid."
+#: src/blocks/grid-item/edit.js:115
+msgid "Colors, spacing and the card design are shared by every testimonial in the grid or carousel."
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:124
 msgid "Edit card design"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:146
 msgid "Replace photo"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:156
 msgid "Remove photo"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:189
 msgid "Write what the customer said…"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:217
 msgid "Add photo"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
+#: src/blocks/grid-item/edit.js:234
 msgid "Reviewer name"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid-item/edit.js:246
+#: src/blocks/grid/inspector.js:595
 msgid "Job title"
 msgstr ""
 
-#: build/blocks/grid-item/index.js:2
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid-item/edit.js:258
+#: src/blocks/grid/inspector.js:610
 msgid "Company"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Default"
+#: src/blocks/grid/inspector.js:208
+msgid "Design"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Filled"
+#: src/blocks/grid/inspector.js:217
+msgid "A design sets the card styles. Fine-tune any of them in the Styles tab."
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Outlined"
+#: src/blocks/grid/inspector.js:224
+msgid "Accent color"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Filled, closing"
+#: src/blocks/grid/inspector.js:240
+msgid "Testimonial Items"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Outlined, closing"
+#: src/blocks/grid/inspector.js:255
+msgid "Layout"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Desktop"
+#: src/blocks/grid/inspector.js:260
+msgid "Columns"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Tablet"
+#: src/blocks/grid/inspector.js:284
+msgid "Display"
 msgstr ""
 
-#: build/blocks/grid/index.js:1
-msgid "Mobile"
+#: src/blocks/grid/inspector.js:287
+#: src/blocks/grid/inspector.js:465
+msgid "Quote icon"
 msgstr ""
 
-#. translators: %s: device name, e.g. "Desktop"
-#: build/blocks/grid/index.js:2
-#, js-format
-msgid "Editing %s values. Change device"
+#: src/blocks/grid/inspector.js:296
+msgid "Icon style"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Device"
+#: src/blocks/grid/inspector.js:307
+msgid "Rating number"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Classic"
+#: src/blocks/grid/inspector.js:311
+msgid "Shows the score, such as 4.8, next to the stars."
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Elevated"
+#: src/blocks/grid/inspector.js:324
+msgid "Reviewer name tag"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Outline"
+#: src/blocks/grid/inspector.js:328
+msgid "Use a paragraph or div to keep testimonials out of the page heading outline."
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Tints the quote icon tile and the card border on hover."
+#: src/blocks/grid/inspector.js:358
+msgid "Card"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Minimal"
+#: src/blocks/grid/inspector.js:361
+msgid "Background"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Colors the line across the top of each card."
+#: src/blocks/grid/inspector.js:368
+#: src/blocks/grid/inspector.js:545
+msgid "Border"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Speech bubble"
+#: src/blocks/grid/inspector.js:388
+msgid "Padding"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Spotlight"
+#: src/blocks/grid/inspector.js:399
+msgid "Effects"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Colors the ring around the reviewer photo."
+#: src/blocks/grid/inspector.js:402
+msgid "Shadow"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Midnight"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Colors the glow in the card corner."
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Aurora"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Sets the start color of the card gradient."
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Glass"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Sets the color of the backdrop behind the cards."
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Accent stripe"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Colors the bar across the top of each card."
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Editorial"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Pastel"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-msgid "Side by side"
-msgstr ""
-
-#: build/blocks/grid/index.js:2
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/inspector.js:407
+#: src/blocks/grid/presets.js:313
 msgid "None"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Lift"
+#: src/blocks/grid/inspector.js:414
+msgid "Design default"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Grow"
+#: src/blocks/grid/inspector.js:421
+msgid "Custom"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-#: build/blocks/grid/index.js:7
-msgid "Glow"
+#: src/blocks/grid/inspector.js:444
+msgid "Hover effect"
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Highlight border"
+#: src/blocks/grid/inspector.js:448
+msgid "Plays on your site; hover effects stay off while you edit."
 msgstr ""
 
-#: build/blocks/grid/index.js:2
-msgid "Focus (fade the others)"
+#: src/blocks/grid/inspector.js:468
+#: src/blocks/grid/inspector.js:517
+#: src/blocks/grid/inspector.js:588
+#: src/blocks/grid/inspector.js:603
+#: src/blocks/grid/inspector.js:618
+#: src/utilities/components/shadowcontrol/shadowpicker.js:210
+msgid "Color"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:474
+#: src/blocks/grid/inspector.js:536
+msgid "Size"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:482
+msgid "Opacity"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:500
+msgid "Star color"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:509
+msgid "Quote text"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:523
+#: src/blocks/grid/inspector.js:573
+msgid "Alignment"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:533
+msgid "Reviewer photo"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:567
+msgid "Reviewer details"
+msgstr ""
+
+#: src/blocks/grid/inspector.js:580
+msgid "Name"
 msgstr ""
 
 #. translators: %d: position of the testimonial in the grid
-#: build/blocks/grid/index.js:3
+#: src/blocks/grid/items-panel.js:98
 #, js-format
 msgid "Testimonial %d"
 msgstr ""
 
-#: build/blocks/grid/index.js:3
+#: src/blocks/grid/items-panel.js:114
 msgid "Move up"
 msgstr ""
 
-#: build/blocks/grid/index.js:3
+#: src/blocks/grid/items-panel.js:122
 msgid "Move down"
 msgstr ""
 
 #. translators: %s: reviewer name or "Testimonial 2"
-#: build/blocks/grid/index.js:4
+#: src/blocks/grid/items-panel.js:137
 #, js-format
 msgid "Edit %s"
 msgstr ""
 
 #. translators: %d: number of stars
-#: build/blocks/grid/index.js:5
+#: src/blocks/grid/items-panel.js:180
 #, js-format
 msgid "%d stars"
 msgstr ""
 
 #. translators: %s: reviewer name
-#: build/blocks/grid/index.js:6
+#: src/blocks/grid/items-panel.js:201
 #, js-format
 msgid "Options for %s"
 msgstr ""
 
-#: build/blocks/grid/index.js:6
+#: src/blocks/grid/items-panel.js:216
 msgid "Duplicate"
 msgstr ""
 
-#: build/blocks/grid/index.js:6
+#: src/blocks/grid/items-panel.js:231
 msgid "Hide rating"
 msgstr ""
 
-#: build/blocks/grid/index.js:6
+#: src/blocks/grid/items-panel.js:245
 msgid "Delete"
 msgstr ""
 
 #. translators: %s: reviewer name
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/items-panel.js:301
 #, js-format
 msgid "“%s” deleted."
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/items-panel.js:308
 msgid "Undo"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/items-panel.js:333
 msgid "No testimonials yet."
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/items-panel.js:349
 msgid "Add new"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
-msgid "Subtle"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Soft"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Medium"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Large"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Floating"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Crisp"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Ring"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "X"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Y"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Blur"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Spread"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Presets"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Customize"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Color"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Normal"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Hover"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Design"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "A design sets the card styles. Fine-tune any of them in the Styles tab."
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Accent color"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Testimonial Items"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Layout"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Columns"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Gap"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Display"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Quote icon"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Icon style"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Rating number"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Shows the score, such as 4.8, next to the stars."
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Reviewer name tag"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Use a paragraph or div to keep testimonials out of the page heading outline."
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Card"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Background"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Border"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Padding"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Effects"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Shadow"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Design default"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Custom"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Hover effect"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Plays on your site; hover effects stay off while you edit."
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Size"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Opacity"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Star color"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Quote text"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Alignment"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Reviewer photo"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Reviewer details"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
-msgid "Name"
-msgstr ""
-
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:120
 msgid "Testimonial Grid"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:121
 msgid "Start with a ready-made testimonial design, or build your own from blank cards."
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:131
 msgid "Choose a design"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:140
 msgid "Start blank"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:145
 msgid "Choose a testimonial design"
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:154
 msgid "The testimonial cards from the design you pick replace this grid. Everything stays editable."
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:158
 msgid "The design you pick replaces this grid with a full section. Everything stays editable."
 msgstr ""
 
-#: build/blocks/grid/index.js:7
+#: src/blocks/grid/placeholder.js:166
 msgid "Testimonial designs"
 msgstr ""
 
-#: build/blocks/grid-item/block.json
+#: src/blocks/grid/presets.js:90
+msgid "Classic"
+msgstr ""
+
+#: src/blocks/grid/presets.js:95
+msgid "Elevated"
+msgstr ""
+
+#: src/blocks/grid/presets.js:106
+msgid "Outline"
+msgstr ""
+
+#: src/blocks/grid/presets.js:108
+msgid "Tints the quote icon tile and the card border on hover."
+msgstr ""
+
+#: src/blocks/grid/presets.js:122
+msgid "Minimal"
+msgstr ""
+
+#: src/blocks/grid/presets.js:124
+msgid "Colors the line across the top of each card."
+msgstr ""
+
+#: src/blocks/grid/presets.js:141
+msgid "Speech bubble"
+msgstr ""
+
+#: src/blocks/grid/presets.js:153
+msgid "Spotlight"
+msgstr ""
+
+#: src/blocks/grid/presets.js:155
+msgid "Colors the ring around the reviewer photo."
+msgstr ""
+
+#: src/blocks/grid/presets.js:173
+msgid "Midnight"
+msgstr ""
+
+#: src/blocks/grid/presets.js:175
+msgid "Colors the glow in the card corner."
+msgstr ""
+
+#: src/blocks/grid/presets.js:193
+msgid "Aurora"
+msgstr ""
+
+#: src/blocks/grid/presets.js:195
+msgid "Sets the start color of the card gradient."
+msgstr ""
+
+#: src/blocks/grid/presets.js:210
+msgid "Glass"
+msgstr ""
+
+#: src/blocks/grid/presets.js:212
+msgid "Sets the color of the backdrop behind the cards."
+msgstr ""
+
+#: src/blocks/grid/presets.js:228
+msgid "Accent stripe"
+msgstr ""
+
+#: src/blocks/grid/presets.js:230
+msgid "Colors the bar across the top of each card."
+msgstr ""
+
+#: src/blocks/grid/presets.js:246
+msgid "Editorial"
+msgstr ""
+
+#: src/blocks/grid/presets.js:268
+msgid "Pastel"
+msgstr ""
+
+#: src/blocks/grid/presets.js:280
+msgid "Side by side"
+msgstr ""
+
+#: src/blocks/grid/presets.js:314
+msgid "Lift"
+msgstr ""
+
+#: src/blocks/grid/presets.js:315
+msgid "Grow"
+msgstr ""
+
+#: src/blocks/grid/presets.js:316
+#: src/utilities/components/shadowcontrol/shadowpicker.js:58
+msgid "Glow"
+msgstr ""
+
+#: src/blocks/grid/presets.js:319
+msgid "Highlight border"
+msgstr ""
+
+#: src/blocks/grid/presets.js:323
+msgid "Focus (fade the others)"
+msgstr ""
+
+#: src/utilities/components/colorcontrol/colorcontrol.js:50
+msgid "Default"
+msgstr ""
+
+#: src/utilities/components/iconpicker/iconpicker.js:9
+msgid "Filled"
+msgstr ""
+
+#: src/utilities/components/iconpicker/iconpicker.js:10
+msgid "Outlined"
+msgstr ""
+
+#: src/utilities/components/iconpicker/iconpicker.js:11
+msgid "Filled, closing"
+msgstr ""
+
+#: src/utilities/components/iconpicker/iconpicker.js:14
+msgid "Outlined, closing"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowcontrol.js:19
+msgid "Normal"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowcontrol.js:24
+msgid "Hover"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:10
+msgid "Subtle"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:14
+msgid "Soft"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:24
+msgid "Medium"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:34
+msgid "Large"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:44
+msgid "Floating"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:54
+msgid "Crisp"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:68
+msgid "Ring"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:76
+msgid "X"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:82
+msgid "Y"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:88
+msgid "Blur"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:94
+msgid "Spread"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:154
+msgid "Presets"
+msgstr ""
+
+#: src/utilities/components/shadowcontrol/shadowpicker.js:179
+msgid "Customize"
+msgstr ""
+
+#: src/utilities/components/singleinput/singleinput.js:41
+msgid "Desktop"
+msgstr ""
+
+#: src/utilities/components/singleinput/singleinput.js:49
+msgid "Tablet"
+msgstr ""
+
+#: src/utilities/components/singleinput/singleinput.js:57
+msgid "Mobile"
+msgstr ""
+
+#. translators: %s: device name, e.g. "Desktop"
+#: src/utilities/components/singleinput/singleinput.js:96
+#, js-format
+msgid "Editing %s values. Change device"
+msgstr ""
+
+#: src/utilities/components/singleinput/singleinput.js:110
+msgid "Device"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:4
+msgid "Solid"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:8
+msgid "Dashed"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:12
+msgid "Dotted"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:16
+msgid "Double"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:20
+msgid "Groove"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:24
+msgid "Ridge"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:28
+msgid "Inset"
+msgstr ""
+
+#: src/utilities/options/borderstyles.js:32
+msgid "Outset"
+msgstr ""
+
+#: src/blocks/carousel/block.json
 msgctxt "block title"
-msgid "Testimonial"
+msgid "Testimonial Carousel"
 msgstr ""
 
-#: build/blocks/grid-item/block.json
-msgctxt "block keyword"
-msgid "review"
-msgstr ""
-
-#: build/blocks/grid-item/block.json
-#: build/blocks/grid/block.json
-msgctxt "block keyword"
-msgid "quote"
-msgstr ""
-
-#: build/blocks/grid-item/block.json
-#: build/blocks/grid/block.json
-msgctxt "block keyword"
-msgid "rating"
-msgstr ""
-
-#: build/blocks/grid-item/block.json
+#: src/blocks/carousel/block.json
 msgctxt "block description"
-msgid "A single testimonial with quote, star rating, reviewer name, title, company and photo."
+msgid "Show customer testimonials and reviews in a swipeable carousel (slider) with arrows, dots and optional autoplay."
 msgstr ""
 
-#: build/blocks/grid/block.json
-msgctxt "block title"
-msgid "Testimonial Grid"
-msgstr ""
-
-#: build/blocks/grid/block.json
-msgctxt "block description"
-msgid "Display customer testimonials and reviews with star ratings and photos in a responsive grid."
-msgstr ""
-
-#: build/blocks/grid/block.json
+#: src/blocks/carousel/block.json
+#: src/blocks/grid/block.json
 msgctxt "block keyword"
 msgid "testimonial"
 msgstr ""
 
-#: build/blocks/grid/block.json
+#: src/blocks/carousel/block.json
+#: src/blocks/grid/block.json
 msgctxt "block keyword"
 msgid "testimonials"
 msgstr ""
 
-#: build/blocks/grid/block.json
+#: src/blocks/carousel/block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr ""
+
+#: src/blocks/carousel/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr ""
+
+#: src/blocks/carousel/block.json
+#: src/blocks/grid/block.json
 msgctxt "block keyword"
 msgid "reviews"
 msgstr ""
 
-#: build/blocks/grid/block.json
+#: src/blocks/carousel/block.json
+#: src/blocks/grid-item/block.json
+#: src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "rating"
+msgstr ""
+
+#: src/blocks/carousel/block.json
+#: src/blocks/grid/block.json
 msgctxt "block keyword"
 msgid "social proof"
 msgstr ""
 
-#: build/blocks/grid/block.json
+#: src/blocks/grid-item/block.json
+msgctxt "block title"
+msgid "Testimonial"
+msgstr ""
+
+#: src/blocks/grid-item/block.json
+msgctxt "block keyword"
+msgid "review"
+msgstr ""
+
+#: src/blocks/grid-item/block.json
+#: src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "quote"
+msgstr ""
+
+#: src/blocks/grid-item/block.json
+msgctxt "block description"
+msgid "A single testimonial with quote, star rating, reviewer name, title, company and photo."
+msgstr ""
+
+#: src/blocks/grid/block.json
+msgctxt "block title"
+msgid "Testimonial Grid"
+msgstr ""
+
+#: src/blocks/grid/block.json
+msgctxt "block description"
+msgid "Display customer testimonials and reviews with star ratings and photos in a responsive grid."
+msgstr ""
+
+#: src/blocks/grid/block.json
 msgctxt "block keyword"
 msgid "customer feedback"
 msgstr ""

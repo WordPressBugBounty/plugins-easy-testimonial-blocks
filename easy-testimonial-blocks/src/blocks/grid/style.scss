@@ -1,14 +1,23 @@
 /*
 * Style Works for both Editor and Frontend
+*
+* This stylesheet also holds the card styles the carousel block uses
+* ( it loads it as a dependency ), so card rules target both containers.
 */
 
 @use "presets";
+
+// card containers: the grid and the carousel share the card styles
+$root: ":is(.wp-block-etb-grid, .wp-block-etb-carousel)";
 
 .wp-block-etb-grid {
 	display: grid;
 	min-height: 0;
 	min-width: 0;
 	position: relative;
+}
+
+#{$root} {
 
 	&.has-box-shadow {
 

@@ -227,7 +227,19 @@ if ( ! defined( 'ABSPATH' ) ) {
    return sprintf( '%dpx %dpx %dpx %dpx %s', $num( 'x', -100, 100 ), $num( 'y', -100, 100 ), $num( 'blur', 0, 200 ), $num( 'spread', -100, 100 ), $color );
  }
 
- function etb_testimonial_grid( $attributes ) {
+ /**
+  * Per-instance card CSS shared by the grid and the carousel.
+  *
+  * @param array  $attributes Block attributes ( must carry a non-empty 'id' ).
+  * @param string $root       Block wrapper class, e.g. 'wp-block-etb-grid'.
+  * @param array  $layout     Optional container layout CSS per device
+  *                           ( desktop / tablet / mobile ), placed first in
+  *                           that device's media query.
+  * @return string
+  */
+ function etb_testimonial_card_css( $attributes, $root, $layout = array() ) {
+  $root = sanitize_html_class( $root );
+
   // The handle is interpolated unescaped into every CSS selector below, so
   // it's restricted to characters that are safe in both a CSS class name
   // and an HTML id ( no quotes, braces, or other structural characters ).
@@ -235,8 +247,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   // default attribute values, guards against old posts with missing keys
   $attributes = wp_parse_args( $attributes, array(
-    'gridCols'             => array( 'desktop' => 2, 'tablet' => 2, 'mobile' => 1 ),
-    'gridGap'              => array( 'desktop' => 20, 'tablet' => 20, 'mobile' => 15 ),
     'iconSizes'            => array( 'desktop' => 60, 'tablet' => 48, 'mobile' => 36 ),
     'ttmFontSizes'         => array( 'desktop' => 20, 'tablet' => 18, 'mobile' => 16 ),
     'photoSizes'           => array( 'desktop' => 60, 'tablet' => 48, 'mobile' => 36 ),
@@ -257,7 +267,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   // grid
   if ( isset( $attributes['zIndex'] ) && is_numeric( $attributes['zIndex'] ) ) {
-    $css .= ".$handle.wp-block-etb-grid{";
+    $css .= ".$handle.$root{";
       $css .= 'z-index: ' . intval( $attributes['zIndex'] ) . ';';
     $css .= "}";
   }
@@ -267,7 +277,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     $normal = etb_shadow_css( isset( $attributes['customShadow']['normal'] ) ? $attributes['customShadow']['normal'] : array() );
     $hover  = etb_shadow_css( isset( $attributes['customShadow']['hover'] ) ? $attributes['customShadow']['hover'] : array() );
     if ( $normal ) {
-      $css .= ".$handle.wp-block-etb-grid{--etb-shadow: {$normal};" . ( $hover ? "--etb-shadow-hover: {$hover};" : '' ) . "}";
+      $css .= ".$handle.$root{--etb-shadow: {$normal};" . ( $hover ? "--etb-shadow-hover: {$hover};" : '' ) . "}";
     }
   }
 
@@ -275,7 +285,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   if ( ! empty( $attributes['accentColor'] ) ) {
     $accent = etb_sanitize_css_color( $attributes['accentColor'] );
     if ( $accent ) {
-      $css .= ".$handle.wp-block-etb-grid{--etb-accent: {$accent};}";
+      $css .= ".$handle.$root{--etb-accent: {$accent};}";
     }
   }
 
@@ -414,11 +424,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   // Desktop
   $css .= "@media (min-width: 1025px) {";
-    // grid
-    $css .= ".$handle.wp-block-etb-grid{";
-      $css .= 'grid-template-columns: repeat(' . absint( $attributes['gridCols']['desktop'] ) . ', 1fr);';
-      $css .= 'grid-gap: ' . absint( $attributes['gridGap']['desktop'] ) . 'px;';
-    $css .= "}";
+    if ( ! empty( $layout['desktop'] ) ) {
+      $css .= $layout['desktop'];
+    }
 
     if ( ! etb_has_box_padding( $attributes['containerPadding'] ) && isset( $attributes['containerPadding']['desktop'] ) ) {
       $css .= ".$handle .wp-block-etb-grid-item{";
@@ -445,11 +453,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   // Tablet
   $css .= "@media (min-width: 768px) and (max-width: 1024px) {";
-    // grid
-    $css .= ".$handle.wp-block-etb-grid{";
-      $css .= 'grid-template-columns: repeat(' . absint( $attributes['gridCols']['tablet'] ) . ', 1fr);';
-      $css .= 'grid-gap: ' . absint( $attributes['gridGap']['tablet'] ) . 'px;';
-    $css .= "}";
+    if ( ! empty( $layout['tablet'] ) ) {
+      $css .= $layout['tablet'];
+    }
 
     if ( ! etb_has_box_padding( $attributes['containerPadding'] ) && isset( $attributes['containerPadding']['tablet'] ) ) {
       $css .= ".$handle .wp-block-etb-grid-item{";
@@ -476,11 +482,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   // Mobile
   $css .= "@media (max-width: 767px) {";
-    // grid
-    $css .= ".$handle.wp-block-etb-grid{";
-      $css .= 'grid-template-columns: repeat(' . absint( $attributes['gridCols']['mobile'] ) . ', 1fr);';
-      $css .= 'grid-gap: ' . absint( $attributes['gridGap']['mobile'] ) . 'px;';
-    $css .= "}";
+    if ( ! empty( $layout['mobile'] ) ) {
+      $css .= $layout['mobile'];
+    }
 
     if ( ! etb_has_box_padding( $attributes['containerPadding'] ) && isset( $attributes['containerPadding']['mobile'] ) ) {
       $css .= ".$handle .wp-block-etb-grid-item{";
@@ -506,4 +510,29 @@ if ( ! defined( 'ABSPATH' ) ) {
   $css .= "}";
 
    return $css; 
+ }
+
+ /**
+  * Testimonial Grid — per-instance CSS: the shared card styles plus the
+  * grid columns and gap for each device.
+  *
+  * @param array $attributes Block attributes.
+  * @return string
+  */
+ function etb_testimonial_grid( $attributes ) {
+  $handle     = preg_replace( '/[^A-Za-z0-9_-]/', '', (string) $attributes['id'] );
+  $attributes = wp_parse_args( $attributes, array(
+    'gridCols' => array( 'desktop' => 2, 'tablet' => 2, 'mobile' => 1 ),
+    'gridGap'  => array( 'desktop' => 20, 'tablet' => 20, 'mobile' => 15 ),
+  ) );
+
+  $layout = array();
+  foreach ( array( 'desktop', 'tablet', 'mobile' ) as $device ) {
+    $cols = isset( $attributes['gridCols'][ $device ] ) ? absint( $attributes['gridCols'][ $device ] ) : 1;
+    $gap  = isset( $attributes['gridGap'][ $device ] ) ? absint( $attributes['gridGap'][ $device ] ) : 0;
+
+    $layout[ $device ] = ".$handle.wp-block-etb-grid{grid-template-columns: repeat({$cols}, 1fr);grid-gap: {$gap}px;}";
+  }
+
+  return etb_testimonial_card_css( $attributes, 'wp-block-etb-grid', $layout );
  }

@@ -1,0 +1,291 @@
+/*
+* Style Works for both Editor and Frontend
+*
+* Card styles come from the grid's stylesheet ( a dependency of this block );
+* this file only adds the carousel track and its controls.
+*/
+
+// Room above and below the slides so card shadows and hover effects aren't
+// clipped by the scroll container. Each effect sets only what it needs; the
+// track takes the larger of the card's shadow and its hover effect. Negative
+// margins cancel the room out, so it never shows as space. There's no side
+// room: it would let neighbouring cards peek past the block edges.
+
+@mixin bleed($kind, $top, $bottom) {
+	--etb-bleed-#{$kind}-top: #{$top};
+	--etb-bleed-#{$kind}-bottom: #{$bottom};
+}
+
+@function bleed($side) {
+
+	@return max(var(--etb-bleed-shadow-#{$side}, 0px), var(--etb-bleed-hover-#{$side}, 0px));
+}
+
+.wp-block-etb-carousel {
+	--etb-slides: 1;
+	--etb-gap: 20px;
+	position: relative;
+	min-width: 0;
+
+	.etb-carousel__viewport {
+		position: relative;
+		// keeps the track's negative margins inside, so the bleed never shows
+		// up as extra space around the block
+		display: flow-root;
+	}
+
+	.etb-carousel__track {
+		display: flex;
+		gap: var(--etb-gap);
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		--etb-room-top: #{bleed("top")};
+		--etb-room-bottom: #{bleed("bottom")};
+		padding-block: var(--etb-room-top) var(--etb-room-bottom);
+		margin-block: calc(-1 * var(--etb-room-top)) calc(-1 * var(--etb-room-bottom));
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentcolor;
+			outline-offset: -2px;
+		}
+
+		> .wp-block-etb-grid-item {
+			flex: 0 0 calc((100% - (var(--etb-slides) - 1) * var(--etb-gap)) / var(--etb-slides));
+			scroll-snap-align: start;
+		}
+	}
+
+	// card shadows ( values follow the shadows in the grid's stylesheet )
+	&.has-box-shadow {
+
+		@include bleed(shadow, 6px, 6px);
+	}
+
+	&.has-box-shadow:is(.etb-preset-elevated, .etb-preset-spotlight, .etb-preset-stripe) {
+
+		@include bleed(shadow, 8px, 32px);
+	}
+
+	&.etb-preset-aurora {
+
+		@include bleed(shadow, 2px, 38px);
+	}
+
+	// any size is possible, so keep generous room
+	&.has-box-shadow.has-custom-shadow {
+
+		@include bleed(shadow, 24px, 48px);
+	}
+
+	// hover effects
+	&.has-hover-lift {
+
+		@include bleed(hover, 4px, 44px);
+	}
+
+	&.has-hover-grow {
+
+		@include bleed(hover, 12px, 12px);
+	}
+
+	&.has-hover-glow {
+
+		@include bleed(hover, 14px, 42px);
+	}
+
+	.etb-carousel__controls {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		margin-top: 24px;
+		color: var(--etb-nav-color, currentcolor);
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	// arrow position: top — a row above the cards, aligned to the end
+	.etb-carousel__controls--top {
+		justify-content: flex-end;
+		margin: 0 0 16px;
+	}
+
+	// arrow position: sides — centered on the card edges, half outside
+	.etb-carousel__controls--sides {
+		position: absolute;
+		inset: 0 -20px;
+		z-index: 1;
+		justify-content: space-between;
+		margin: 0;
+		pointer-events: none;
+
+		.etb-carousel__arrow {
+			border-color: transparent;
+			background: var(--wp--preset--color--base, #fff);
+			box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+			opacity: 1;
+			pointer-events: auto;
+
+			&:hover:not(:disabled) {
+				background: var(--wp--preset--color--base, #fff);
+				box-shadow: 0 4px 14px rgba(15, 23, 42, 0.24);
+			}
+
+			&:disabled {
+				opacity: 0;
+				pointer-events: none;
+			}
+		}
+	}
+
+	.etb-carousel__arrow {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		border: 1px solid currentcolor;
+		border-radius: 50%;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		opacity: 0.85;
+		transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+
+		svg {
+			width: 24px;
+			height: 24px;
+			fill: currentcolor;
+		}
+
+		&:hover:not(:disabled) {
+			opacity: 1;
+			color: var(--etb-nav-hover-color, inherit);
+			background: color-mix(in srgb, currentcolor 10%, transparent);
+		}
+
+		&:disabled {
+			opacity: 0.3;
+			cursor: default;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentcolor;
+			outline-offset: 2px;
+		}
+	}
+
+	.etb-carousel__dots {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 4px;
+	}
+
+	.etb-carousel__dot {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+
+		// the visible dot; the button stays 24px for an easy tap target
+		&::before {
+			content: "";
+			width: 8px;
+			height: 8px;
+			border-radius: 4px;
+			background: currentcolor;
+			opacity: 0.3;
+			transition: width 0.2s ease, opacity 0.2s ease;
+		}
+
+		&[aria-current="true"]::before {
+			width: 20px;
+			opacity: 1;
+		}
+
+		&:hover {
+			color: var(--etb-nav-hover-color, inherit);
+
+			&::before {
+				opacity: 1;
+			}
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentcolor;
+			outline-offset: 0;
+			border-radius: 4px;
+		}
+	}
+
+	.etb-carousel__pause {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: transparent;
+		color: inherit;
+		cursor: pointer;
+		opacity: 0.7;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			fill: currentcolor;
+		}
+
+		&:hover {
+			opacity: 1;
+			color: var(--etb-nav-hover-color, inherit);
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentcolor;
+			outline-offset: 2px;
+		}
+
+		.etb-carousel__icon-play {
+			display: none;
+		}
+
+		&[data-paused="true"] {
+
+			.etb-carousel__icon-play {
+				display: block;
+			}
+
+			.etb-carousel__icon-pause {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.wp-block-etb-carousel .etb-carousel__dot::before {
+		transition: none;
+	}
+}
